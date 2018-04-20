@@ -3,21 +3,35 @@ package doubles.data.structure.list.array;
 public class ArrayListTest {
 
     public static void main(String[] args) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("A");
-        list.add("B");
-        list.add("C");
-        list.add("D");
-        list.add("E");
-        list.add("F");
-        list.add("G");
-        list.add("H");
 
-        for (int i = 0; i < list.getSize(); i ++) {
-            System.out.println(list.get(i));
-        }
+        ArrayList<String> sportsList = new ArrayList<>();
 
-        list.remove(1);
+        //System.out.println(sportsList.get(0));
+
+        sportsList.add("Baseball");
+        sportsList.add("Basketball");
+        sportsList.add("Football");
+        sportsList.add("Volleyball");
+        sportsList.add("Tennis");
+        sportsList.add("Bowling");
+        sportsList.add("Golf");
+        sportsList.add("Swimming");
+
+
+        System.out.println("sportsList" + sportsList.get(1));
+
+        sportsList.remove(1);
+
+        System.out.println(sportsList.get(1));
+
+        sportsList.add("Go", 0);
+
+        sportsList.remove(1);
+        sportsList.remove(1);
+        sportsList.remove(1);
+        sportsList.remove(1);
+        sportsList.remove(1);
+        sportsList.remove(1);
     }
 
 }
