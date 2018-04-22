@@ -5,6 +5,16 @@ public class SingleNode<T> {
     private T data;
     private SingleNode<T> nextNode;
 
+    public SingleNode() {
+        this.data = null;
+        this.nextNode = null;
+    }
+
+    public SingleNode(T data) {
+        this.data = data;
+        this.nextNode = null;
+    }
+
     public SingleNode(T data, SingleNode<T> nextNode) {
         this.data = data;
         this.nextNode = nextNode;
@@ -24,5 +34,13 @@ public class SingleNode<T> {
 
     public void setNextNode(SingleNode<T> nextNode) {
         this.nextNode = nextNode;
+    }
+
+    @Override
+    public String toString() {
+        return "SingleNode{" +
+                "data=" + data +
+                ", nextNode=" + nextNode +
+                '}';
     }
 }
