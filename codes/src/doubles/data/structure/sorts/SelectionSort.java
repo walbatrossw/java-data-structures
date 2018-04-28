@@ -1,17 +1,26 @@
-package doubles.data.structure.sort;
+package doubles.data.structure.sorts;
 
-public class BubbleSort {
-
+// 선택 정렬
+public class SelectionSort {
     public static void main(String[] args) {
 
         int[] intArray = {55, 11, -4, -13, 1, 4, 22, 15};
+
         printArray(intArray);
 
+
         for (int lastUnsortedIndex = intArray.length -1; lastUnsortedIndex > 0; lastUnsortedIndex--) {
-            for (int i = 0; i < lastUnsortedIndex; i++) {
-                if (intArray[i] > intArray[i+1])
-                    swap(intArray, i, i+1);
+
+            int largest = 0;
+
+            for (int i = 1; i <= lastUnsortedIndex; i++) {
+
+                if (intArray[i] > intArray[largest])
+                    largest = i;
+
             }
+
+            swap(intArray, largest, lastUnsortedIndex);
         }
 
         printArray(intArray);
@@ -33,4 +42,5 @@ public class BubbleSort {
         array[j] = temp;
 
     }
+
 }

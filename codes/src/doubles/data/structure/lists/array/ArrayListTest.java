@@ -1,4 +1,4 @@
-package doubles.data.structure.list.array;
+package doubles.data.structure.lists.array;
 
 public class ArrayListTest {
 

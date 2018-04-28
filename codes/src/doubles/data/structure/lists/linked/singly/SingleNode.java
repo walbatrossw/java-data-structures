@@ -1,4 +1,4 @@
-package doubles.data.structure.list.linked.singly;
+package doubles.data.structure.lists.linked.singly;
 
 public class SingleNode<T> {
 
