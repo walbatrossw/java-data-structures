@@ -35,7 +35,7 @@ public class BubbleSort {
 
     }
 
-    // 배열 출력
+    // 배열 출력t
     private static void printArray(int[] array) {
         for (int i : array)
             System.out.print(+ i + " ");
