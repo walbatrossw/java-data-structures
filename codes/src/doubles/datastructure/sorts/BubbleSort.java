@@ -1,4 +1,4 @@
-package doubles.data.structure.sorts;
+package doubles.datastructure.sorts;
 
 // 버블 정렬
 public class BubbleSort {

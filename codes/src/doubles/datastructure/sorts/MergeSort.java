@@ -1,4 +1,4 @@
-package doubles.data.structure.sorts;
+package doubles.datastructure.sorts;
 
 public class MergeSort {
     public static void main(String[] args) {

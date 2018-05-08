@@ -1,4 +1,4 @@
-package doubles.data.structure.stack.linked;
+package doubles.datastructure.stacks.linked;
 
 public class LinkedStackEx {
 

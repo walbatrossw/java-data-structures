@@ -1,4 +1,4 @@
-package doubles.data.structure.stack;
+package doubles.datastructure.stacks;
 
 public interface Stack {
 

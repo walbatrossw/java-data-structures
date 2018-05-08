@@ -1,4 +1,4 @@
-package doubles.data.structure.sorts;
+package doubles.datastructure.sorts;
 
 public class CountingSort {
     public static void main(String[] args) {

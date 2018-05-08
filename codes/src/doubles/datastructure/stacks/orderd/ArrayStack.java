@@ -1,6 +1,6 @@
-package doubles.data.structure.stack.orderd;
+package doubles.datastructure.stacks.orderd;
 
-import doubles.data.structure.stack.Stack;
+import doubles.datastructure.stacks.Stack;
 
 public class ArrayStack implements Stack {
 

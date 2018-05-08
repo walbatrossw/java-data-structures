@@ -1,4 +1,4 @@
-package doubles.data.structure.stack.orderd;
+package doubles.datastructure.stacks.orderd;
 
 public class ArrayStackEx {
     public static void main(String[] args) {

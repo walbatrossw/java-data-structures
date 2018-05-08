@@ -1,6 +1,6 @@
-package doubles.data.structure.stack.linked;
+package doubles.datastructure.stacks.linked;
 
-import doubles.data.structure.stack.Stack;
+import doubles.datastructure.stacks.Stack;
 
 public class LinkedStack implements Stack {
 

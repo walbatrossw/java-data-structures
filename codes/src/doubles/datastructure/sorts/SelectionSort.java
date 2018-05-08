@@ -1,4 +1,4 @@
-package doubles.data.structure.sorts;
+package doubles.datastructure.sorts;
 
 // 선택 정렬
 public class SelectionSort {
