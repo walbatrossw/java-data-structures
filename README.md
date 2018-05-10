@@ -20,6 +20,11 @@ Udemy의 [Data Structures and Algorithms: Deep Dive Using Java](https://www.udem
 
 ## 02. Lists(리스트)
 
+- ArrayList(배열리스트)
+- LinkedList(연결리스트)
+    - SinglyLinkedList(단순연결리스트)
+    - DoublyLinkedList(이중연결리스트)
+
 ## 03. Stacks
 
 ## 04. Queues
