@@ -13,7 +13,7 @@ public class SinglyLinkedListMain {
         Employee choi = new Employee(5, "최과장", "과장", 37);
         Employee yoon = new Employee(6, "윤전무", "전무", 40);
 
-        EmployeeLinkedList list = new EmployeeLinkedList();
+        EmployeeSingleLinkedList list = new EmployeeSingleLinkedList();
 
         System.out.println(list.isEmpty());
 

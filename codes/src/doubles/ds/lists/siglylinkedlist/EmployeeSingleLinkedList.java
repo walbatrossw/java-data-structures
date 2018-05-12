@@ -2,23 +2,23 @@ package doubles.ds.lists.siglylinkedlist;
 
 import doubles.ds.Employee;
 
-public class EmployeeLinkedList {
+public class EmployeeSingleLinkedList {
 
-    private EmployeeNode head; // 연결리스트의 첫노드
+    private EmployeeSingleNode head; // 연결리스트의 첫노드
     private int size; // 연결리스트의 사이즈
 
     // 연결리스트의 첫노드 삽입
     public void addToFront(Employee employee) {
-        EmployeeNode node = new EmployeeNode(employee);
+        EmployeeSingleNode node = new EmployeeSingleNode(employee);
         node.setNext(head);
         head = node;
         size++;
     }
 
-    public EmployeeNode removeFormFront() {
+    public EmployeeSingleNode removeFormFront() {
         if (isEmpty())
             return null;
-        EmployeeNode removedNode = head;
+        EmployeeSingleNode removedNode = head;
         head = head.getNext();
         removedNode.setNext(null);
         size--;
@@ -37,7 +37,7 @@ public class EmployeeLinkedList {
 
     // 연결 리스트 출력
     public void printList() {
-        EmployeeNode  current = head;
+        EmployeeSingleNode current = head;
         System.out.print("HEAD -> ");
         while (current != null) {
             System.out.print(current);
