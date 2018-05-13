@@ -15,6 +15,7 @@ public class EmployeeSingleLinkedList {
         size++;
     }
 
+    // 연결리스트 첫노드 삭제
     public EmployeeSingleNode removeFormFront() {
         if (isEmpty())
             return null;

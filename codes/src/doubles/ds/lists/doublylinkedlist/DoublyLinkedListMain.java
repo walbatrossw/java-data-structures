@@ -1,11 +1,9 @@
-package doubles.ds.lists.siglylinkedlist;
+package doubles.ds.lists.doublylinkedlist;
 
 import doubles.ds.Employee;
 
-public class SinglyLinkedListMain {
-
+public class DoublyLinkedListMain {
     public static void main(String[] args) {
-
         Employee kim = new Employee(1, "김사원", "사원", 27);
         Employee lee = new Employee(2, "이대리", "대리", 30);
         Employee park = new Employee(3, "박대리", "대리", 31);
@@ -13,7 +11,7 @@ public class SinglyLinkedListMain {
         Employee choi = new Employee(5, "최과장", "과장", 37);
         Employee yoon = new Employee(6, "윤전무", "전무", 40);
 
-        EmployeeSingleLinkedList list = new EmployeeSingleLinkedList();
+        EmployeeDoubleLinkedList list = new EmployeeDoubleLinkedList();
 
         System.out.println(list.isEmpty());
 
@@ -28,10 +26,10 @@ public class SinglyLinkedListMain {
 
         list.printList();
 
-        System.out.println(list.removeFormFront());
-        System.out.println(list.getSize());
+        Employee yang = new Employee(7, "양사원", "사원", 27);
+        list.addToEnd(yang);
+
         list.printList();
 
     }
-
 }
