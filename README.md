@@ -1,38 +1,28 @@
-# Data Structures and Algorithm Codes
+# 자바 자료구조 및 알고리즘 정리
 
-Udemy의 [Data Structures and Algorithms: Deep Dive Using Java](https://www.udemy.com/data-structures-and-algorithms-deep-dive-using-java/)를 수강하면서 작성한 코드 저장소
+Udemy에서 **Algorithms and Data Structures in Java** [Part I](https://www.udemy.com/algorithms-and-data-structures/)과 [Part II](https://www.udemy.com/algorithms-and-data-structures-in-java-part-ii/) 강의를 수강하면서 작성한 코드 저장소
 
-## 01. Sorts(정렬)
-- Bubble Sort
-- Selection Sort
-- Insertion Sort
-- Shell Sort
-- Recursion
-- Merge Sort
-- Quick Sort
-- Counting Sort
-- Radix Sort
-- Stable Sort
-- Radix Sort
+## Part I
+
+### 1. Arrays
+### 2. Linked Lists
+### 3. Stacks
+### 4. Queues
+### 5. Binary Search Trees
+### 6. Balanced Trees: AVL Trees
+### 7. Balanced Trees: Red-Black Trees
+### 8. Splay Trees
+### 9. B-Trees
+### 10. Binary Heaps
+### 11. Hashtables
+### 12. Least Recently Used (LRU) Cache
 
 
-> 자료구조의 구현에서 데이터를 `Generics` 데이터를 사용하지 않고, `Employee`라는 추상 데이터 타입를 사용하여 작성
+## Part II
 
-## 02. Lists(리스트)
-
-- ArrayList(배열리스트)
-- LinkedList(연결리스트)
-    - SinglyLinkedList(단순연결리스트)
-    - DoublyLinkedList(이중연결리스트)
-
-## 03. Stacks
-
-## 04. Queues
-
-## 05. HashTables
-
-## 06. Search Algorithms
-
-## 07. Trees
-
-## 08. Heaps
+### 1. Prefix Tree - Tries
+### 2. Ternary Search Tree
+### 3. Substring Search
+### 4. Strings
+### 5. Basic Sorting Algorithms
+### 6. Data Compression
