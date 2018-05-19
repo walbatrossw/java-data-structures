@@ -1,6 +1,6 @@
 package doubles.ds.lists.arraylist;
 
-public class ArrListMain {
+public class Main {
     public static void main(String[] args) {
 
         ArrList<String> stringArrList = new ArrList<>();
