@@ -7,11 +7,6 @@ public class SingleNode<T> {
 
     // Constructor
 
-    public SingleNode() {
-        this.data = null;
-        this.next = null;
-    }
-
     public SingleNode(T data) {
         this.data = data;
         this.next = null;

@@ -14,7 +14,9 @@ public class SingleLinkedList<T> {
 
     // 연결리스트의 특정 데이터의 노드 인덱스 반환
     public int indexOf(T data) {
+
         SingleNode<T> node = head;
+
         int index = 0;
 
         while (!node.getData().equals(data)) {
@@ -35,7 +37,7 @@ public class SingleLinkedList<T> {
     }
 
     // 연결리스트의 특정 인덱스 노드 반환
-    public SingleNode getNode(int index) {
+    public SingleNode<T> getNode(int index) {
 
         SingleNode<T> node = head;
         for (int i = 0; i < index; i++) {
@@ -55,7 +57,7 @@ public class SingleLinkedList<T> {
     // 연결리스트의 특정 인데스에 새로운 노드 추가
     public void add(T newData, int index) {
 
-        // 첫노드가 null 일 경우
+        // 연결리스트가 공백이면
         if (isEmpty()) {
             addFirst(newData);
             return;
@@ -75,7 +77,7 @@ public class SingleLinkedList<T> {
     // 연결리스트의 마지막에 새로운 노드 추가
     public void addLast(T newData) {
 
-        // 첫 노드가 null 일 경우
+        // 연결리스트가 공백이면
         if (isEmpty()) {
             addFirst(newData);
             return;
@@ -93,7 +95,10 @@ public class SingleLinkedList<T> {
         size++;
     }
 
-    public SingleNode removeFirst() {
+    // 연결리스트의 첫번째 노드 제거
+    public T removeFirst() {
+
+        // 연결리스트가 공백이면
         if (isEmpty())
             throw new NoSuchElementException();
 
@@ -102,23 +107,32 @@ public class SingleLinkedList<T> {
         removeToNode.setNext(null);
         size--;
 
-        return removeToNode;
+        return removeToNode.getData();
     }
 
-    public SingleNode remove(int index) {
+    // 연결리스트의 특정 인덱스 노드 제거
+    public T remove(int index) {
 
-        return null;
+        // 연결리스트가 공백이면
+       if (isEmpty())
+            throw  new NoSuchElementException();
+
+        // 특정 인덱스의 이전 노드
+        SingleNode<T> prev = getNode(index - 1);
+        // 삭제할 노드
+        SingleNode<T> nodeToRemove = prev.getNext();
+
+        // 이전 노드의 다음노드를 삭제할 노드의 다음 노드로 변경
+        prev.setNext(nodeToRemove.getNext());
+
+        size--;
+
+        return nodeToRemove.getData();
     }
 
-    public SingleNode removeLast() {
-
-        SingleNode<T> current = head;
-        while (current.getNext() != null) {
-            current = current.getNext();
-        }
-        System.out.println(current);
-
-        return null;
+    // 연결리스트의 마지막 노드 제거
+    public T removeLast() {
+        return remove(size - 1);
     }
 
     // 연결리스트의 사이즈 반환
@@ -131,7 +145,7 @@ public class SingleLinkedList<T> {
         return head == null;
     }
 
-    // 연결리스트의 탐색한 내용 출력
+    // 연결리스트의 전체 탐색한 내용 출력
     public void printList() {
 
         System.out.print("HEAD -> ");
