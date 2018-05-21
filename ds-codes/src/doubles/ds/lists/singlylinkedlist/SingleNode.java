@@ -2,23 +2,21 @@ package doubles.ds.lists.singlylinkedlist;
 
 public class SingleNode<T> {
 
-    private T data;
-    private SingleNode<T> next;
+    private T data; // 노드의 데이터
+    private SingleNode<T> nextNode; // 다음 노드
 
-    // Constructor
-
+    // 생성자
     public SingleNode(T data) {
         this.data = data;
-        this.next = null;
+        this.nextNode = null;
     }
 
-    public SingleNode(T data, SingleNode<T> next) {
+    public SingleNode(T data, SingleNode<T> nextNode) {
         this.data = data;
-        this.next = next;
+        this.nextNode = nextNode;
     }
 
-    // Getter, Setter, toString()
-
+    // Getter, Setter
     public T getData() {
         return data;
     }
@@ -27,14 +25,15 @@ public class SingleNode<T> {
         this.data = data;
     }
 
-    public SingleNode getNext() {
-        return next;
+    public SingleNode<T> getNextNode() {
+        return nextNode;
     }
 
-    public void setNext(SingleNode next) {
-        this.next = next;
+    public void setNextNode(SingleNode<T> nextNode) {
+        this.nextNode = nextNode;
     }
 
+    // toString
     @Override
     public String toString() {
         return this.data.toString();
