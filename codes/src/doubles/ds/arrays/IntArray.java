@@ -1,5 +1,6 @@
 package doubles.ds.arrays;
 
+// int형 배열 선언, 생성
 public class IntArray {
     public static void main(String[] args) {
         int[] a = new int[5];
