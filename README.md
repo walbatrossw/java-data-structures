@@ -1,19 +1,30 @@
 # 자바 자료구조 및 알고리즘 정리
 
-## 1 . 기본 알고리즘
+## 1. 리스트(List)
 
-1-1. 기본 알고리즘
-   
-   - 최대값 구하기
-   - 조건판단 분기
-   - 순서도의 기호
+- ArrayList 구현
+- LinkedList 구현
+    - Singly Linked List
+    - Doubly Linked List
+    - Circular Linked List
 
-1-2. 반복
-   
-   - 1 ~ n번째까지 정수 합 구하기
-   - 양수만 입력
-   - 구조적 프로그래밍
-   - 다중 루프
-   - 직각 이등변 삼각형 출력 
-   
- 
+## 2. 스택(Stack), 큐(Queue)
+
+ - Stack
+ - Queue
+ - Deque
+
+## 3. 트리(Tree)
+
+ - Tree
+ - Binary Tree
+
+## 4. 탐색 트리(Search Tree)
+
+ - Binary Search Tree
+ - AVL Tree
+ - 2-3 Tree
+ - Red Black Tree
+ - B Tree
+
+## 5. 해시 테이블
