@@ -14,27 +14,27 @@ public class ArrList<E> {
     }
 
     // 리스트 항목 읽기
-    public E peek(int k) {
+    public E peek(int index) {
         if (size == 0) {
             throw new NoSuchElementException();
         }
-        return a[k];
+        return a[index];
     }
 
     // 리스트 항목 삽입 : 특정 인덱스
-    public void insert(E newItem, int k) {
+    public void add(E newItem, int index) {
         if (size == a.length) {
             resize(2 * a.length);
         }
-        for (int i = size - 1; i >= k; i--) {
+        for (int i = size - 1; i >= index; i--) {
             a[i + 1] = a[i];
         }
-        a[k] = newItem;
+        a[index] = newItem;
         size++;
     }
 
     // 리스트 항목 삽입 : 마지막
-    public void insertLast(E newItem) {
+    public void addLast(E newItem) {
         if (size == a.length) {
             resize(2 * a.length);
         }
@@ -42,17 +42,17 @@ public class ArrList<E> {
     }
 
     // 리스트 항목 삽입 : 첫번째
-    public void insertFirst(E newItem) {
-        insert(newItem, 0);
+    public void addFirst(E newItem) {
+        add(newItem, 0);
     }
 
     // 리스트 항목 삭제
-    public E delete(int k) {
+    public E delete(int index) {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        E item = a[k];
-        for (int i = k; i < size; i++) {
+        E item = a[index];
+        for (int i = index; i < size; i++) {
             a[i] = a[i + 1];
         }
         size--;
