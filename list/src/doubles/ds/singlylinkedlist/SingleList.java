@@ -2,7 +2,7 @@ package doubles.ds.singlylinkedlist;
 
 public class SingleList<E> {
 
-    private Node<E> head;
+    private SingleNode<E> head;
     private int size;
 
     public SingleList() {
@@ -11,16 +11,16 @@ public class SingleList<E> {
     }
 
     // 데이터 탐색 결과 반환 : 특정 인덱스
-    public Node<E> peek(int index) {
+    public SingleNode<E> peek(int index) {
         return getNode(index);
     }
 
     // 데이터 탐색 : 특정 인덱스
-    private Node<E> getNode(int index) {
+    private SingleNode<E> getNode(int index) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
-        Node<E> node = head;
+        SingleNode<E> node = head;
         for (int i = 0; i < index; i++) {
             node = node.getNextNode();
         }
@@ -29,7 +29,7 @@ public class SingleList<E> {
 
     // 데이터 삽입 : 첫번째
     public void addFirst(E newItem) {
-        head = new Node<>(newItem, head);
+        head = new SingleNode<>(newItem, head);
         size++;
     }
 
@@ -39,9 +39,9 @@ public class SingleList<E> {
             addFirst(newItem);
             return;
         }
-        Node<E> preNode = getNode(index - 1);   // 삽입할 index 이전 노드
-        Node<E> nextNode = preNode.getNextNode();     // 삽입할 index 다음 노드
-        Node<E> newNode = new Node<>(newItem, nextNode);    // 삽입할 노드
+        SingleNode<E> preNode = getNode(index - 1);   // 삽입할 index 이전 노드
+        SingleNode<E> nextNode = preNode.getNextNode();     // 삽입할 index 다음 노드
+        SingleNode<E> newNode = new SingleNode<>(newItem, nextNode);    // 삽입할 노드
         preNode.setNextNode(newNode);
         size++;
     }
@@ -65,9 +65,9 @@ public class SingleList<E> {
             removeFirst();
             return;
         }
-        Node<E> preNode = getNode(index - 1);
-        Node<E> nodeToRemove = preNode.getNextNode();
-        Node<E> nextNode = nodeToRemove.getNextNode();
+        SingleNode<E> preNode = getNode(index - 1);
+        SingleNode<E> nodeToRemove = preNode.getNextNode();
+        SingleNode<E> nextNode = nodeToRemove.getNextNode();
         preNode.setNextNode(nextNode);
         size--;
     }
@@ -84,7 +84,7 @@ public class SingleList<E> {
 
     // 리스트 데이터 출력
     public void printList() {
-        Node<E> p = head;
+        SingleNode<E> p = head;
         for (int i = 0; i < size; i++) {
             System.out.print(p + "");
             p = p.getNextNode();

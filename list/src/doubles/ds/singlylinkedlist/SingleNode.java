@@ -1,10 +1,10 @@
 package doubles.ds.singlylinkedlist;
 
-public class Node<E> {
+public class SingleNode<E> {
     private E item;
-    private Node<E> nextNode;
+    private SingleNode<E> nextNode;
 
-    public Node(E item, Node<E> nextNode) {
+    public SingleNode(E item, SingleNode<E> nextNode) {
         this.item = item;
         this.nextNode = nextNode;
     }
@@ -17,11 +17,11 @@ public class Node<E> {
         this.item = item;
     }
 
-    public Node<E> getNextNode() {
+    public SingleNode<E> getNextNode() {
         return nextNode;
     }
 
-    public void setNextNode(Node<E> nextNode) {
+    public void setNextNode(SingleNode<E> nextNode) {
         this.nextNode = nextNode;
     }
 
