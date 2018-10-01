@@ -35,4 +35,12 @@ public class DoubleNode<E> {
     public void setNextNode(DoubleNode<E> nextNode) {
         this.nextNode = nextNode;
     }
+
+    @Override
+    public String toString() {
+        if (nextNode == null) {
+            return "[item : " + item + " , next node : null]";
+        }
+        return "[item : " + item + " , next node : " + nextNode.getItem() + "] , ";
+    }
 }

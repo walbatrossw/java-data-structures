@@ -33,5 +33,23 @@ public class DoubleList<E> {
     public void addFirst(E newItem) {
         DoubleNode<E> newNode = new DoubleNode<>(newItem);
         newNode.setNextNode(head.getNextNode());
+        if (head.getNextNode() != null) {
+            head.getNextNode().setPreNode(newNode);
+        } else {
+            head.setPreNode(newNode);
+        }
+        head.setNextNode(newNode);
+        size++;
     }
+
+    // 리스트 데이터 출력
+    public void printList() {
+        DoubleNode<E> p = head;
+        for (int i = 0; i < size; i++) {
+            System.out.print(p + "");
+            p = p.getNextNode();
+        }
+        System.out.println();
+    }
+
 }
