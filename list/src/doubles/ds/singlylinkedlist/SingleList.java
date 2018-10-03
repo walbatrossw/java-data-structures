@@ -86,7 +86,11 @@ public class SingleList<E> {
     public void printList() {
         SingleNode<E> p = head;
         for (int i = 0; i < size; i++) {
-            System.out.print(p + "");
+            if (p.getNextNode() == null) {
+                System.out.print(p);
+            } else {
+                System.out.print(p + "=> ");
+            }
             p = p.getNextNode();
         }
         System.out.println();

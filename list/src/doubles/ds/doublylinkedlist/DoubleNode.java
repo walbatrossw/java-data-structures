@@ -3,12 +3,12 @@ package doubles.ds.doublylinkedlist;
 public class DoubleNode<E> {
 
     private E item;
-    private DoubleNode<E> preNode;
+    private DoubleNode<E> prevNode;
     private DoubleNode<E> nextNode;
 
     public DoubleNode(E item) {
         this.item = item;
-        this.preNode = null;
+        this.prevNode = null;
         this.nextNode = null;
     }
 
@@ -20,12 +20,12 @@ public class DoubleNode<E> {
         this.item = item;
     }
 
-    public DoubleNode<E> getPreNode() {
-        return preNode;
+    public DoubleNode<E> getPrevNode() {
+        return prevNode;
     }
 
-    public void setPreNode(DoubleNode<E> preNode) {
-        this.preNode = preNode;
+    public void setPrevNode(DoubleNode<E> prevNode) {
+        this.prevNode = prevNode;
     }
 
     public DoubleNode<E> getNextNode() {
@@ -34,13 +34,5 @@ public class DoubleNode<E> {
 
     public void setNextNode(DoubleNode<E> nextNode) {
         this.nextNode = nextNode;
-    }
-
-    @Override
-    public String toString() {
-        if (nextNode == null) {
-            return "[item : " + item + " , next node : null]";
-        }
-        return "[item : " + item + " , next node : " + nextNode.getItem() + "] , ";
     }
 }

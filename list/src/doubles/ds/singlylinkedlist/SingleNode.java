@@ -30,6 +30,6 @@ public class SingleNode<E> {
         if (nextNode == null) {
             return "[item : " + item + " , next node : null]";
         }
-        return "[item : " + item + " , next node : " + nextNode.getItem() + "] , ";
+        return "[item : " + item + " , next node : " + nextNode.getItem() + "] ";
     }
 }
