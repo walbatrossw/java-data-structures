@@ -1,11 +1,11 @@
-package doubles.ds.singlylinkedlist;
+package doubles.ds.list.singlylinkedlist;
 
-public class SingleList<E> {
+public class SingleLinkedList<E> {
 
     private SingleNode<E> head;
     private int size;
 
-    public SingleList() {
+    public SingleLinkedList() {
         this.head = null;
         this.size = 0;
     }

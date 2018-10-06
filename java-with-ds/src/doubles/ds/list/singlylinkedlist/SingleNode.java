@@ -1,4 +1,4 @@
-package doubles.ds.singlylinkedlist;
+package doubles.ds.list.singlylinkedlist;
 
 public class SingleNode<E> {
     private E item;

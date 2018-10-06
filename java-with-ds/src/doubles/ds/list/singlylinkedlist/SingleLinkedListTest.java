@@ -1,8 +1,8 @@
-package doubles.ds.singlylinkedlist;
+package doubles.ds.list.singlylinkedlist;
 
-public class SingleListTest {
+public class SingleLinkedListTest {
     public static void main(String[] args) {
-        SingleList<String> list = new SingleList<>();
+        SingleLinkedList<String> list = new SingleLinkedList<>();
 
         list.addFirst("a");
         list.add("b", 0);

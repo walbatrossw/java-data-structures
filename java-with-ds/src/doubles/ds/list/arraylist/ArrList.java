@@ -1,4 +1,4 @@
-package doubles.ds.arraylist;
+package doubles.ds.list.arraylist;
 
 import java.util.NoSuchElementException;
 

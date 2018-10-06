@@ -1,4 +1,4 @@
-package doubles.ds.doublylinkedlist;
+package doubles.ds.list.doublylinkedlist;
 
 public class DoubleLinkedListTest {
     public static void main(String[] args) {
