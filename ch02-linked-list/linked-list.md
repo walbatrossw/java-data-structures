@@ -2,11 +2,11 @@
 
 ## 1. Linked List란?
 
-![linked-list]()
+![linked-list](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list.png?raw=true)
 
-Linked List는 동적 메모리 할당을 이용해 리스트를 구현하는 가장 간단한 형태의 자료구조이다.
+**Linked List는 동적 메모리 할당을 이용해 리스트를 구현하는 가장 간단한 형태의 자료구조이다.
 동적 메모리를 할당 받아 노드를 저장하고 노드는 참조를 이용하여 다음 노드를 가리키도록 만들어
-노드들을 한 줄로 연결한다.
+노드들을 한 줄로 연결한다.**
 
 하나의 노드는 `integer`, `double`, custom object와 같은 데이터를 포함하고 있으며
 다음 노드를 가리키는 참조변수를 포함하고 있다.
@@ -16,9 +16,9 @@ Linked List는 동적 메모리 할당을 이용해 리스트를 구현하는 �
 Linked List의 노드는 데이터와 참조값으로 구성되는데 참조값은 한노드에서 다른 노드를 가리키는
 포인터 역할을 한다. 그리고 마지막 참조값은 null을 가리키게 된다.
 
-![linked-list2]()
+![linked-list2](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list2.png?raw=true)
 
-```
+```java
 class Node<T> {
     T data;
     Node nextNode;
@@ -56,6 +56,8 @@ class Node<T> {
 
 ### 4.1 Linked List 삽입 연산 : 맨 앞에 노드를 삽입할 경우
 
+![linked-list-insert-front](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list-insert-front.gif?raw=true)
+
 ```java
 linkedList.insertAtStart(10); // 10 첫노드에 삽입
 linkedList.insertAtStart(4);  // 4 첫노드에 삽입
@@ -66,6 +68,8 @@ Linked List에 새로운 노드를 맨 앞에 삽입하는 방법은 새로운 �
 변경하기만 하면 된다.
 
 ### 4.2 Linked List 삽입 연산 : 맨 뒤에 노드를 삽입할 경우
+
+![linked-list-insert-last](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list-insert-last.gif?raw=true)
 
 ```java
 linkedList.insertAtEnd(25); // 25 마지막 노드에 삽입
@@ -78,6 +82,8 @@ Linked List에 새로운 노드를 맨 마지막에 삽입하는 것은 비교�
 
 ### 4.3 Linked List 삭제 연산 : 맨 앞의 노드를 삭제할 경우
 
+![linked-list-remove-front](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list-remove-front.gif?raw=true)
+
 ```java
 linkedList.removeStart()
 ```
@@ -86,6 +92,8 @@ Linked List의 첫 노드는 매우 빠르게 제거할 수 있다. 노드를 �
 없으므로 참조값만 변경하면 된다.
 
 ### 4.3 Linked List 삭제 연산 : 특정 데이터를 가진 노드를 삭제할 경우
+
+![linked-list-remove-index](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list-remove-index.gif?raw=true)
 
 ```java
 linkedList.remove(10)
@@ -98,12 +106,12 @@ Linked List에서 특정 데이터를 가진 노드를 제거하는 것은 빠�
 
 ## 5. Linked Listd의 문제점
 
-![]()
+![linked-list-problem](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list-problem.png?raw=true)
 
 위의 그림에서 보면 4에서 25까지 탐색을 수행할 수 있지만 역으로 25에서 4로 탐색을
 수행할 수 없다. 그 이유는 참조 값의 반대방향이기 때문이다.
 
-![]()
+![doubly-linked-list](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/doubly-linked-list.png?raw=true)
 
 이중 연결리스트 구현을 통해 역방향으로도 탐색이 가능하게 할 수 있다.
 Doubly Linked List는 노드에 두개의 참조값을 가지는데 하나는 다음노드,
@@ -131,3 +139,5 @@ Doubly Linked List는 노드에 두개의 참조값을 가지는데 하나는 �
 - Linked List는 참조값 때문에 추가적으로 메모리가 필요하다.
 
 ## 7. Linked List 구현
+
+## 8. Questions
