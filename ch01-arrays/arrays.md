@@ -396,3 +396,71 @@ than the length of the array!
 
 > 해결방법은 brute-force approach(O(n<sup>2</sup>)), hashmap, 절대값 사용하기(O(N))와
 같이 3가지 방법이 존재하는데 절대값을 사용하여 값을 비교하는 것을 구현할 것이다.
+
+
+1. 배열을 통해 반복
+2. 각 요소에 대해 배열에서 `T[abs(T[i])]`를 찾고 양수인 경우 해당 값을 음수로 설정
+3. 2단계에서 음수를 만나면 배열의 인덱스 `i`에 있는 요소가 중복
+
+```
+array = [1, 2, 2, 3, 1]
+
+i = 0
+array[Math.abs(arr[0])] = 2 양수를 음수로 변환
+
+array = [1, -2, 2, 3, 1]
+
+i = 1
+array[Math.abs(arr[1])] = 2 양수를 음수로 변환
+
+array = [1, -2, -2, 3, 1]
+
+i = 2
+array[Math.abs(arr[2])] = -2 음수이기때문에 중복값
+
+i = 3
+array[Math.abs(arr[3])] = 3 양수를 음수로 변환
+
+array = [1, -2, -2, -3, 1]
+
+i = 4
+array[Math.abs(arr[4])] = -2 음수이기 때문에 중복값
+
+중복된 값은 1, 2 이다.
+```
+
+```java
+public class RepeatedIntegersProblem {
+
+    public void solve(int[] array) {
+
+        // 배열 수행
+        for (int i = 0; i < array.length; i++) {
+            // 양수이면, 음수로 변환
+            if (array[Math.abs(array[i])] > 0) {
+                // 음수 변환
+                array[Math.abs(array[i])] = -array[Math.abs(array[i])];
+            // 음수이면, 중복된 요소 출력
+            } else {
+                System.out.println("중복된 요소 : " + Math.abs(array[i]));
+            }
+        }
+    }
+
+}
+```
+
+```java
+public class RepeatedIntegersProblemTest {
+    public static void main(String[] args) {
+        int[] array = {1, 2, 2, 3, 1};
+        RepeatedIntegersProblem repeatedIntegersProblem = new RepeatedIntegersProblem();
+        repeatedIntegersProblem.solve(array);
+    }
+}
+```
+
+```
+중복된 요소 : 2
+중복된 요소 : 1
+```
