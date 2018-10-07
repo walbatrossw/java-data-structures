@@ -9,6 +9,9 @@
 
 ## 2. Linked List
 
+- [간단 요약 및 문제풀이](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/linked-list.md)
+- [LinkedList 구현]()
+
 ## 3. Stack
 
 ## 4. Queue

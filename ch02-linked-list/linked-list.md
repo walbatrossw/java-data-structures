@@ -1,4 +1,4 @@
-# Linked List
+# Linked List(연결 리스트)
 
 ## 1. Linked List란?
 
