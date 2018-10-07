@@ -1,30 +1,37 @@
-# 자바 자료구조 및 알고리즘 정리
+# 자바 자료구조 및 알고리즘 구현 및 정리
 
-## 1. 리스트(List)
+## 1. Array
 
-- ArrayList 구현
-- LinkedList 구현
-    - Singly Linked List
-    - Doubly Linked List
-    - Circular Linked List
+## 2. Linked List
 
-## 2. 스택(Stack), 큐(Queue)
+## 3. Stack
 
- - Stack
- - Queue
- - Deque
+## 4. Queue
 
-## 3. 트리(Tree)
+## 5. Binary Search Tree
 
- - Tree
- - Binary Tree
+## 6. AVL Tree
 
-## 4. 탐색 트리(Search Tree)
+## 7. Red Black Tree
 
- - Binary Search Tree
- - AVL Tree
- - 2-3 Tree
- - Red Black Tree
- - B Tree
+## 8. Splay Tree
 
-## 5. 해시 테이블
+## 9. B-Tree
+
+## 10. Binary Heap
+
+## 11. HashTable
+
+## 12. Least Recently Used Cache
+
+## 13. Trie
+
+## 14. Ternary Search Tree
+
+## 15. Substring Search
+
+## 16. Strings
+
+## 17. Sort
+
+## 18. Data Compression
