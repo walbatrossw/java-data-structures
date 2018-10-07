@@ -1,6 +1,11 @@
 # 자바 자료구조 및 알고리즘 구현 및 정리
 
-## 1. Array
+[Udemy의 자바 자료구조 강의](https://www.udemy.com/algorithms-and-data-structures/) 정리 저장소
+
+## 1. Array(배열)
+
+- [간단 요약 및 문제풀이](https://github.com/walbatrossw/java-data-structures/blob/master/ch01-arrays/arrays.md)
+- [ArrayList 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch01-arrays/src/doubles/ds/arrays/arraylist)
 
 ## 2. Linked List
 
