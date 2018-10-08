@@ -1,10 +1,12 @@
 package doubles.ds.linkedlist.implement;
 
+// 노드 클래스
 public class Node<T extends Comparable<T>> {
 
-    private T data;
-    private Node<T> nextNode;
+    private T data;             // 데이터
+    private Node<T> nextNode;   // 다음 노드
 
+    // Getter, Setter, toString 메서드
     public Node(T data) {
         this.data = data;
     }
@@ -29,4 +31,5 @@ public class Node<T extends Comparable<T>> {
     public String toString() {
         return this.data.toString();
     }
+
 }
