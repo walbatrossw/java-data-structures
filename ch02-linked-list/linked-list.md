@@ -319,7 +319,7 @@ C --> B --> null
 
 ## 8. Questions
 
-## 8.1 Linked List의 가운데 노드 찾기
+### 8.1 Linked List의 가운데 노드 찾기
 
 - Suppose we have a standard linked list. Construct an in-place (without
 extra memory) algorithm thats able to find the middle node !
@@ -378,7 +378,7 @@ public class App {
 D
 ```
 
-## 8.2 Linked List 역방향으로 변환
+### 8.2 Linked List 역방향으로 변환
 
 - Construct an in-place algorithm to reverse a linked list!
 
