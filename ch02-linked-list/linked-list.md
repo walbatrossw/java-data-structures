@@ -318,3 +318,65 @@ C --> B --> null
 ```
 
 ## 8. Questions
+
+## 8.1 Linked List의 가운데 노드 찾기
+
+- Suppose we have a standard linked list. Construct an in-place (without
+extra memory) algorithm thats able to find the middle node !
+
+1. 첫번째 해결책 : 리스트를 반복하여 요소의 갯수(count)를 세고, 그 다음 리스트
+를 count/2를 갖는 index를 갖는 노드까지 탐색면 그 노드가 가운데 노드이다.
+
+2. 두번째 해결책 : 두개의 포인터를 사용한다. 첫번째 포인터는 한번에 한 노드씩
+리스트를 탐색하고, 두번째 포인터는 한번에 두 노드씩 리스트를 탐색한다. 두번째 포인터가
+마지막 노드에 도달했을 때 첫번째 포인터가 가리키는 노드가 가운데 노드이다.
+
+```java
+// List 인터페이스
+public void reverse(); // 리스트 역방향으로 변환
+```
+
+```java
+// LinkedList 클래스
+// 가운데 노드 반환 메서드 구현
+@Override
+public Node<T> getMiddleNode() {
+
+    Node<T> fastPointer = this.root;
+    Node<T> slowPointer = this.root;
+
+    // 마지막 노드까지 반복수행
+    while (fastPointer.getNextNode() != null && fastPointer.getNextNode().getNextNode() != null) {
+        fastPointer = fastPointer.getNextNode().getNextNode();
+        slowPointer = slowPointer.getNextNode();
+    }
+
+    return slowPointer;
+}
+```
+
+```java
+// 리스트 테스트 클래스
+public class App {
+    public static void main(String[] args) {
+        List<String> myLinkedList = new LinkedList<>();
+
+        myLinkedList.insert("A");
+        myLinkedList.insert("B");
+        myLinkedList.insert("C");
+        myLinkedList.insert("D");
+        myLinkedList.insert("E");
+        myLinkedList.insert("F");
+        myLinkedList.insert("G");
+        System.out.println(myLinkedList.getMiddleNode());
+    }
+}
+```
+
+```java
+
+```
+
+## 8.2 Linked List 역방향으로 변환
+
+- Construct an in-place algorithm to reverse a linked list!
