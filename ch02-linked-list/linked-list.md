@@ -373,10 +373,118 @@ public class App {
 }
 ```
 
-```java
-
+```
+// 결과 출력
+D
 ```
 
 ## 8.2 Linked List 역방향으로 변환
 
 - Construct an in-place algorithm to reverse a linked list!
+
+1. 첫번째 해결책 : 모든 노드를 하나씩 고려한 다음 역순으로 Linked List를 구성하는
+방법이 있는데 O(N) 공간복잡도를 가지기 때문에 적절한 해결책이 될수 없다.
+2. 두번째 해결책 : 포인터를 사용하는 방법으로 아래와 같이 구현이 가능하다.
+
+![linked-list-reverse](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list-reverse.gif?raw=true)
+
+```java
+@Override
+public void reverse() {
+    Node<T> currentNode = this.root;
+    Node<T> prevNode = null;
+    Node<T> nextNode = null;
+
+    // 마지막 노드까지 반복수행
+    while (currentNode != null) {
+        nextNode = currentNode.getNextNode(); // 현재 노드의 다음노드를 다음노드로 세팅
+        currentNode.setNextNode(prevNode);    // 현재 노드의 다음노드를 이전 노드로 변경 (역순으로 변경됨)
+        prevNode = currentNode;               // 현재 노드를 이전노드로 세팅
+        currentNode = nextNode;               // 다음 노드를 현재노드로 세팅
+    }
+
+    this.root = prevNode;
+}
+```
+
+그렇다면 위의 코드가 어떻게 작동하는지 자세히 알아보자.
+
+![linked-list-reverse1](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list-reverse1.png?raw=true)
+
+아래의 코드와 같이 현재 `prevNode`, `nextNode`는 `null`을 가리키고, `currentNode`는
+Liked List의 head인 `root`를 가리키고 있다.
+
+```java
+Node<T> currentNode = this.root;
+Node<T> prevNode = null;
+Node<T> nextNode = null;
+```
+
+![linked-list-reverse2](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list-reverse2.png?raw=true)
+
+그리고 `while`반복문에서 첫번째로 현재노드(`currentNode`)의 다음노드를
+`nextNode`에 세팅한다.
+
+```java
+nextNode = currentNode.getNextNode(); // 현재 노드의 다음노드를 다음노드로 세팅
+```
+
+![linked-list-reverse3](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list-reverse3.png?raw=true)
+
+현재 노드(`currentNode`)의 다음노드(`nextNode`)를 이전노드(`prevNode`)로
+변경해준다. 이렇게 하면 역순으로 변경이 된다.
+
+```java
+currentNode.setNextNode(prevNode);    // 현재 노드의 다음노드를 이전 노드로 변경 (역순으로 변경됨)
+```
+
+![linked-list-reverse4](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list-reverse4.png?raw=true)
+
+이제 포인터를 뒤로 한 칸씩 이동시키기 위해 현재 노드(`currentNode`)를 이전
+노드(`prev`)로 세팅한다.
+
+```java
+prevNode = currentNode; // 현재 노드를 이전노드로 세팅
+```
+
+![linked-list-reverse5](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/img/linked-list-reverse5.png?raw=true)
+
+그리고 나서 다음노드(`nextNode`)를 현재 노드(`currentNode`)로 세팅한다.
+
+```java
+currentNode = nextNode; // 다음 노드를 현재노드로 세팅
+```
+
+이렇게 한 번의 반복이 끝나고, 현재 노드(`currentNode`)가 `null`일 때 까지 계속
+while 반복문을 수행한다. 마지막에는 역순으로 바뀌기 전의 Linked List의 끝
+노드(`preNode`)를 head(`root`)로 세팅을 하면 최종적으로 Liked List의 역순이
+끝나게 된다.
+
+아래와 같이 확인을 해보면 Linked List가 역순으로 바뀐 것을 확인할 수 있다.
+
+```java
+// 리스트 테스트 클래스
+public class App {
+    public static void main(String[] args) {
+        List<String> myLinkedList = new LinkedList<>();
+
+        myLinkedList.insert("A");
+        myLinkedList.insert("B");
+        myLinkedList.insert("C");
+        myLinkedList.insert("D");
+        myLinkedList.insert("E");
+        myLinkedList.insert("F");
+        myLinkedList.insert("G");
+        myLinkedList.insert("H");
+        myLinkedList.traverseList();
+        myLinkedList.reverse();
+        myLinkedList.traverseList();
+    }
+}
+```
+
+```
+// 결과 확인
+H --> G --> F --> E --> D --> C --> B --> A --> null
+A --> B --> C --> D --> E --> F --> G --> H --> null
+```
