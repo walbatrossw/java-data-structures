@@ -16,7 +16,7 @@
 
 - [간단 요약 및 문제풀이](https://github.com/walbatrossw/java-data-structures/blob/master/ch03-stacks/stack.md)
 - [Stack : Linked List 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch03-stacks/src/doubles/ds/stack/implement/linkedlist)
-- [Stack : Array 구현]()
+- [Stack : Array 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch03-stacks/src/doubles/ds/stack/implement/array)
 
 ## 4. Queue
 
