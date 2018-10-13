@@ -7,20 +7,20 @@
 - [간단 요약 및 문제풀이](https://github.com/walbatrossw/java-data-structures/blob/master/ch01-arrays/arrays.md)
 - [ArrayList 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch01-arrays/src/doubles/ds/arrays/arraylist)
 
-## 2. Linked List
+## 2. Linked List(연결 리스트)
 
 - [간단 요약 및 문제풀이](https://github.com/walbatrossw/java-data-structures/blob/master/ch02-linked-list/linked-list.md)
 - [LinkedList 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch02-linked-list/src/doubles/ds/linkedlist/implement)
 
-## 3. Stack
+## 3. Stack(스택)
 
 - [간단 요약 및 문제풀이](https://github.com/walbatrossw/java-data-structures/blob/master/ch03-stacks/stack.md)
 - [Stack : Linked List 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch03-stacks/src/doubles/ds/stack/implement/linkedlist)
 - [Stack : Array 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch03-stacks/src/doubles/ds/stack/implement/array)
 
-## 4. Queue
+## 4. Queue(큐)
 
-## 5. Binary Search Tree
+## 5. Binary Search Tree(이진 탐색 트리)
 
 ## 6. AVL Tree
 
