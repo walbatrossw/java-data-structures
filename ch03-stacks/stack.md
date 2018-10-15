@@ -48,10 +48,300 @@ stack.peek();
 
 ## 2. Stacks in memory management (Stack, Heap)
 
+### 2.1 Call Stack
+
+- 프로그램의 코드 정보(서브루틴/메서드/함수)를 저장하는 Stack 자료구조이다.
+- 세부 정보는 일반적으로 고급 프로그래밍 언어에서는 숨겨져있고, 자동화 되어있다.
+- Stack은 현재 실행 중인 서브루틴을 실행한 다음 어디로 반환해야할지를 추적한다.
+- 각 함수에 의해 생성된 임시 변수를 저장하는데도 쓰인다.
+- 함수가 새로운 변수를 선언할 때 마다 Stack에 push가 된다.
+- 함수를 종료할 때마다 모든 변수는 Stack에서 pop되고 영구적으로 사라지게 된다.
+- local 변수는 Stack에 있다가 함수가 종료되면 사라지게 된다.
+- Stack의 메모리는 제한적이다.
+
+### 2.2 Heap meomory
+
+- Heap은 자동으로 관리되지 않는 메모리 영역이다.
+- Stack 메모리와 달리 대용량 메모리 영역이다.
+- Java의 경우 레퍼런스 타입이나 객체(인스턴스)가 생성되는 공간이다.
+- 메모리가 자동으로 관리되지 않기 때문에 할당을 해제해야만 한다.
+- 그렇지 않으면 메모리 누수가 발생하여 느려질 수 있다.
+
+### 2.3 Stack Memory VS, Heap Memory
+
+|stack memory|heap memory|
+|---|---|
+|사이즈 제한 O|사이즈 제한 X|
+|접근이 빠름|접근이 느림|
+|지역변수|객체, 인스턴스|
+|CPU에 의해 공간이 효츌적으로 관리됨|메모리가 조각날수 있음|
+|변수는 리사이즈 X|변수는 리사이즈 O|
 
 ## 3. Stacks and recursive method calls
 
+
+
 ## 4. Stack implementation : Linked List
 
+```java
+public class Node<T extends Comparable<T>> {
+
+    private T data;
+    private Node<T> nextNode;
+
+    public Node(T data) {
+        this.data = data;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public Node<T> getNextNode() {
+        return nextNode;
+    }
+
+    public void setNextNode(Node<T> nextNode) {
+        this.nextNode = nextNode;
+    }
+
+    @Override
+    public String toString() {
+        return data.toString();
+    }
+
+}
+```
+
+```java
+public class Stack<T extends Comparable<T>> {
+
+    private Node<T> root;
+    private int count;
+
+    // O(1) 시간 복잡도
+    public void push(T newData) {
+
+        this.count++;
+
+        if (this.root == null) {
+            this.root = new Node<>(newData);
+        } else {
+            Node<T> oldRoot = this.root;
+            this.root = new Node<>(newData);
+            this.root.setNextNode(oldRoot);
+        }
+
+    }
+
+    // O(1) 시간 복잡도
+    public T pop() {
+
+        T itemToPop = this.root.getData();
+        this.root = this.root.getNextNode();
+        this.count--;
+        return itemToPop;
+
+    }
+
+    // O(1) 시간 복잡도
+    public T peek() {
+        return this.root.getData();
+    }
+
+    // O(1) 시간 복잡도
+    public int size() {
+        return this.count;
+    }
+
+    // O(1) 시간 복잡도
+    public boolean isEmpty() {
+        return this.root == null;
+    }
+
+
+}
+```
+
+```java
+public class App {
+    public static void main(String[] args) {
+
+        Stack<String> myStack = new Stack<>();
+
+        myStack.push("A");
+        myStack.push("B");
+        myStack.push("C");
+        myStack.push("D");
+
+        System.out.println(myStack.peek());
+        System.out.println(myStack.pop());
+        System.out.println(myStack.pop());
+        System.out.println(myStack.pop());
+        System.out.println(myStack.peek());
+
+    }
+}
+```
+
+```
+D
+D
+C
+B
+A
+```
+
+
 ## 5. Stack implementation : Array
+
+```java
+public class Stack<T> {
+
+    private T[] stack;
+    private int numOfItems;
+
+    public Stack() {
+        this.stack = (T[]) new Object[1];
+    }
+
+    public void push(T newData) {
+        if (numOfItems == this.stack.length) {
+            resize(2 * this.stack.length);
+        }
+        this.stack[numOfItems++] = newData;
+    }
+
+    public T pop() {
+        T itemToPop = this.stack[--numOfItems];
+        if (numOfItems > 0 && numOfItems == this.stack.length / 4) {
+            resize(this.stack.length / 2);
+        }
+        return itemToPop;
+    }
+
+    public T peek() {
+        return this.stack[numOfItems - 1];
+    }
+
+    public boolean isEmpty() {
+        return this.numOfItems == 0;
+    }
+
+    public int size() {
+        return this.numOfItems;
+    }
+
+    // O(N) 시간 복잡도
+    private void resize(int capacity) {
+        T[] stackCopy = (T[]) new Object[capacity];
+
+        for (int i = 0; i < numOfItems; i++) {
+            stackCopy[i] = this.stack[i];
+        }
+        this.stack = stackCopy;
+    }
+
+}
+```
+
+```java
+public class App {
+    public static void main(String[] args) {
+        Stack<String> myStack = new Stack<>();
+        myStack.push("A");
+        myStack.push("B");
+        myStack.push("C");
+        myStack.push("D");
+        System.out.println("stack size : " + myStack.size());
+        System.out.println("stack peek : " + myStack.peek());
+        System.out.println("stack pop : " + myStack.pop());
+        System.out.println("stack pop : " + myStack.pop());
+        System.out.println("stack pop : " + myStack.pop());
+        System.out.println("stack peek : " + myStack.peek());
+    }
+}
+```
+
+```
+stack size : 4
+stack peek : D
+stack pop : D
+stack pop : C
+stack pop : B
+stack peek : A
+```
+
+## 6. Dijkstra's interpreter
+
+### 6.1 Dijkstra's interpreter
+
+- 수학식을 파싱하기 위한 메서드
+- Shunting-yard 알고리즘은 stack을 기반으로 하나의 stack은 숫자를 또다른 stack은
+연산자를 저장한다.
+- Shunting-yard 알고리즘은 연산자를 우선으로 파싱하는데 일반적으로 사용한다.
+
+### 6.2 Dijkstra's interpreter implementation
+
+```java
+public class Algorithm {
+
+    private Stack<String> operationStack;
+    private Stack<Double> valueStack;
+
+    public Algorithm() {
+        this.operationStack = new Stack<>();
+        this.valueStack = new Stack<>();
+    }
+
+    public void interpreterExpression(String expression) {
+
+        String[] expressionArray = expression.split(" ");
+
+        for (String e : expressionArray) {
+
+            if (e.equals("(")) {
+
+            } else if (e.equals("+")) {
+                this.operationStack.push(e);
+            } else if (e.equals("*")) {
+                this.operationStack.push(e);
+            } else if (e.equals(")")) {
+                String operation = this.operationStack.pop();
+                if (operation.equals("+")) {
+                    this.valueStack.push(this.valueStack.pop() + this.valueStack.pop());
+                } else if (operation.equals("*")) {
+                    this.valueStack.push(this.valueStack.pop() * this.valueStack.pop());
+                }
+            } else {
+                this.valueStack.push(Double.parseDouble(e));
+            }
+        }
+
+    }
+
+    public void result() {
+        System.out.println(this.valueStack.pop());
+    }
+}
+```
+
+```java
+public class App {
+    public static void main(String[] args) {
+        Algorithm algorithm = new Algorithm();
+        algorithm.interpreterExpression("( ( 1 + 2 ) * ( 3 + 4 ) )");
+        algorithm.result();
+
+    }
+}
+```
+
+```
+21.0
+```
 
