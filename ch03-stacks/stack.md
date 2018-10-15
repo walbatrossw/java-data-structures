@@ -345,3 +345,238 @@ public class App {
 21.0
 ```
 
+## 7. Stack Questions
+
+### 7.1 Max in a stack problem : Stack 최대값 찾기
+
+- The aim is to design an algorithm that can return the maximum item of
+a stack in O(1) running time complexity. We can use O(N) extra memory!
+- Hint: we can use another stack to track the max item
+
+```java
+public class MaxItemStack {
+
+    private Stack<Integer> mainStack;   // 원본 Stack
+    private Stack<Integer> maxStack;    // 최대값을 구하기 위한 Stack
+
+    public MaxItemStack() {
+        this.mainStack = new Stack<>();
+        this.maxStack = new Stack<>();
+    }
+
+    // 삽입 연산
+    public void push(int item) {
+
+        mainStack.push(item); // 원본 Stack에 삽입
+
+        // 첫번째 삽입일 경우  mainStack과 같이 maxStack에 삽입
+        if (mainStack.size() == 1) {
+            maxStack.push(item);
+            return;
+        }
+
+        // 새롭게 삽입할 항목이 maxStack의 최대값보다 크면
+        if (item > maxStack.peek()) {
+            maxStack.push(item);
+        // 크지 않다면 기존의 최대값을 삽입
+        } else {
+            maxStack.push(maxStack.peek());
+        }
+    }
+
+    // 삭제 연산 : maxStack, mainStack 둘다 항목 제거
+    public int pop() {
+        maxStack.pop();
+        return mainStack.pop();
+    }
+
+    // 최대값 반환
+    public int getMaxItem() {
+        return maxStack.peek();
+    }
+
+}
+```
+
+```java
+public class App {
+    public static void main(String[] args) {
+
+        MaxItemStack maxItemStack = new MaxItemStack();
+
+        maxItemStack.push(1);
+        System.out.println(maxItemStack.getMaxItem());
+        maxItemStack.push(2);
+        System.out.println(maxItemStack.getMaxItem());
+        maxItemStack.push(3);
+        System.out.println(maxItemStack.getMaxItem());
+        maxItemStack.push(5);
+        System.out.println(maxItemStack.getMaxItem());
+        maxItemStack.push(4);
+        System.out.println(maxItemStack.getMaxItem());
+        maxItemStack.push(7);
+        System.out.println(maxItemStack.getMaxItem());
+        maxItemStack.push(9);
+        System.out.println(maxItemStack.getMaxItem());
+
+        System.out.println("-------after pop()-------");
+
+        maxItemStack.pop();
+        System.out.println(maxItemStack.getMaxItem());
+        maxItemStack.pop();
+        System.out.println(maxItemStack.getMaxItem());
+        maxItemStack.pop();
+        System.out.println(maxItemStack.getMaxItem());
+        maxItemStack.pop();
+        System.out.println(maxItemStack.getMaxItem());
+    }
+}
+```
+
+```
+1
+2
+3
+5
+5
+7
+9
+-------after pop()-------
+7
+5
+5
+3
+```
+
+### 7.2 Queue Implementation with Stacks : Stack으로 Queue 구현하기
+
+- The aim is to design a queue abstract data type with the help of stacks.
+
+해결책
+- Stack의 도움을 받아 큐를 구현하기 위해서는 2개의 Stack을 사용하면된다.
+- 첫번째 Stack은 `enqueue()`연산을 수행한다.
+- 두번째 Stack은 `dequeue()`연산을 수행한다.
+
+```java
+public class Queue {
+
+    private Stack<Integer> enqueueStack;
+    private Stack<Integer> dequeueStack;
+
+    public Queue() {
+        this.enqueueStack = new Stack<>();
+        this.dequeueStack = new Stack<>();
+    }
+    
+    // 삽입 연산
+    public void enqueue(int item) {
+        this.enqueueStack.push(item);
+    }
+
+    public int dequeue() {
+        if (enqueueStack.isEmpty() && dequeueStack.isEmpty()) {
+            throw new RuntimeException("Stacks are empty...");
+        }
+        if (dequeueStack.isEmpty()) {
+            while (!enqueueStack.isEmpty()) {
+                dequeueStack.push(enqueueStack.pop());
+            }
+        }
+        return dequeueStack.pop();
+    }
+
+}
+```
+
+```java
+public class App {
+    public static void main(String[] args) {
+        Queue queue = new Queue();
+        queue.enqueue(10);
+        queue.enqueue(5);
+        queue.enqueue(20);
+        queue.enqueue(1);
+
+        System.out.println(queue.dequeue());
+
+        queue.enqueue(100);
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
+    }
+}
+```
+
+```java
+10
+5
+20
+1
+```
+
+### 7.3 Queue Implementation with Stacks : Stack으로 Queue 구현하기 2
+
+해결책
+- 재귀호출을 통해 Stack 하나로 Queue를 구현할 수 있다.
+
+```java
+public class Queue {
+
+    // Stack 선언
+    private Stack<Integer> stack;
+
+    // 생성자
+    public Queue() {
+        this.stack = new Stack<>();
+    }
+
+    // Queue 삽입연산
+    public void enqueue(int item) {
+        this.stack.push(item);
+    }
+
+    // Queue 삭제 연산 : Stack 하나만을 사용하여 구현, call stack을 통한 재귀호출
+    public int dequeue() {
+        // Stack 사이즈가 1이면 삭제 연산 수행 : 마지막 항목이면 삭제처리
+        if (stack.size() == 1) {
+            return stack.pop();
+        }
+        // 미자막 항목을 찾을 때까지 pop 연산을 수행
+        int item = stack.pop();
+        // 재귀 호출 수행
+        int lastDequeueItem = dequeue();
+        // 꺼낸 항목을 다시 삽입
+        enqueue(item);
+        // 마지막 항목 반환
+        return lastDequeueItem;
+    }
+
+}
+```
+
+```java
+public class App {
+    public static void main(String[] args) {
+        Queue queue = new Queue();
+        queue.enqueue(10);
+        queue.enqueue(5);
+        queue.enqueue(20);
+        queue.enqueue(1);
+
+        System.out.println(queue.dequeue());
+
+        queue.enqueue(100);
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
+    }
+}
+```
+
+```
+10
+5
+20
+1
+```
+
