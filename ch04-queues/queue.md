@@ -14,7 +14,7 @@
 
 Enqueue 연산은 새로운 항목을 Queue의 끝에 추가하면 된다.
 
-![]()
+![queue-enqueue](https://github.com/walbatrossw/java-data-structures/blob/master/ch04-queues/img/queue-enqueue.gif?raw=true)
 
 ```java
 queue.enqueue(10);
@@ -26,7 +26,7 @@ queue.enqueue(20);
 
 Dequeue 연산은 Queue의 첫번째 항목부터 제거하면 된다.
 
-![]()
+![queue-dequeue](https://github.com/walbatrossw/java-data-structures/blob/master/ch04-queues/img/queue-dequeue.gif?raw=true)
 
 ```java
 queue.dequeue();

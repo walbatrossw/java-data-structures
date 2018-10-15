@@ -20,6 +20,9 @@
 
 ## 4. Queue(큐)
 
+- [간단 요약](https://github.com/walbatrossw/java-data-structures/blob/master/ch04-queues/queue.md)
+- [Queue : Linked List 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch04-queues/src/doubles/ds/queue/implement/linkedlist)
+
 ## 5. Binary Search Tree(이진 탐색 트리)
 
 ## 6. AVL Tree
