@@ -17,7 +17,7 @@
 
 트리의 구성요소는 아래와 같다.
 
-![tree]()
+![tree](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/tree.png?raw=true)
 
 - Root Node : 트리 최상위에 있는 노드
 - Child Node : 노드 하위에 연결된 노드
@@ -35,7 +35,7 @@
 
 **이진 탐색 트리는 이진탐색의 개념을 트리 형태의 구조에 접목한 자료구조이다.**
 
-![binary-search-tree]()
+![binary-search-tree](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree.png?raw=true)
 
 - 모든 노드는 최대 2개의 자식 노드(왼쪽, 오른쪽)를 가질 수 있다.
 - 왼쪽 노드는 부모 노드보다 작다
