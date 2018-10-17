@@ -25,6 +25,9 @@
 
 ## 5. Binary Search Tree(이진 탐색 트리)
 
+- [간단 요약 및 문제풀이](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/binary-search-tree.md)
+- [Binary Search Tree 구현]()
+
 ## 6. AVL Tree
 
 ## 7. Red Black Tree
