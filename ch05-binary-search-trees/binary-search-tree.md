@@ -52,10 +52,10 @@
 
 ### 2.1 삽입
 
-삽입 연산은 루트 노드부터 시작한다. 삽입하려는 데이터가 루트 노드보다 크면 오른쪽에
-크기가 작으면 왼쪽에 서브 노드를 위치 시킨다.
+삽입 연산은 루트 노드부터 시작한다. 삽입하려는 데이터가 루트 노드의 데이터를 기준으로
+크기가 크면 오른쪽, 작으면 왼쪽으로 자식 노드에 위치한다.
 
-![binary-search-tree-insert]()
+![binary-search-tree-insert](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-insert.gif?raw=true)
 
 ```java
 binarySearchTree.insert(12);
@@ -67,7 +67,35 @@ binarySearchTree.insert(1);
 
 ### 2.2 탐색
 
+
+탐색 연산은 탐색하려는 데이터가 루트 노트보다 크면 오른쪽, 작으면 왼쪽 순으로 탐색하려는
+데이터를 찾을 때까지 탐색 연산을 수행한다.
+
+![binary-search-tree-find](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-find.gif?raw=true)
+
+```java
+binarySearchTree.find(5);
+```
+
+가장 작은 노드를 찾을 경우에는 최대한 왼쪽으로 이동하면된다.
+
+![binary-search-tree-find-smallest](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-find-smallest.gif?raw=true)
+
+```java
+binarySearchTree.find(1);
+```
+
+가장 큰 노드를 찾을 경우에는 최대한 오른쪽으로 이동하면 된다.
+
+![binary-search-tree-find-largest](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-find-largest.gif?raw=true)
+
+```java
+binarySearchTree.find(20);
+```
+
 ### 2.3 삭제
+
+
 
 ### 2.3 순회
 
