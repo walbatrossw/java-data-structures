@@ -71,7 +71,7 @@ binarySearchTree.insert(1);
 탐색 연산은 탐색하려는 데이터가 루트 노트보다 크면 오른쪽, 작으면 왼쪽 순으로 탐색하려는
 데이터를 찾을 때까지 탐색 연산을 수행한다.
 
-![binary-search-tree-find](https://github.com/walbatrossw/java-data-strctures/blob/master/ch05-binary-search-trees/img/binary-search-tree-find.gif?raw=true)
+![binary-search-tree-find](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-find.gif?raw=true)
 
 ```java
 binarySearchTree.find(5);
