@@ -2,6 +2,8 @@
 
 ## 1. Binary Search Tree?
 
+**이진 탐색 트리는 이진탐색의 개념을 트리 형태의 구조에 접목한 자료구조이다.**
+
 ### 1.1 Binary Search?
 이진 탐색은 정렬된 데이터의 중간에 위치한 항목을 기준으로 데이터를 두 부분으로 나누어
 가며 특정 항목을 탐색하는 방법이다.
@@ -31,9 +33,7 @@
 다른 모든 노드는 Root 노드를 통해서 접근이 가능하기 때문에 다른 노드로 가는 경로가
 여러가지라면 그것은 Tree 구조가 아니다.
 
-### 1.3 Binary Search Tree
-
-**이진 탐색 트리는 이진탐색의 개념을 트리 형태의 구조에 접목한 자료구조이다.**
+### 1.3 Binary Search Tree 특성
 
 ![binary-search-tree](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree.png?raw=true)
 
@@ -47,5 +47,27 @@
 - 정렬되지 않은 배열에서 키로 항목을 찾는데 필요한 O(N)보다는 낫지만 HashTable보다는
 느리다.
 
-## 2.
+
+## 2. Binary Search 연산
+
+### 2.1 삽입
+
+삽입 연산은 루트 노드부터 시작한다. 삽입하려는 데이터가 루트 노드보다 크면 오른쪽에
+크기가 작으면 왼쪽에 서브 노드를 위치 시킨다.
+
+![binary-search-tree-insert]()
+
+```java
+binarySearchTree.insert(12);
+binarySearchTree.insert(4);
+binarySearchTree.insert(5);
+binarySearchTree.insert(20);
+binarySearchTree.insert(1);
+```
+
+### 2.2 탐색
+
+### 2.3 삭제
+
+### 2.3 순회
 
