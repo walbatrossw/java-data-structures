@@ -95,7 +95,44 @@ binarySearchTree.find(20);
 
 ### 2.3 삭제
 
+Binary Search Tree의 삭제 연산은 아래와 같이 3개의 경우의 수가 존재한다.
 
+1. 제거할 노드가 leaf 노드인 경우
+2. 제거할 노드가 single child 노드를 가진 경우
+3. 제거할 노드가 2개의 child 노드를 가진 경우
+
+제거할 노드가 leaf 노드일 경우는 아래와 간단하게 제거하기만 하면 된다.
+
+![binary-search-tree-remove-leaf-node]()
+
+```java
+binarySearchTree.remove(5);
+```
+
+제거할 노드가 single child 노드를 가진 경우는 아래와 같이 참조값을 변경하기만 하면 된다.
+
+![binary-search-tree-remove-single-child]()
+
+```java
+binarySearchTree.remove(1);
+```
+
+제거할 노드가 2개의 노드를 가진 경우 왼쪽 하위 트리에서 가장 큰 항목 또는 오른쪽
+하위 트리에서 가장 작은 항목을 찾아 서로의 위치를 바꾸고, 노드를 제거한다.
+
+![binary-search-tree-remove-two-child]()
+
+왼쪽 하위 트리에서 가장 큰 항목을 찾아 제거했을 경우
+
+![binary-search-tree-remove-two-child-left]()
+
+오른쪽 하위 트리에서 가장 큰 항목을 찾아 제거했을 경우
+
+![binary-search-tree-remove-two-child-right]()
+
+```java
+binarySearchTree.remove(32);
+```
 
 ### 2.3 순회
 
