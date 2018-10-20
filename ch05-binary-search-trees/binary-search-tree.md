@@ -98,8 +98,8 @@ binarySearchTree.find(20);
 Binary Search Tree의 삭제 연산은 아래와 같이 3개의 경우의 수가 존재한다.
 
 1. 제거할 노드가 leaf 노드인 경우
-2. 제거할 노드가 single child 노드를 가진 경우
-3. 제거할 노드가 2개의 child 노드를 가진 경우
+2. 제거할 노드가 하나의 자식 노드를 가진 경우
+3. 제거할 노드가 2개의 자식 노드를 가진 경우
 
 제거할 노드가 leaf 노드일 경우는 아래와 간단하게 제거하기만 하면 된다.
 
@@ -109,7 +109,7 @@ Binary Search Tree의 삭제 연산은 아래와 같이 3개의 경우의 수가
 binarySearchTree.remove(5);
 ```
 
-제거할 노드가 single child 노드를 가진 경우는 아래와 같이 참조값을 변경하기만 하면 된다.
+제거할 노드가 하나의 자식 노드를 가진 경우는 아래와 같이 참조값을 변경하기만 하면 된다.
 
 ![binary-search-tree-remove-single-child](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-remove-single-child.gif?raw=true)
 
@@ -117,7 +117,7 @@ binarySearchTree.remove(5);
 binarySearchTree.remove(1);
 ```
 
-제거할 노드가 2개의 노드를 가진 경우 왼쪽 하위 트리에서 가장 큰 항목 또는 오른쪽
+제거할 노드가 2개의 자식 노드를 가진 경우 왼쪽 하위 트리에서 가장 큰 항목 또는 오른쪽
 하위 트리에서 가장 작은 항목을 찾아 서로의 위치를 바꾸고, 노드를 제거한다.
 
 ![binary-search-tree-remove-two-child](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-remove-two-child.png?raw=true)
@@ -136,3 +136,21 @@ binarySearchTree.remove(32);
 
 ### 2.3 순회
 
+이진탐색트리에서 수행되는 기본 연산들은 트리를 순회하면서 이루어지는데 이진탐색트리의
+순회 방식은 다음과 같이 3가지로 나뉜다.
+
+- In-order traversal : 중위 순회
+- Pre-order traversal : 전위 순회
+- Post-order traversal : 후위 순회
+
+중위 순회는 왼쪽 하위 트리부터 루트 노드, 오른쪽 하위 트리 순으로 반복적으로 방문한다.
+
+![]()
+
+전위 순회는 루트 노드부터 왼쪽 하위 트리, 오른쪽 하위 트리 순으로 반복적으로 방문한다.
+
+![]()
+
+후위 순회는 왼쪽 하위 트리부터 오른쪽 하위트리, 루트 노드 순으로 반복적으로 방문한다.
+
+![]()
