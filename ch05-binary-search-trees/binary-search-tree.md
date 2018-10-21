@@ -154,3 +154,8 @@ binarySearchTree.remove(32);
 후위 순회는 왼쪽 하위 트리부터 오른쪽 하위트리, 루트 노드 순으로 반복적으로 방문한다.
 
 ![post-order-traversal](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/post-order-traversal.gif?raw=true)
+
+
+## 3. Binary Search Tree 구현
+
+### 3.1
