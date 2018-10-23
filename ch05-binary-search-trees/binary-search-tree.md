@@ -470,3 +470,108 @@ private Node<T> getPredecessor(Node<T> node) {
 }
 ```
 
+### 3.6 객체 사용을 위한 클래스 작성
+
+```java
+// 사람 클래스
+public class Person implements Comparable<Person> {
+
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " : " + this.age;
+    }
+
+    @Override
+    public int compareTo(Person person) {
+        return this.name.compareTo(person.getName());
+    }
+}
+```
+
+### 3.7 테스트
+
+```java
+// 테스트 클래스
+public class App {
+    public static void main(String[] args) {
+        Tree<Integer> bst = new BinarySearchTree<>();
+        bst.insert(41);
+        bst.insert(20);
+        bst.insert(11);
+        bst.insert(29);
+        bst.insert(32);
+        bst.insert(65);
+        bst.insert(50);
+        bst.insert(91);
+        bst.insert(72);
+        bst.insert(99);
+
+        bst.traversal();
+        bst.delete(41);
+        bst.traversal();
+
+        System.out.println("=============================");
+
+        System.out.println(bst.getMinValue());
+        System.out.println(bst.getMaxValue());
+
+        System.out.println("=============================");
+
+        Tree<Person> bst2 = new BinarySearchTree<>();
+        bst2.insert(new Person("Kim" , 23));
+        bst2.insert(new Person("Lee" , 25));
+        bst2.insert(new Person("Park" , 28));
+        bst2.insert(new Person("Choi" , 29));
+        bst2.insert(new Person("Yoon" , 32));
+        bst2.insert(new Person("Lim" , 21));
+        bst2.insert(new Person("Ahn" , 33));
+        bst2.traversal();
+    }
+}
+```
+
+```
+// 실행 결과
+11 --> 20 --> 29 --> 32 --> 41 --> 50 --> 65 --> 72 --> 91 --> 99 --> 
+41 --> 20 --> 11 --> 29 --> 32 --> 65 --> 50 --> 91 --> 72 --> 99 --> 
+20 --> 11 --> 29 --> 32 --> 65 --> 50 --> 91 --> 72 --> 99 --> 41 --> 
+removing item with two children...
+Predecessor : 32
+removing a leaf node...
+11 --> 20 --> 29 --> 32 --> 50 --> 65 --> 72 --> 91 --> 99 --> 
+32 --> 20 --> 11 --> 29 --> 65 --> 50 --> 91 --> 72 --> 99 --> 
+20 --> 11 --> 29 --> 65 --> 50 --> 91 --> 72 --> 99 --> 32 --> 
+=============================
+11
+99
+=============================
+Ahn : 33 --> Choi : 29 --> Kim : 23 --> Lee : 25 --> Lim : 21 --> Park : 28 --> Yoon : 32 --> 
+Kim : 23 --> Choi : 29 --> Ahn : 33 --> Lee : 25 --> Park : 28 --> Lim : 21 --> Yoon : 32 --> 
+Choi : 29 --> Ahn : 33 --> Lee : 25 --> Park : 28 --> Lim : 21 --> Yoon : 32 --> Kim : 23 --> 
+```
+
+## 4. Questions
