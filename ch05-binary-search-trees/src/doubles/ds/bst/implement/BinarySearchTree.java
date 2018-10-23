@@ -65,6 +65,26 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
     // 순회
     @Override
     public void traversal() {
+        if (root != null) {
+            inOrderTraversal(root);
+        }
+    }
+
+    private void inOrderTraversal(Node<T> node) {
+        if (node.getLeftChild() != null) {
+            inOrderTraversal(node.getLeftChild());
+        }
+        System.out.print(node + " --> ");
+        if (node.getRightChild() != null) {
+            inOrderTraversal(node.getRightChild());
+        }
+    }
+
+    private void preOrderTraveral(Node<T> node) {
+
+    }
+
+    private void postOrderTraversal(Node<T> node) {
 
     }
 
