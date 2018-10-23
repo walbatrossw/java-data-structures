@@ -158,4 +158,315 @@ binarySearchTree.remove(32);
 
 ## 3. Binary Search Tree 구현
 
-### 3.1
+### 3.1 클래스 작성
+
+아래와 같이 `Node`, `Tree`, `BinarySearchTree` 클래스와 인터페이스를 작성해준다.
+
+```java
+// 노드 클래스
+public class Node<T> {
+
+    private T data;             // 노드 데이터
+    private Node<T> leftChild;  // 왼쪽 하위 노드
+    private Node<T> rightChild; // 오른쪽 하위 노드
+
+    // 생성자
+    public Node(T data) {
+        this.data = data;
+    }
+
+    // getter, setter, toString()
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public Node<T> getLeftChild() {
+        return leftChild;
+    }
+
+    public void setLeftChild(Node<T> leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public Node<T> getRightChild() {
+        return rightChild;
+    }
+
+    public void setRightChild(Node<T> rightChild) {
+        this.rightChild = rightChild;
+    }
+
+    @Override
+    public String toString() {
+        return this.data.toString();
+    }
+}
+```
+
+```java
+// 트리 인터페이스
+public interface Tree<T> {
+
+    public void insert(T data); // 삽입
+    public T getMinValue();     // 최소값
+    public T getMaxValue();     // 최대값
+    public void traversal();    // 순회
+    public void delete(T data); // 삭제
+
+}
+```
+
+```java
+// 이진 탐색 트리 클래스
+public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
+
+    private Node<T> root; // 루트 노드
+    
+        // 삽입
+        @Override
+        public void insert(T data) {
+            
+        }
+        
+        // 최소값 반환
+        @Override
+        public T getMinValue() {
+            return null;
+        }
+        
+        // 최대값 반환
+        @Override
+        public T getMaxValue() {
+            return null;
+        }
+        
+        // 순회 : 중위, 전위, 후위
+        @Override
+        public void traversal() {
+    
+        }
+        
+        // 삭제
+        @Override
+        public void delete(T data) {
+    
+        }
+}
+```
+
+### 3.2 삽입
+
+삽입 연산은 아래와 같다.
+
+```java
+// 삽입
+@Override
+public void insert(T data) {
+    // 루트노드가 null 이면 루트 노드 삽입
+    if (root == null) {
+        root = new Node<>(data);
+    // 아니면 하위노드에 삽입
+    } else {
+        insertNode(data, root);
+    }
+}
+```
+
+```java
+// 삽입
+private void insertNode(T newData, Node<T> node) {
+    // 새로운 데이터가 기존의 데이터보다 작으면 : 왼쪽 하위노드
+    if (newData.compareTo(node.getData()) < 0) {
+        // 왼쪽 하위노드가 존재하면 하위노드에 삽입하기 위해 재귀호출
+        if (node.getLeftChild() != null) {
+            insertNode(newData, node.getLeftChild());
+            // 왼쪽 하위노드가 없다면 노드를 생성, 상위노드의 왼쪽 하위노드에 설정
+        } else {
+            Node<T> newNode = new Node<>(newData);
+            node.setLeftChild(newNode);
+        }
+        // 새로운 데이터가 기존의 데이터보다 크거나 같으면 : 오른쪽 하위노드
+    } else {
+        // 오른쪽 하위 노드가 존재하면 하위 노드에 삽입하기 위해 재귀호출
+        if (node.getRightChild() != null) {
+            insertNode(newData, node.getRightChild());
+            // 오른쪽 하위 노드가 없다면 노드를 생성, 상위노드의 오른쪽 하위 노드에 설정
+        } else {
+            Node<T> newNode = new Node<>(newData);
+            node.setRightChild(newNode);
+        }
+    }
+
+}
+```
+
+### 3.3 최소 / 최대 값 반환
+
+```java
+// 최소값 반환
+@Override
+public T getMinValue() {
+    if (root == null) {
+        return null;
+    }
+    return getMin(root);
+}
+
+// 최대값 반환
+@Override
+public T getMaxValue() {
+    if (root == null) {
+        return null;
+    }
+    return getMax(root);
+}
+```
+
+```java
+// 최소값 : 가장 왼쪽에 위치한 노드가 최소값을 가지고 있다.
+private T getMin(Node<T> node) {
+    // 가장 왼쪽에 위치한 노드를 찾을 때까지 재귀호출
+    if (node.getLeftChild() != null) {
+        return getMin(node.getLeftChild());
+    }
+    return node.getData();
+}
+
+// 최대값 : 가장 오른쪽에 위치한 노드가 최대값을 가지고 있다.
+private T getMax(Node<T> node) {
+    // 가장 오른쪽에 위치한 노드를 찾을 때까지 재취호출
+    if (node.getRightChild() != null) {
+        return getMax(node.getRightChild());
+    }
+    return node.getData();
+}
+```
+
+### 3.4 순회
+
+```java
+// 순회 : 중위, 전위, 후위
+@Override
+public void traversal() {
+    if (root != null) {
+        inOrderTraversal(root);
+        System.out.println();
+        preOrderTraversal(root);
+        System.out.println();
+        postOrderTraversal(root);
+        System.out.println();
+    }
+}
+```
+
+```java
+// 중위 순회
+private void inOrderTraversal(Node<T> node) {
+    if (node.getLeftChild() != null) {
+        inOrderTraversal(node.getLeftChild());
+    }
+    System.out.print(node + " --> ");
+    if (node.getRightChild() != null) {
+        inOrderTraversal(node.getRightChild());
+    }
+}
+
+// 전위 순회
+private void preOrderTraversal(Node<T> node) {
+    System.out.print(node + " --> ");
+    if (node.getLeftChild() != null) {
+        preOrderTraversal(node.getLeftChild());
+    }
+    if (node.getRightChild() != null) {
+        preOrderTraversal(node.getRightChild());
+    }
+}
+
+// 후위 순회
+private void postOrderTraversal(Node<T> node) {
+    if (node.getLeftChild() != null) {
+        preOrderTraversal(node.getLeftChild());
+    }
+    if (node.getRightChild() != null) {
+        preOrderTraversal(node.getRightChild());
+    }
+    System.out.print(node + " --> ");
+}
+```
+
+
+### 3.5 삭제
+
+```java
+// 삭제
+@Override
+public void delete(T data) {
+    if (root != null) {
+        root = delete(root, data);
+    }
+}
+```
+
+```java
+// 삭제
+private Node<T> delete(Node<T> node, T data) {
+
+    if (node == null) {
+        return node;
+    }
+
+    // 삭제할 데이터가 현재 노드의 데이터보다 작으면 왼쪽 하위노드 탐색
+    if (data.compareTo(node.getData()) < 0) {
+        // 삭제 재귀 호출
+        node.setLeftChild(delete(node.getLeftChild(), data));
+    // 삭제할 데이터가 현재 노드의 데이터보다 크면 오른쪽 하위노드 탐색
+    } else if (data.compareTo(node.getData()) > 0) {
+        // 삭제 재귀 호출
+        node.setRightChild(delete(node.getRightChild(), data));
+    // 삭제할 데이터가 현재 노드의 데이터와 같으면 삭제
+    } else {
+        // 하위 노드가 없는 leaf 노드이면
+        if (node.getLeftChild() == null && node.getRightChild()== null) {
+            System.out.println("removing a leaf node...");
+            return null;
+        }
+        // 왼쪽 하위노드가 null 이면 : 오른쪽 하위 노드만 있다면
+        if (node.getLeftChild() == null) {
+            System.out.println("removing the right child...");
+            Node<T> tempNode = node.getRightChild();
+            node = null;
+            return tempNode;
+        // 오른쪽 하위노드가 null 이면 : 왼쪽 하위 노드만 있다면
+        } else if (node.getRightChild() == null) {
+            System.out.println("removing the left child...");
+            Node<T> tempNode = node.getLeftChild();
+            node = null;
+            return tempNode;
+        }
+        // 하위노드가 2개인 경우
+        System.out.println("removing item with two children...");
+        // 왼쪽의 하위 노드중에서 가장 큰 노드 탐색
+        Node<T> tempNode = getPredecessor(node.getLeftChild());
+        // 삭제하려는 노드와 왼쪽 하위노드에서 가장 큰 노드와 swap
+        node.setData(tempNode.getData());
+        // 삭제 재귀 호출
+        node.setLeftChild(delete(node.getLeftChild(), tempNode.getData()));
+    }
+
+    return node;
+}
+
+// 왼쪽 하위노드에서 가장 큰 노드 탐색
+private Node<T> getPredecessor(Node<T> node) {
+    if (node.getRightChild() != null) {
+        return getPredecessor(node.getRightChild());
+    }
+    System.out.println("Predecessor : " + node);
+    return node;
+}
+```
+

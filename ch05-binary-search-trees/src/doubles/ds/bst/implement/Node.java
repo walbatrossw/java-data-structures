@@ -2,14 +2,16 @@ package doubles.ds.bst.implement;
 
 public class Node<T> {
 
-    private T data;
-    private Node<T> leftChild;
-    private Node<T> rightChild;
+    private T data;             // 노드 데이터
+    private Node<T> leftChild;  // 왼쪽 하위 노드
+    private Node<T> rightChild; // 오른쪽 하위 노드
 
+    // 생성자
     public Node(T data) {
         this.data = data;
     }
 
+    // getter, setter, toString()
     public T getData() {
         return data;
     }

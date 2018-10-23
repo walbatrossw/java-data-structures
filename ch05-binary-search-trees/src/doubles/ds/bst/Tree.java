@@ -2,10 +2,10 @@ package doubles.ds.bst;
 
 public interface Tree<T> {
 
-    public void traversal();
-    public void insert(T data);
-    public void delete(T data);
-    public T getMaxValue();
-    public T getMinValue();
+    public void insert(T data); // 삽입
+    public T getMinValue();     // 최소값
+    public T getMaxValue();     // 최대값
+    public void traversal();    // 순회
+    public void delete(T data); // 삭제
 
 }

@@ -4,7 +4,7 @@ import doubles.ds.bst.Tree;
 
 public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 
-    private Node<T> root;
+    private Node<T> root; // 루트 노드
 
     // 삽입
     @Override
@@ -83,6 +83,25 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 
     }
 
+    // 최소값 : 가장 왼쪽에 위치한 노드가 최소값을 가지고 있다.
+    private T getMin(Node<T> node) {
+        // 가장 왼쪽에 위치한 노드를 찾을 때까지 재귀호출
+        if (node.getLeftChild() != null) {
+            return getMin(node.getLeftChild());
+        }
+        return node.getData();
+    }
+
+    // 최대값 : 가장 오른쪽에 위치한 노드가 최대값을 가지고 있다.
+    private T getMax(Node<T> node) {
+        // 가장 오른쪽에 위치한 노드를 찾을 때까지 재취호출
+        if (node.getRightChild() != null) {
+            return getMax(node.getRightChild());
+        }
+        return node.getData();
+    }
+
+
     // 중위 순회
     private void inOrderTraversal(Node<T> node) {
         if (node.getLeftChild() != null) {
@@ -116,23 +135,6 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         System.out.print(node + " --> ");
     }
 
-    // 최소값 : 가장 왼쪽에 위치한 노드가 최소값을 가지고 있다.
-    private T getMin(Node<T> node) {
-        // 가장 왼쪽에 위치한 노드를 찾을 때까지 재귀호출
-        if (node.getLeftChild() != null) {
-            return getMin(node.getLeftChild());
-        }
-        return node.getData();
-    }
-
-    // 최대값 : 가장 오른쪽에 위치한 노드가 최대값을 가지고 있다.
-    private T getMax(Node<T> node) {
-        // 가장 오른쪽에 위치한 노드를 찾을 때까지 재취호출
-        if (node.getRightChild() != null) {
-            return getMax(node.getRightChild());
-        }
-        return node.getData();
-    }
 
     // 삭제
     private Node<T> delete(Node<T> node, T data) {
