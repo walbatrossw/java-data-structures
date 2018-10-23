@@ -1,7 +1,5 @@
 package doubles.ds.bst;
 
-import doubles.ds.bst.implement.Node;
-
 public interface Tree<T> {
 
     public void traversal();
