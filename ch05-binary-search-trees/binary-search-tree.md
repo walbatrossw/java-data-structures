@@ -586,10 +586,12 @@ same values in the nodes) otherwise it returns false.
 문제는 아래와 같이 모든 노드들이 동일한 값을 가지지만 구조는 동일하지 않을 경우가
 있다.
 
-![binary-search-tree-compare1]()
+![binary-search-tree-compare1](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-compare1.png?raw=true)
 
 이 문제를 해결하기 위해 두 개의 이진 탐색 트리를 동시에 전위 순회를 하면서 값을
 비교하는 방식으로 처리해보자.
+
+![binary-search-tree-compare](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-compare.gif?raw=true)
 
 위에서 작성한 이진 탐색 트리의 코드에서 루트 노드를 반환하는 메서드를 추가해준다.
 
@@ -631,13 +633,14 @@ public class TreeCompareHelper<T extends Comparable<T>> {
 }
 ```
 
-첫번째 조건문은 경우 아래와 같이 두 노드가 leaf 노드인지를 확인한다.
+첫번째 조건문은 경우 이진탐색트리의 구조가 같은지 확인 하기위해 아래와 같이 두
+노드가 leaf 노드인지를 확인한다.
 
-![binary-search-tree-compare2]()
+![binary-search-tree-compare2](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-compare2.png?raw=true)
 
 두번째 조건문은 아래와 같이 두 노드가 가진 데이터의 값이 일치하는지 확인한다.
 
-![binary-search-tree-compare3]()
+![binary-search-tree-compare3](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-compare3.png?raw=true)
 
 마지막으로 이진 탐색 트리의 왼쪽 하위 트리와 오른쪽 하위트리의 값들이 일치하는지
 확인하기 위해 AND 연사자를 사용해 각각 `compareTrees()`메서드를 재귀호출 수행한다.
