@@ -1,7 +1,5 @@
 package doubles.ds.bst.implement;
 
-import doubles.ds.bst.Tree;
-
 public class App {
     public static void main(String[] args) {
         Tree<Integer> bst = new BinarySearchTree<>();

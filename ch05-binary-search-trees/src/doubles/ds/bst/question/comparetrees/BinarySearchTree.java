@@ -1,8 +1,15 @@
-package doubles.ds.bst.implement;
+package doubles.ds.bst.question.comparetrees;
+
 
 public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 
     private Node<T> root; // 루트 노드
+
+    // 루트 노드 반환
+    @Override
+    public Node<T> getRoot() {
+        return this.root;
+    }
 
     // 삽입
     @Override

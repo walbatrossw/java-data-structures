@@ -575,3 +575,129 @@ Choi : 29 --> Ahn : 33 --> Lee : 25 --> Park : 28 --> Lim : 21 --> Yoon : 32 -->
 ```
 
 ## 4. Questions
+
+### 4.1 Compare binary Search trees : 이진 탐색 트리 비교하기
+
+- Write an efficient algorithm that's able to compare two binary search trees.
+- The method returns true if the trees are identical (same topology with
+same values in the nodes) otherwise it returns false.
+
+이진 탐색 트리 간의 구조와 값에 관해 일치하는지 비교하는 코드를 작성해보자. 하지만
+문제는 아래와 같이 모든 노드들이 동일한 값을 가지지만 구조는 동일하지 않을 경우가
+있다.
+
+![binary-search-tree-compare1]()
+
+이 문제를 해결하기 위해 두 개의 이진 탐색 트리를 동시에 전위 순회를 하면서 값을
+비교하는 방식으로 처리해보자.
+
+위에서 작성한 이진 탐색 트리의 코드에서 루트 노드를 반환하는 메서드를 추가해준다.
+
+```java
+// Tree 인터페이스
+public Node<T> getRoot();   // 루트노드 반환
+```
+
+```java
+// Binary Search Tree 클래스
+// 루트 노드 반환
+@Override
+public Node<T> getRoot() {
+    return this.root;
+}
+```
+
+그리고 이진 탐색 트리를 비교하는 helper 클래스를 아래와 같이 작성해준다.
+
+```java
+// 이진탐색트리를 비교하는 helper 클래스
+public class TreeCompareHelper<T extends Comparable<T>> {
+
+    public boolean compareTrees(Node<T> node1, Node<T> node2) {
+
+        // 두 노드가 leaf 노드인지 체크
+        if (node1 == null || node2 == null) {
+            return node1 == node2;
+        }
+
+        // 노드간의 데이터 비교
+        if (node1.getData().compareTo(node2.getData()) != 0) {
+            return false;
+        }
+
+        // 왼쪽 하위트리와 오른쪽 하위트리의 값들이 일치하는지 확인하기 위해 재귀호출
+        return compareTrees(node1.getLeftChild(), node2.getLeftChild()) && compareTrees(node1.getRightChild(), node2.getRightChild());
+    }
+}
+```
+
+첫번째 조건문은 경우 아래와 같이 두 노드가 leaf 노드인지를 확인한다.
+
+![binary-search-tree-compare2]()
+
+두번째 조건문은 아래와 같이 두 노드가 가진 데이터의 값이 일치하는지 확인한다.
+
+![binary-search-tree-compare3]()
+
+마지막으로 이진 탐색 트리의 왼쪽 하위 트리와 오른쪽 하위트리의 값들이 일치하는지
+확인하기 위해 AND 연사자를 사용해 각각 `compareTrees()`메서드를 재귀호출 수행한다.
+
+```java
+compareTrees(node1.getLeftChild(), node2.getLeftChild()) && compareTrees(node1.getRightChild(), node2.getRightChild());
+```
+
+```java
+// 테스트 클래스
+public class App {
+    public static void main(String[] args) {
+        Tree<Integer> bst1 = new BinarySearchTree<>();
+        bst1.insert(2);
+        bst1.insert(55);
+        bst1.insert(67);
+        bst1.insert(12);
+        bst1.insert(11);
+
+        Tree<Integer> bst2 = new BinarySearchTree<>();
+        bst2.insert(2);
+        bst2.insert(55);
+        bst2.insert(67);
+        bst2.insert(12);
+        bst2.insert(11);
+
+        Tree<Integer> bst3 = new BinarySearchTree<>();
+        bst3.insert(2);
+        bst3.insert(50);
+        bst3.insert(67);
+        bst3.insert(12);
+        bst3.insert(11);
+
+        TreeCompareHelper<Integer> helper = new TreeCompareHelper<>();
+        System.out.println(helper.compareTrees(bst1.getRoot(), bst2.getRoot()));
+        System.out.println(helper.compareTrees(bst1.getRoot(), bst3.getRoot()));
+    }
+}
+```
+
+위와 같이 코드를 작성하고 실행결과를 확인하면 아래와 같이 일치하는지 일치하지 않는지
+알 수 있다.
+
+```
+// 실행결과
+true
+false
+```
+
+### 4.2 k-th smallest element in a search tree : 이진 탐색트리에서 K번째로 작은 요소 찾기
+
+- Write an efficient in-place algorithm to find the k-th smallest
+(largest) item in a binary search tree!
+
+### 4.3 Family age problem
+
+- Write an efficient algorithm to calculate the total sum of ages in a family tree.
+- A family tree is a binary search tree in this case where all the nodes
+contain a Person object with [name,age] attributes.
+- Hint: we have to make a tree traversal so the running time of the
+algorithm will be O(N) linear running time
+
+

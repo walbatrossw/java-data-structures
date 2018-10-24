@@ -1,4 +1,4 @@
-package doubles.ds.bst;
+package doubles.ds.bst.implement;
 
 public interface Tree<T> {
 
