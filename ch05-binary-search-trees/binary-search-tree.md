@@ -695,6 +695,49 @@ false
 - Write an efficient in-place algorithm to find the k-th smallest
 (largest) item in a binary search tree!
 
+이진 탐색 트리에서 **k**번째로 작은 요소를 찾는 방법에 대해 알아보자.
+
+![binary-search-tree-kthsamllest1]()
+
+주어진 노드 **T**의 왼쪽 하위 트리에는 **T**보다 작은 요소가 포함된다.
+- **K**가 왼쪽 하위 트리의 노드 수보다 작은 경우 **K**번째로 작은 항목은 왼쪽 하위 트리에
+있어야만 한다.
+- **K**가 왼쪽 하위 트리의 노드 수보다 크다면 오른쪽 하위 트리를 확인해야한다.
+
+2번째로 작은 요소를 찾는 과정을 정리해보자.
+
+![binary-search-tree-kthsamllest2]()
+
+1. 가장 먼저 왼쪽 하위 트리의 노드들을 확인한다.
+2. 왼쪽 하위 트리에는 3개의 노드가 있기 때문에 노드의 수는 **K**값보다 크다.
+3. 그러므로 2번째로 작은 요소는 왼쪽 하위 트리에 존재한다.
+4. 2번째로 작은 요소를 찾기 위해 왼쪽 하위 트리에서 재귀호출을 수행한다.
+
+4번째로 작은 요소를 찾는 과정을 정리해보자.
+
+![binary-search-tree-kthsamllest3]()
+
+1. 가장 먼저 왼쪽 하위 트리의 노드들을 확인한다.
+2. 왼쪽 하위 트리에 있는 노드의 수에 1을 더한 값이 **K**라면 루트 노드이다.
+
+5번째로 작은 요소를 찾는 과정을 정리해보자.
+
+![binary-search-tree-kthsamllest4]()
+
+1. 가장 먼저 왼쪽 하위 트리의 노드들을 확인한다.
+2. 왼쪽 하위 트리의 노드들과 루트 노드의 합이 **K**의 값보다 작다.
+3. 그러므로 오른쪽 하위 트리를 확인해야하는데 **K**의 값이 변경되어야 한다.
+4. K - (왼쪽 노드의 수 + 루트노드) 의 계산을 통해 **K**값이 변경된다.
+
+그렇다면 위의 내용을 정리해 알고리즘으로 표현해보자.
+
+```
+int n = number of nodes in the left subtree + 1
+if(n == k) return node;
+if(n > k) return kthSmallest(leftSubtree, k)
+if(n < k) return kthSmallest(rightSubtree, k-n)
+```
+
 ### 4.3 Family age problem
 
 - Write an efficient algorithm to calculate the total sum of ages in a family tree.
