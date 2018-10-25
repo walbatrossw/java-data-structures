@@ -8,16 +8,20 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
     @Override
     public Node<T> getKthSmallest(Node<T> node, int k) {
 
-        int n = treeSize(node.getLeftChild()) + 1;  // 왼쪽 하위 트리의 갯수 + 루트 노드
+        // 왼쪽 하위 트리의 갯수 + 루트 노드
+        int n = treeSize(node.getLeftChild()) + 1;
 
+        // 가장 작은 요소를 찾을 경우
         if (n == k) {
             return node;
         }
 
+        // 찾는 요소가 왼쪽 하위 트리에 존재할 경우
         if (n > k) {
             return getKthSmallest(node.getLeftChild(), k);
         }
 
+        // 찾는 요소가 오른쪽 하위 트리에 존재할 경우
         return getKthSmallest(node.getRightChild(), k - n);
 
     }

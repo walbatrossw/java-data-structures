@@ -738,6 +738,71 @@ if(n > k) return kthSmallest(leftSubtree, k)
 if(n < k) return kthSmallest(rightSubtree, k-n)
 ```
 
+위의 알고리즘을 바탕으로 실제 코드로 구현하면 아래와 같다.
+
+```java
+// Tree 인터페이스
+public Node<T> getKthSmallest(Node<T> node, int k); // k번째 작은 요소 찾기
+```
+
+```java
+// Binary Search Tree 클래스
+// K번째 작은 요소 반환
+@Override
+public Node<T> getKthSmallest(Node<T> node, int k) {
+
+    // 왼쪽 하위 트리의 갯수 + 루트 노드
+    int n = treeSize(node.getLeftChild()) + 1;
+
+    // 가장 작은 요소를 찾을 경우
+    if (n == k) {
+        return node;
+    }
+
+    // 찾는 요소가 왼쪽 하위 트리에 존재할 경우
+    if (n > k) {
+        return getKthSmallest(node.getLeftChild(), k);
+    }
+
+    // 찾는 요소가 오른쪽 하위 트리에 존재할 경우
+    return getKthSmallest(node.getRightChild(), k - n);
+
+}
+
+// 트리 사이즈 반환
+private int treeSize(Node<T> node) {
+
+    if (node == null) {
+        return 0;
+    }
+
+    // 왼쪽 하위 트리 + 오른쪽 하위 트리의 사이즈를 구하기 위해 재귀호출
+    // 트리의 사이즈 = 왼쪽 하위 트리 사이즈 + 오른쪽 하위 트리 사이즈 + 1
+    return (treeSize(node.getLeftChild()) + treeSize(node.getRightChild()) + 1);
+}
+```
+
+위에서 구현한 코드가 제대로 작동하는지 확인해보자.
+```java
+public class App {
+    public static void main(String[] args) {
+        Tree<Integer> bst = new BinarySearchTree<>();
+        bst.insert(2);
+        bst.insert(55);
+        bst.insert(67);
+        bst.insert(12);
+        bst.insert(11);
+
+        System.out.println(bst.getKthSmallest(bst.getRoot(), 4));
+    }
+}
+```
+
+```
+// 결과 확인
+55
+```
+
 ### 4.3 Family age problem
 
 - Write an efficient algorithm to calculate the total sum of ages in a family tree.
