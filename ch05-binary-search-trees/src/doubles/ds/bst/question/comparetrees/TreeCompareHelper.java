@@ -4,17 +4,17 @@ public class TreeCompareHelper<T extends Comparable<T>> {
 
     public boolean compareTrees(Node<T> node1, Node<T> node2) {
 
-        // µÎ ³ëµå°¡ leaf ³ëµåÀÎÁö Ã¼Å©
+        // ë‘ ë…¸ë“œê°€ leaf ë…¸ë“œì¸ì§€ ì²´í¬
         if (node1 == null || node2 == null) {
             return node1 == node2;
         }
 
-        // ³ëµå°£ÀÇ µ¥ÀÌÅÍ ºñ±³
+        // ë…¸ë“œê°„ì˜ ë°ì´í„° ë¹„êµ
         if (node1.getData().compareTo(node2.getData()) != 0) {
             return false;
         }
 
-        // ¿ŞÂÊ ÇÏÀ§Æ®¸®ÀÇ °ª°ú ¿À¸¥ÂÊ ÇÏÀ§Æ®¸®ÀÇ °ªÀÌ ÀÏÄ¡ÇÏ´ÂÁö È®ÀÎÇÏ±â À§ÇØ Àç±ÍÈ£Ãâ
+        // ì™¼ìª½ í•˜ìœ„íŠ¸ë¦¬ì˜ ê°’ê³¼ ì˜¤ë¥¸ìª½ í•˜ìœ„íŠ¸ë¦¬ì˜ ê°’ì´ ì¼ì¹˜í•˜ëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•´ ì¬ê·€í˜¸ì¶œ
         return compareTrees(node1.getLeftChild(), node2.getLeftChild()) && compareTrees(node1.getRightChild(), node2.getRightChild());
     }
 }

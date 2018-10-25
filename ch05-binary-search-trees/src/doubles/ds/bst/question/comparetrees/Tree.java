@@ -2,11 +2,11 @@ package doubles.ds.bst.question.comparetrees;
 
 public interface Tree<T> {
 
-    public Node<T> getRoot();   // ·çÆ®³ëµå ¹İÈ¯
-    public void insert(T data); // »ğÀÔ
-    public T getMinValue();     // ÃÖ¼Ò°ª
-    public T getMaxValue();     // ÃÖ´ë°ª
-    public void traversal();    // ¼øÈ¸
-    public void delete(T data); // »èÁ¦
+    public Node<T> getRoot();   // ë£¨íŠ¸ë…¸ë“œ ë°˜í™˜
+    public void insert(T data); // ì‚½ì…
+    public T getMinValue();     // ìµœì†Œê°’
+    public T getMaxValue();     // ìµœëŒ€ê°’
+    public void traversal();    // ìˆœíšŒ
+    public void delete(T data); // ì‚­ì œ
 
 }

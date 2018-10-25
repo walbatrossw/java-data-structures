@@ -2,11 +2,11 @@ package doubles.ds.bst.implement;
 
 public class Node<T> {
 
-    private T data;             // ³ëµå µ¥ÀÌÅÍ
-    private Node<T> leftChild;  // ¿ŞÂÊ ÇÏÀ§ ³ëµå
-    private Node<T> rightChild; // ¿À¸¥ÂÊ ÇÏÀ§ ³ëµå
+    private T data;             // ë…¸ë“œ ë°ì´í„°
+    private Node<T> leftChild;  // ì™¼ìª½ í•˜ìœ„ ë…¸ë“œ
+    private Node<T> rightChild; // ì˜¤ë¥¸ìª½ í•˜ìœ„ ë…¸ë“œ
 
-    // »ı¼ºÀÚ
+    // ìƒì„±ì
     public Node(T data) {
         this.data = data;
     }
