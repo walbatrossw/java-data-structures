@@ -697,7 +697,7 @@ false
 
 이진 탐색 트리에서 **k**번째로 작은 요소를 찾는 방법에 대해 알아보자.
 
-![binary-search-tree-kthsamllest1]()
+![binary-search-tree-kthsamllest1](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-kthsamllest1.png?raw=true)
 
 주어진 노드 **T**의 왼쪽 하위 트리에는 **T**보다 작은 요소가 포함된다.
 - **K**가 왼쪽 하위 트리의 노드 수보다 작은 경우 **K**번째로 작은 항목은 왼쪽 하위 트리에
@@ -706,7 +706,7 @@ false
 
 2번째로 작은 요소를 찾는 과정을 정리해보자.
 
-![binary-search-tree-kthsamllest2]()
+![binary-search-tree-kthsamllest2](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-kthsamllest2.png?raw=true)
 
 1. 가장 먼저 왼쪽 하위 트리의 노드들을 확인한다.
 2. 왼쪽 하위 트리에는 3개의 노드가 있기 때문에 노드의 수는 **K**값보다 크다.
@@ -715,14 +715,14 @@ false
 
 4번째로 작은 요소를 찾는 과정을 정리해보자.
 
-![binary-search-tree-kthsamllest3]()
+![binary-search-tree-kthsamllest3](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-kthsamllest3.png?raw=true)
 
 1. 가장 먼저 왼쪽 하위 트리의 노드들을 확인한다.
 2. 왼쪽 하위 트리에 있는 노드의 수에 1을 더한 값이 **K**라면 루트 노드이다.
 
 5번째로 작은 요소를 찾는 과정을 정리해보자.
 
-![binary-search-tree-kthsamllest4]()
+![binary-search-tree-kthsamllest4](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/img/binary-search-tree-kthsamllest4.png?raw=true)
 
 1. 가장 먼저 왼쪽 하위 트리의 노드들을 확인한다.
 2. 왼쪽 하위 트리의 노드들과 루트 노드의 합이 **K**의 값보다 작다.
