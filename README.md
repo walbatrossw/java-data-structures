@@ -28,9 +28,13 @@
 - [간단 요약 및 문제풀이](https://github.com/walbatrossw/java-data-structures/blob/master/ch05-binary-search-trees/binary-search-tree.md)
 - [Binary Search Tree 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch05-binary-search-trees/src/doubles/ds/bst/implement)
 
-## 6. AVL Tree
+## 6. AVL Tree : Balanced Tree
 
-## 7. Red Black Tree
+- [간단 요약]()
+- [AVL Tree 구현]()
+
+## 7. Red Black Tree : Balanced Tree
+
 
 ## 8. Splay Tree
 
