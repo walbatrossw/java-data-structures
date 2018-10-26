@@ -2,10 +2,10 @@ package doubles.ds.bst.implement;
 
 public interface Tree<T> {
 
-    public void insert(T data); // »ðÀÔ
-    public T getMinValue();     // ÃÖ¼Ò°ª
-    public T getMaxValue();     // ÃÖ´ë°ª
-    public void traversal();    // ¼øÈ¸
-    public void delete(T data); // »èÁ¦
+    public void insert(T data); // ï¿½ï¿½ï¿½ï¿½
+    public T getMinValue();     // ï¿½Ö¼Ò°ï¿½
+    public T getMaxValue();     // ï¿½Ö´ë°ª
+    public void traversal();    // ï¿½ï¿½È¸
+    public void delete(T data); // ï¿½ï¿½ï¿½ï¿½
 
 }
