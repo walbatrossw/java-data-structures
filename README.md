@@ -30,7 +30,7 @@
 
 ## 6. AVL Tree : Balanced Tree
 
-- [간단 요약]()
+- [간단 요약](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/avl-tree.md)
 - [AVL Tree 구현]()
 
 ## 7. Red Black Tree : Balanced Tree
