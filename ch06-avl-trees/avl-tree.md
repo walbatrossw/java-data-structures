@@ -76,6 +76,8 @@ AVL 트리의 기본연산은 이진탐색트리와 동일하지만 아래의 �
 height = max(leftChild.height(), rightChild.height()) + 1
 ```
 
+![avl-tree-height2](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-height2.gif?raw=true)
+
 AVL 트리의 알고리즘은 노드의 높이를 사용하기 때문에 높이를 가능한 작게 유지를 해야한다.
 높이를 매개변수로 저장하기 때문에 만약 높이가 높다면 변경되도록 해야한다.
 
