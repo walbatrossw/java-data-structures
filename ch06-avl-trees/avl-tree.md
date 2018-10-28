@@ -67,7 +67,7 @@ AVL 트리의 기본연산은 이진탐색트리와 동일하지만 아래의 �
 
 ![avl-tree-height1](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-height1.png?raw=true)
 
-노드의 높이는 leaf 노드까지 가장 긴 경로의 길이를 말하는데 위의 그림처럼 루트 노드인
+**노드의 높이는 leaf 노드까지 가장 긴 경로의 길이를 말한다.** 위의 그림처럼 루트 노드인
 20의 경우 가장 긴 경로인 50까지의 길이가 2이기 때문에 루트 노드의 높이는 2가 된다.
 
 이렇게 임의로 주어진 노드의 높이는 재귀호출을 통해 계산이 가능하다.
@@ -78,13 +78,17 @@ height = max(leftChild.height(), rightChild.height()) + 1
 
 ![avl-tree-height2](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-height2.gif?raw=true)
 
-AVL 트리의 알고리즘은 노드의 높이를 사용하기 때문에 높이를 가능한 작게 유지를 해야한다.
-높이를 매개변수로 저장하기 때문에 만약 높이가 높다면 변경되도록 해야한다.
+AVL 트리의 연산 알고리즘은 노드의 높이를 항상 사용하기 때문에 높이를 가능한 작게
+유지를 해야한다. 높이를 매개변수로 저장하기 때문에 만약 높이가 높다면 변경되도록
+해야한다.
 
 - 모든 하위 트리 높이 매개변수는 1을 초과할 수 없다.
-- AVL 트리는 모든 노드(왼쪽, 오른쪽 자식노드)의 높이가 최대 1이거나 최소 -1이어야한다.
+- AVL 트리는 모든 하위 트리의 노드(왼쪽, 오른쪽 자식노드)의 높이가 최대 1이거나 최소 -1이어야한다.
 
-## 2.3 회전(Rotation)
+
+### 2.3 회전(Rotation)
+
+
 
 ### 2.4
 
