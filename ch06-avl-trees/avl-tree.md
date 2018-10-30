@@ -226,7 +226,7 @@ END
 AVL 트리의 삽입연산은 이진탐색 트리와 동일하지만 균형이 유지되는지 확인한 뒤 불균형
 상태라면 회전을 수행한다.
 
-![avl-tree-insert]()
+![avl-tree-insert](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-insert.gif?raw=true)
 
 ```
 avlTree.insert(12);
@@ -234,7 +234,7 @@ avlTree.insert(12);
 
 1. 이진탐색 트리와 동일하게 삽입연산을 수행한다.
 
-![avl-tree-insert-after-rotation]()
+![avl-tree-insert-after-rotation](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-insert-after-rotation.gif?raw=true)
 
 2. 삽입연산이 완료되면 삽입한 노드부터 높이를 계산을 수행하고, 불균형이 발생하면 회전을
 수행한다.
@@ -244,7 +244,7 @@ avlTree.insert(12);
 
 그렇다면 이번에는 AVL 트리에 처음부터 데이터가 삽입되는 과정을 보자.
 
-![avl-tree-insert2]()
+![avl-tree-insert2](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-insert2.gif?raw=true)
 
 ### 2.6 삭제
 
