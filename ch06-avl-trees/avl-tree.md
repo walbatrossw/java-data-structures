@@ -63,7 +63,9 @@ AVL 트리의 기본연산은 이진탐색트리와 동일하지만 아래의 �
 |삭제|O(logN)|**O(logN)**|
 |탐색|O(logN)|**O(logN)**|
 
-### 2.2 높이(Height)
+### 2.2
+
+### 2.3 높이(Height)
 
 AVL 트리는 노드의 높이를 알아야 모든 연산을 처리할 수 있기 때문에 노드의 높이에 대해
 먼저 알아보자.
@@ -87,7 +89,7 @@ height = max(leftChild.height(), rightChild.height()) + 1
 최소 -1의 차이만 허용이 된다는 것을 알 수 있다.
 
 
-### 2.3 회전(Rotation)
+### 2.4 회전(Rotation)
 
 AVL 트리에서 삽입, 삭제 연산을 수행할 때 트리의 균형을 유지하기 위해 LL-회전, RR-회전,
 LR-회전, RL-회전연산이 사용된다. 각 회전연산은 두 종류의 기본적인 연산으로 구현된다.
@@ -108,9 +110,9 @@ LR-회전, RL-회전연산이 사용된다. 각 회전연산은 두 종류의 �
 
 이제 구체적인 상황들을 통해 어떻게 회전을 수행하는지 알아보자.
 
-#### 2.3.1 Case 1 : 왼쪽으로 트리가 치우쳐있을 경우
+#### 2.4.1 Case 1 : 왼쪽으로 트리가 치우친 경우
 
-![avl-tree-rotation-case1-1](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case1-1.png?raw=true)
+![avl-tree-rotation-case1](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case1.png?raw=true)
 
 위 트리는 왼쪽으로 치우쳐 있다. 이 트리가 어떤 과정을 통해 균형을 잡는지 알아보자.
 
@@ -130,6 +132,7 @@ LR-회전, RL-회전연산이 사용된다. 각 회전연산은 두 종류의 �
 2이다.
 4. 루트 노드의 하위 트리의 높이차이가 1을 초과하기 때문에 오른쪽으로 회전을 수행한다.
 
+오른쪽으로 회전할 때의 알고리즘은 아래와 같다.
 ```
 BEGIN rotateRight(Node node)
     
@@ -139,20 +142,72 @@ BEGIN rotateRight(Node node)
     tempLeftNode.setRightNode(node);        // 왼쪽 하위 노드의 오른쪽 하위 노드를 상위 노드로 변경
     node.setLeftNode(t);                    // 상위 노드의 왼쪽 노드를 오른쪽 하위 노드로 변경
     
-    node.updateHeight();                    // 노드의 높이 변경
+    node.updateHeight();                    // 상위 노드의 높이 변경
     tempLeftNode.updateHeight();            // 왼쪽 하위 노드 높이 변경
     
 END
 ```
 
-#### 2.3.2 Case 2 :
+#### 2.4.2 Case 2 : 오른쪽으로 트리가 치우친 경우
 
-#### 2.3.3 Case 3 :
+![avl-tree-rotation-case2](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case2.png?raw=true)
 
-#### 2.3.4 Case 4 :
+위 트리는 오른쪽으로 트리가 치우쳐 있다. 이 트리가 어떻게 균형을 잡는지 알아보자.
+
+![avl-tree-rotation-case2](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case2.gif?raw=true)
+
+1. leaf 노드(A)는 자식노드가 없기 때문에 왼쪽, 오른쪽 자식노드는 -1로 간주하여
+높이를 계산하면 0이다.
+2. 그 다음 노드인 B는 왼쪽 노드는 null이기때문에 -1, 오른쪽 노드는 0이기떄문에 높이를
+계산하면 1이다.
+3. 루트 노드인 D는 왼쪽노드는 null이기 때문에 -1, 오른쪽 노드는 1로 높이를 계산하면
+2이다.
+4. 루트 노드의 하위 트리의 높이 차이가 1을 초과하기 때문에 왼쪽으로 회전을 수행한다.
+
+왼쪽으로 회전할 때의 알고리즘은 아래와 같다.
+
+```
+BEGIN rotateLeft(Node node)
+
+	Node tempRightNode = node.getRightNode()    // 상위노드의 오른쪽 하위 노드
+	Node t = tempRightNode.getLeftNode()        // 오른쪽 하위 노드의 왼쪽 하위 노드 
+
+	tempRightNode.setLeftNode(node)             // 오른쪽 하위 노드의 왼쪽 하위노드를 상위 노드로 변경
+	node.setRightNode(t)                        // 상위 노드의 오른쪽 노드를 왼쪽 하위 노드로 변경
+
+	node.updateHeight()                         // 상위 노드의 높이 변경
+	tempRightNode.updateHeight()                // 오른쪽 하위 노드의 높이 변경
+
+END
+```
+
+#### 2.4.3 Case 3 : 왼쪽 자식 노드에 오른쪽 자식 노드만 있을 경우
+
+![avl-tree-rotation-case3](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case3.png?raw=true)
 
 
-### 2.4
+![avl-tree-rotation-case3](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case3.gif?raw=true)
+
+
+```
+
+```
+
+#### 2.4.4 Case 4 : 오른쪽 자식 노드에 왼쪽 자식 노드만 있을 경우
+
+![avl-tree-rotation-case4](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case4.png?raw=true)
+
+
+![avl-tree-rotation-case4](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case4.gif?raw=true)
+
+
+```
+
+```
+
+### 2.5 삽입
+
+### 2.6 삭제
 
 
 ## 3. AVL Tree 구현
