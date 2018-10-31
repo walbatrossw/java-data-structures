@@ -70,13 +70,13 @@ AVL 트리의 탐색은 이진트리와 동일하다.
 
 #### 2.2.1 특정 노드 탐색
 
-![avl-tree-find]()
+![avl-tree-find](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-find.gif?raw=true)
 
 #### 2.2.2 최소, 최대값 탐색
 
-![avl-tree-find-max]()
+![avl-tree-find-max](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-find-max.gif?raw=true)
 
-![avl-tree-fin-min]()
+![avl-tree-find-min](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-find-min.gif?raw=true)
 
 ### 2.3 높이(Height)
 
