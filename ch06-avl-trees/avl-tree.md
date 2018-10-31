@@ -126,29 +126,32 @@ LR-회전, RL-회전연산이 사용된다. 각 회전연산은 두 종류의 �
 
 이제 구체적인 상황들을 통해 어떻게 회전을 수행하는지 알아보자.
 
-#### 2.4.1 Case 1 : 왼쪽으로 트리가 치우친 경우 - LL
-
-![avl-tree-rotation-case1](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case1.png?raw=true)
-
-위 트리는 왼쪽으로 치우쳐 있다. 이 트리가 어떤 과정을 통해 균형을 잡는지 알아보자.
-
-노드의 높이를 계산식은 아래와 같다.
+그전에 앞서 노드의 높이를 통해 불균형상태인지 아닌지를 알아보는 계산식은 아래와 같다.
+왼쪽, 오른쪽 하위트리의 높이 차이기 절대 값 1을 초과한 경우 불균형 상태이다.
 
 ```
 | height(leftSubtree) - height(rightSubtree) | ≤ 1
 ```
 
+#### 2.4.1 Case 1 : 왼쪽으로 트리가 치우친 경우 - LL
+
+![avl-tree-rotation-case1](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case1.png?raw=true)
+
+위 트리는 왼쪽으로 치우친 상태인데 이 트리가 어떤 과정을 거쳐 균형 상태로 바뀌는지
+살펴보자.
+
 ![avl-tree-rotation-case1](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case1.gif?raw=true)
 
-1. leaf 노드(A)는 자식노드가 없기 때문에 왼쪽, 오른쪽 자식노드는 -1로 간주하여
-높이를 계산하면 0이다.
+1. leaf 노드(A)는 자식노드가 없기 때문에 왼쪽, 오른쪽 자식노드를 -1로 간주하여
+높이를 계산하면 0이고 균형상태이다.
 2. 그 다음 노드인 B는 왼쪽 노드는 0, 오른쪽 노드는 null이기떄문에 -1로 높이를
-계산하면 1이다.
+계산하면 1이고 균형상태이다.
 3. 루트 노드인 D는 왼쪽노드는 1, 오른쪽 노드는 null이기 때문에 -1로 높이를 계산하면
-2이다.
-4. 루트 노드의 하위 트리의 높이차이가 1을 초과하기 때문에 오른쪽으로 회전을 수행한다.
+2이고 하위트리의 높이 차이가 1을 초과하기 때문에 불균형 상태이다.
+4. 왼쪽으로 치우친 트리의 균형을 잡기 위해 오른쪽으로 회전을 수행한다.
 
-오른쪽으로 회전할 때의 알고리즘은 아래와 같다.
+오른쪽으로 회전을 수행하는 알고리즘은 아래와 같다.
+
 ```
 BEGIN rotateRight(Node node)
     
@@ -168,17 +171,18 @@ END
 
 ![avl-tree-rotation-case2](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case2.png?raw=true)
 
-위 트리는 오른쪽으로 트리가 치우쳐 있다. 이 트리가 어떻게 균형을 잡는지 알아보자.
+위 트리는 오른쪽으로 트리가 치우친 상태인데 이 트리가 어떤 과정을 거쳐 균형 상태로
+바뀌는지 살펴보자.
 
 ![avl-tree-rotation-case2](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case2.gif?raw=true)
 
-1. leaf 노드(A)는 자식노드가 없기 때문에 왼쪽, 오른쪽 자식노드는 -1로 간주하여
-높이를 계산하면 0이다.
-2. 그 다음 노드인 B는 왼쪽 노드는 null이기때문에 -1, 오른쪽 노드는 0이기떄문에 높이를
-계산하면 1이다.
-3. 루트 노드인 D는 왼쪽노드는 null이기 때문에 -1, 오른쪽 노드는 1로 높이를 계산하면
-2이다.
-4. 루트 노드의 하위 트리의 높이 차이가 1을 초과하기 때문에 왼쪽으로 회전을 수행한다.
+1. leaf 노드(E)는 자식노드가 없기 때문에 왼쪽, 오른쪽 자식노드는 -1로 간주하여
+높이를 계산하면 0이고 균형상태이다.
+2. 그 다음 노드인 D는 왼쪽 노드는 null이기때문에 -1, 오른쪽 노드는 0이기떄문에 높이를
+계산하면 1이고 균형상태이다.
+3. 루트 노드인 F는 왼쪽노드는 null이기 때문에 -1, 오른쪽 노드는 1로 높이를 계산하면
+2이고 하위트리의 높이 차이가 1을 초과하기 때문에 불균형 상태이다.
+4. 오른쪽으로 치우친 트리의 균형을 잡기 위해 왼쪽으로 회전을 수행한다.
 
 왼쪽으로 회전할 때의 알고리즘은 아래와 같다.
 
@@ -207,15 +211,14 @@ END
 ![avl-tree-rotation-case3](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case3.gif?raw=true)
 
 1. leaf 노드(C)는 자식 노드가 없기 때문에 왼쪽, 오른쪽 자식노드를 -1로 간주하여 높이를
-계산하면 0이 된다.
+계산하면 0이 되고, 균형상태이다.
 2. 노드 B는 왼쪽 자식노드는 null이기때문에 -1, 오른쪽 자식 노드는 0으로 높이를
-계산하면 1이 된다.
+계산하면 1이 되고, 균형상태이다.
 3. 루트 노드인 노드 D는 왼쪽 자식노드는 1, 오른쪽 자식노드는 null이기 때문에 -1로
-높이를 계산하면 2이다.
-4. 루트 노드의 하위 트리의 높이 차이가 1을 초과하기 때문에 B 노드를 회전을 왼쪽으로
-수행한다.
-6. 이렇게 되면 왼쪽으로 치우친 트리의 형태가 되는데 루트 노드인 D를 회전을 오른쪽으로
-수행한다.
+높이를 계산하면 2이기 때문에 불균형 상태이다.
+4. 노드 B를 왼쪽으로 회전시킨다.
+5. 이렇게 되면 왼쪽으로 치우친 트리의 형태가 되는데 루트 노드인 D를 오른쪽으로 회전
+시킨다.
 
 #### 2.4.4 Case 4 : 오른쪽 자식 노드에 왼쪽 자식 노드만 있을 경우 - RL
 
@@ -227,20 +230,21 @@ END
 ![avl-tree-rotation-case4](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-rotation-case4.gif?raw=true)
 
 1. leaf 노드(E)는 자식 노드가 없기 때문에 왼쪽, 오른쪽 자식노드를 -1로 간주하여 높이를
-계산하면 0이 된다.
+계산하면 0이 되고, 균형상태이다.
 2. 노드 F의 왼쪽 자식노드는 1, 오른쪽 자식 노드는 null이기때문에 -1로 높이를
-계산하면 1이 된다.
+계산하면 1이 되고, 균형상태이다.
 3. 루트 노드인 노드 D는 왼쪽 자식노드가 null이기때문에 -1, 오른쪽 자식노드 1로
-높이를 계산하면 2이다.
-4. 루트 노드의 하위 트리의 높이 차이가 1을 초과하기 때문에 F 노드를 회전을 오른쪽으로
-수행한다.
-6. 이렇게 되면 오른쪽으로 치우친 트리의 형태가 되는데 루트 노드인 D를 회전을 왼쪽으로
-수행한다.
+높이를 계산하면 2이기 때문에 불균형 상태이다.
+4. 노드 F를 오른쪽으로 회전시킨다.
+5. 이렇게 되면 오른쪽으로 치우친 트리의 형태가 되는데 루트 노드인 D를 왼쪽으로 회전
+시킨다.
 
 ### 2.5 삽입(Insert)
 
-AVL 트리의 삽입연산은 이진탐색 트리와 동일하지만 균형이 유지되는지 확인한 뒤 불균형
-상태라면 회전을 수행한다.
+AVL 트리의 삽입연산은 2단계로 수행된다. 1단계에서는 이진탐색트리와 동일하게 삽입연산을
+수행한다. 2단계에서는 새로 삽입된 노드로부터 루트 노트로 거슬러 올라가며 각 노드의 높이를
+갱신한다. 이때 불균형이 발생한 노드를 발견하면 새 노드가 어디에 삽입되었는가에 따라
+회전연산을 수행한다.
 
 ![avl-tree-insert](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-insert.gif?raw=true)
 
@@ -252,11 +256,11 @@ avlTree.insert(12);
 
 ![avl-tree-insert-after-rotation](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-insert-after-rotation.gif?raw=true)
 
-2. 삽입연산이 완료되면 삽입한 노드부터 높이를 계산을 수행하고, 불균형이 발생하면 회전을
-수행한다.
+1. 삽입연산이 완료되면 삽입한 노드부터 루트노드까지 높이를 계산을 수행하고, 불균형이
+발생하면 회전을 수행한다.
 
-3. 회전이 끝나고 다시 트리 모든 노드의 높이의 계산을 수행하여, 불균형이 발생하면 회전을
-다시 수행하고, 더이상 불균형이 없으면 연산을 종료한다.
+2. 회전이 끝나고 트리 모든 노드의 높이의 계산을 다시 수행하여, 불균형을 발견하면
+회전연산을 다시 수행하고, 더이상 불균형이 없으면 연산을 종료한다.
 
 그렇다면 이번에는 AVL 트리에 처음부터 데이터가 삽입되는 과정을 보자.
 
@@ -273,9 +277,14 @@ avlTree.insert(60);
 
 ### 2.6 삭제(Remove)
 
-AVL 트리의 삭제연산도 이진트리와 동일하게 수행하지만
+AVL 삭제 연산 또한 마찬가지로 2단계로 수행된다. 1단계에서는 이진탐색트리와 동일하게
+삭제연산을 수행한다. 2단계에서는 삭제된 노드로부터 루트 노드 방향으로 거슬러 올라가면서
+불균형이 발생한 경우 회전연산을 수행한다.
+
 #### 2.6.1
+
 #### 2.6.2
+
 #### 2.6.3
 
 ## 3. AVL Tree 구현
