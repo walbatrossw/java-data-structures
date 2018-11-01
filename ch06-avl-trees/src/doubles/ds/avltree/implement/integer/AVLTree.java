@@ -70,15 +70,21 @@ public class AVLTree implements Tree {
         if (root == null) {
             return;
         }
+        System.out.print("inorder : ");
         inorderTraversal(root);
+        System.out.println();
+        System.out.print("preorder : ");
         preOrderTraversal(root);
+        System.out.println();
+        System.out.print("postorder : ");
         postOrderTraversal(root);
+        System.out.println();
     }
 
     // 오른쪽 회전
     private Node rightRotation(Node node) {
 
-        System.out.println("Rotating to the right...");
+        System.out.println("Rotating to the right on node : " + node);
 
         Node tempLeftNode = node.getLeftNode();         // 상위노드의 왼쪽 하위노드 ==> 루트노드가 된다
         Node t = tempLeftNode.getRightNode();           // 상위노드의 왼쪽 하위노드의 오른쪽 하위노드
@@ -94,7 +100,7 @@ public class AVLTree implements Tree {
 
     // 왼쪽 회전
     private Node leftRotation(Node node) {
-        System.out.println("Rotating to the left...");
+        System.out.println("Rotating to the left on node : "  + node);
 
         Node tempRightNode = node.getRightNode();       // 상위노드의 오른쪽 하위노드
         Node t = tempRightNode.getLeftNode();           // 상위노드의 오른쪽 하위노드의 오른쪽 하위노드
@@ -136,7 +142,7 @@ public class AVLTree implements Tree {
         if (node.getLeftNode() != null) {
             inorderTraversal(node.getLeftNode());
         }
-        System.out.println(node);
+        System.out.print(node + " ==> ");
         if (node.getRightNode() != null) {
             inorderTraversal(node.getRightNode());
         }
@@ -144,7 +150,7 @@ public class AVLTree implements Tree {
 
     // 전위 순회
     private void preOrderTraversal(Node node) {
-        System.out.println(node);
+        System.out.print(node + " ==> ");
         if (node.getLeftNode() != null) {
             inorderTraversal(node.getLeftNode());
         }
@@ -160,6 +166,6 @@ public class AVLTree implements Tree {
         if (node.getRightNode() != null) {
             inorderTraversal(node.getRightNode());
         }
-        System.out.println(node);
+        System.out.print(node + " ==> ");
     }
 }
