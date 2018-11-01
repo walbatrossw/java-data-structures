@@ -287,11 +287,11 @@ AVL 삭제 연산 또한 마찬가지로 2단계로 수행된다. 1단계에서�
 2. 삭제할 노드가 한 개의 자식 노드를 가진 경우
 3. 삭제할 노드가 두 개의 자식 노드를 가진 경우
 
-#### 2.3.1 : 삭제할 노드가 leaf 노드일 경우
+#### 2.6.1 : 삭제할 노드가 leaf 노드일 경우
 
 제거할 노드가 leaf 노드일 경우는 아래와 간단하게 제거하기만 하면 된다.
 
-![binary-search-tree-remove-leaf-node]()
+![binary-search-tree-remove-leaf-node](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-remove-leaf-node.gif?raw=true)
 
 ```java
 avlTree.remove(5);
@@ -301,29 +301,41 @@ avlTree.remove(5);
 
 제거할 노드가 하나의 자식 노드를 가진 경우는 아래와 같이 참조값을 변경하기만 하면 된다.
 
-![binary-search-tree-remove-single-child]()
+![binary-search-tree-remove-single-child](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-remove-single-child.gif?raw=true)
 
 ```java
 avlTree.remove(1);
 ```
 
-#### 2.6.2 : 삭제할 노드가 두 개의 자식노드를 가진 경우
+#### 2.6.3 : 삭제할 노드가 두 개의 자식노드를 가진 경우
 
 제거할 노드가 2개의 자식 노드를 가진 경우 왼쪽 하위 트리에서 가장 큰 항목 또는 오른쪽
 하위 트리에서 가장 작은 항목을 찾아 서로의 위치를 바꾸고, 노드를 제거한다.
 
-![binary-search-tree-remove-two-child]()
+![binary-search-tree-remove-two-child](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-remove-two-child.png?raw=true)
 
 왼쪽 하위 트리에서 가장 큰 항목을 찾아 제거했을 경우
 
-![binary-search-tree-remove-two-child-left]()
+![binary-search-tree-remove-two-child-left](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-remove-two-child-left.gif?raw=true)
 
 오른쪽 하위 트리에서 가장 큰 항목을 찾아 제거했을 경우
 
-![binary-search-tree-remove-two-child-right]()
+![binary-search-tree-remove-two-child-right](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-remove-two-child-right.gif?raw=true)
 
 ```java
-binarySearchTree.remove(32);
+avlTree.remove(32);
 ```
+
+#### 2.6.4 : 노드를 삭제 한 뒤 트리가 불균형일 때
+
+노드를 삽입할 때와 마찬가지로 노드를 삭제한 뒤 트리가 불균형인지 확인한 뒤 불균형
+상태라면 회전연산을 수행한다.
+
+![avl-tree-remove-after-rotation]()
+
+```
+avlTree.remove(79);
+```
+
 
 ## 3. AVL Tree 구현
