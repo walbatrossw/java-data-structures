@@ -10,7 +10,7 @@ public class AVLTree implements Tree {
         root = insert(root, data);
     }
 
-    // 삽입
+    // 삽입 구현
     private Node insert(Node node, int data) {
 
         // leaf 노드이면 새로운 노드 생성
@@ -29,38 +29,131 @@ public class AVLTree implements Tree {
         // 높이 갱신
         node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1);
 
-        //
+        // 불균형 발생시 경우의 수(LL, RR, LR, RL)에 따라 회전 연산 수행
         node = settleViolation(data, node);
 
         return node;
     }
 
+    // 회전 수행 : 삽입시
     private Node settleViolation(int data, Node node) {
+
         int balance = getBalance(node);
 
-        // Left - Left
+        // Left - Left : 높이 차이가 1보다 크고, 삽입된 데이터가 상위노드의 데이터보다 작은 경우
         if (balance > 1 && data < node.getLeftNode().getData()) {
-            return rightRotation(node);
+            return rightRotation(node); // 오른쪽 회전 수행
         }
 
-        // Right - Right
+        // Right - Right : 높이 차이가 -1보다 작고, 삽입된 데이터가 상위노드의 데이터보다 큰 경우
         if (balance < -1 && data > node.getRightNode().getData()) {
-            return leftRotation(node);
+            return leftRotation(node); // 왼쪽 회전 수행
         }
 
-        // Left - Right
+        // Left - Right : 높이 차이가 1보다 크고, 삽입된 데이터가 상위노드의 데이터보다 큰 경우
         if (balance > 1 && data > node.getLeftNode().getData()) {
-            node.setLeftNode(leftRotation(node.getLeftNode()));
-            return rightRotation(node);
+            node.setLeftNode(leftRotation(node.getLeftNode())); // 왼쪽 회전 수행
+            return rightRotation(node); // 오른쪽 회전 수행
         }
 
-        // Right - Left
+        // Right - Left : 높이 차이가 -1보다 작고, 삽입된 데이터가 상위노드의 데이터보다 작은 경우
         if (balance < -1 && data < node.getRightNode().getData()) {
-            node.setRightNode(rightRotation(node.getRightNode()));
-            return leftRotation(node);
+            node.setRightNode(rightRotation(node.getRightNode()));  // 오른쪽 회전 수행
+            return leftRotation(node);  // 왼쪽 회전 수행
         }
 
         return node;
+    }
+
+    // 삭제
+    @Override
+    public void delete(int data) {
+        root = delete(root, data);
+    }
+
+    // 삭제 구현
+    private Node delete(Node node, int data) {
+        if (node == null) {
+            return node;
+        }
+
+        // 삭제할 노드의 데이터가 상위노드의 데이터보다 작은 경우
+        if (data < node.getData()) {
+            node.setLeftNode(delete(node.getLeftNode(), data)); // 왼쪽 노드 방향으로 재귀 호출
+        } else if (data > node.getData()) { // 삭제할 노드의 데이터가 상위노드의 데이터보다 작은 경우
+            node.setRightNode(delete(node.getRightNode(), data)); // 오른쪽 노드 방향으로 재귀 호출
+        } else {    // 삭제할 노드를 찾았을 경우
+
+            // 삭제할 노드가 leaf 노드이면
+            if (node.getLeftNode() == null && node.getRightNode() == null) {
+                System.out.println("Removing a leaf node...");
+                return null;
+            }
+
+            // 삭제할 노드가 하나의 자식 노드를 가진 경우
+            // 삭제할 노드가 오른쪽노드이면
+            if (node.getLeftNode() == null) {
+                System.out.println("Removing the right child node ...");
+                Node tempNode = node.getRightNode();
+                node = null;
+                return tempNode;
+            } else if (node.getRightNode() == null) { // 삭제할 노드가 왼쪽노드이면
+                System.out.println("Removing the left child node ...");
+                Node tempNode = node.getLeftNode();
+                node = null;
+                return tempNode;
+            }
+
+            // 삭제할 노드가 두개의 자식 노드를 가진 경우
+            System.out.println("Removing item with two children...");
+            Node tempNode = getPredecessor(node.getLeftNode()); // 오른쪽 자식노드 중에서 가장 큰 데이터를 가진 노드
+            node.setData(tempNode.getData());   //  삭제할 노드의 데이터와 바꿈
+            node.setLeftNode(delete(node.getLeftNode(), tempNode.getData())); // 삭제 재귀호출
+        }
+
+        // 높이 갱신
+        node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1);
+
+        // 삭제된 이후 트리 불균형 체크, 회전 수행
+        return settleDeletion(node);
+
+    }
+
+    // 회전 수행 : 삭제시
+    private Node settleDeletion(Node node) {
+
+        int balance = getBalance(node);
+
+        // Left - Left 또는 Left - Right인 경우,
+        if (balance > 1) {
+            // Left - Right인 경우
+            if (getBalance(node.getLeftNode()) < 0) {
+                node.setLeftNode(leftRotation(node.getLeftNode())); // 왼쪽으로 회전 수행
+            }
+            return rightRotation(node); // 오른쪽으로 회전 수행
+        }
+
+        // Right - Right 또는 Right - Left인 경우
+        if (balance < -1) {
+            // Right - Left 인 경우
+            if (getBalance(node.getRightNode()) > 0) {
+                node.setRightNode(rightRotation(node.getRightNode())); // 오른쪽으로 회전 수행
+            }
+            return leftRotation(node); // 왼쪽으로 회전 수행
+        }
+
+        return node;
+    }
+
+    // 왼쪽 하위 트리에서 최대값 반환
+    private Node getPredecessor(Node node) {
+
+        Node predecessor = node;
+
+        while (predecessor.getRightNode() != null) {
+            predecessor = predecessor.getRightNode();
+        }
+        return predecessor;
     }
 
     // 순회
@@ -86,7 +179,7 @@ public class AVLTree implements Tree {
 
         System.out.println("Rotating to the right on node : " + node);
 
-        Node tempLeftNode = node.getLeftNode();         // 상위노드의 왼쪽 하위노드 ==> 루트노드가 된다
+        Node tempLeftNode = node.getLeftNode();         // 상위노드의 왼쪽 하위노드
         Node t = tempLeftNode.getRightNode();           // 상위노드의 왼쪽 하위노드의 오른쪽 하위노드
 
         tempLeftNode.setRightNode(node);                // 왼쪽 하위노드의 오른쪽 하위노드에 상위노드를 세팅 : 상위노드가 오른쪽 하위노드가 됨
@@ -117,8 +210,8 @@ public class AVLTree implements Tree {
     // 특정 노드의 높이 반환
     private int height(Node node) {
 
-        // 노드가 null이면 -1
-        if (node == null) {
+        // 노드가 null이면 -1 : leaf노드의 자식노드
+       if (node == null) {
             return -1;
         }
 
@@ -129,10 +222,12 @@ public class AVLTree implements Tree {
     // 트리 균형, 불균형 여부 판단
     private int getBalance(Node node) {
 
+        // 트리가 비어있는 상태
         if (node == null) {
             return 0;
         }
 
+        // 1을 반환할 경우 LL 또는 LR, -1을 반환할 경우 RR 또는 RL
         return height(node.getLeftNode()) - height(node.getRightNode());
     }
 

@@ -331,7 +331,7 @@ avlTree.remove(32);
 노드를 삽입할 때와 마찬가지로 노드를 삭제한 뒤 트리가 불균형인지 확인한 뒤 불균형
 상태라면 회전연산을 수행한다.
 
-![avl-tree-remove-after-rotation]()
+![avl-tree-remove-after-rotation](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-remove-after-rotation.gif?raw=true)
 
 ```
 avlTree.remove(79);
