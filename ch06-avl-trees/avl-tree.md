@@ -337,5 +337,4 @@ avlTree.remove(32);
 avlTree.remove(79);
 ```
 
-
 ## 3. AVL Tree 구현
