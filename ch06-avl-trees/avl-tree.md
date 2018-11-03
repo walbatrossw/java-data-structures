@@ -341,6 +341,9 @@ avlTree.remove(79);
 
 ### 3.1 클래스 작성
 
+기본적으로 AVL Tree를 구현하기 위해 노드 클래스, 트리 인터페이스, 트리 인터페이스를
+구현한 AVL 트리 클래스를 작성해준다.
+
 ```java
 // 노드 클래스
 public class Node<T> {
@@ -443,6 +446,9 @@ private int height(Node<T> node) {
 }
 ```
 
+회전을 수행하기 위해서는 노드의 높이들을 알기 위해 위와 같이 AVL 트리 클래스에
+특정노드의 높이를 반환하는 메서드를 작성한다.
+
 ```java
 // 오른쪽 회전
 private Node<T> rightRotation(Node<T> parentNode) {
@@ -485,6 +491,10 @@ private Node<T> leftRotation(Node<T> parentNode) {
 ```
 
 ### 3.3 삽입
+
+삽입 메서드를 아래와 같이 작성해준다. 삽입 과정은 이진탐색 트리와 동일하게 처리하지만
+삽입 연산이 완료되고, 트리의 노드들의 높이를 계산하여 트리가 불균형인지 판단하여 불균형이라면
+회전연산을 수행한다.
 
 ```java
 // 삽입
@@ -558,7 +568,173 @@ private Node<T> settleViolation(T data, Node<T> node) {
 }
 ```
 
+```java
+// 트리 균형/불균형 여부 판단
+private int getBalance(Node<T> node) {
+
+    // 트리가 비어있는 상태
+    if (node == null) {
+        return 0;
+    }
+
+    // 계산 결과가 1보다 큰 경우 : LL or LR
+    // 계산 결과가 -1보다 작은 경우 : RR or RL
+    return height(node.getLeftNode()) - height(node.getRightNode());
+}
+```
+
 ### 3.4 순회
 
+AVL 트리는 이진탐색 트리의 순회와 같다.
+
+```java
+// 순회
+@Override
+public void traverse() {
+    if (root == null) {
+        return;
+    }
+    System.out.print("inorder traversal : ");
+    inOrderTraversal(root);
+    System.out.println();
+    System.out.print("preorder traversal : ");
+    preOrderTraversal(root);
+    System.out.println();
+    System.out.print("postorder traversal : ");
+    postOrderTraversal(root);
+}
+```
+
+```java
+// 중위 순회
+private void inOrderTraversal(Node<T> node) {
+    if (node.getLeftNode() != null) {
+        inOrderTraversal(node.getLeftNode());
+    }
+    System.out.print(node + " ==> ");
+    if (node.getRightNode() != null) {
+        inOrderTraversal(node.getRightNode());
+    }
+}
+```
+
+```java
+// 전위 순회
+private void preOrderTraversal(Node<T> node) {
+    System.out.print(node + " ==> ");
+    if (node.getLeftNode() != null) {
+        inOrderTraversal(node.getLeftNode());
+    }
+    System.out.print(node + " ==> ");
+    if (node.getRightNode() != null) {
+        inOrderTraversal(node.getRightNode());
+    }
+}
+```
+
+```java
+// 후위 순회
+private void postOrderTraversal(Node<T> node) {
+    if (node.getLeftNode() != null) {
+        inOrderTraversal(node.getLeftNode());
+    }
+    if (node.getRightNode() != null) {
+        inOrderTraversal(node.getRightNode());
+    }
+    System.out.println(node);
+}
+```
+
 ### 3.5 삭제
+
+삭제 연산은 아래와 같이 코드를 작성하면된다. 삭제 연산도 이진탐색트리와 동일하지만
+삭제 연산이 완료되면 트리의 각노드의 높이를 계산해 트리의 불균형이 발생한 경우 각각의
+상황에 맞게 회전연산을 수행한다.
+
+```java
+// 삭제
+@Override
+public void delete(T data) {
+    root = delete(root, data);
+}
+```
+
+```java
+// 삭제 구현
+private Node<T> delete(Node<T> node, T data) {
+
+    if (node == null) {
+        return node;
+    }
+
+    // 삭제할 노드 탐색
+    // 삭제할 노드의 데이터가 부모노드의 데이터보다 작은 경우
+    if (data.compareTo(node.getData()) < 0) {
+        node.setLeftNode(delete(node.getLeftNode(), data)); // 왼쪽 자식노드 방향으로 삭제 재귀호출
+    // 삭제할 노드의 데이터가 부모노드의 데이터보다 큰 경우
+    } else if (data.compareTo(node.getData()) > 0) {
+        node.setRightNode(delete(node.getRightNode(), data)); // 오른쪽 자식노드 방향으로 삭제 재귀호출
+    // 삭제할 노드를 찾은 경우
+    } else {
+
+        // 1. 삭제할 노드가 leaf 노드인 경우
+        if (node.getLeftNode() == null && node.getRightNode() == null) {
+            System.out.println("Removing a leaf node...");
+            return null;
+        }
+
+        // 2. 삭제할 노드가 하나의 자식노드를 가진 경우
+        if (node.getLeftNode() == null) {
+            System.out.println("Removing the right child node");
+            Node<T> tempNode = node.getRightNode();
+            node = null;
+            return tempNode;
+        } else if (node.getRightNode() == null) {
+            System.out.println("Removing the left child node");
+            Node<T> tempNode = node.getLeftNode();
+            node = null;
+            return tempNode;
+        }
+
+        // 3. 삭제할 노드가 두개의 자식노드를 가진 경우
+        System.out.println("Removing item with the children");
+        Node<T> tempNode = getPredecessor(node.getLeftNode());  // 왼쪽 자식노드 중에서 가장 큰 노드
+        node.setData(tempNode.getData());   // 삭제할 노드의 데이터와 가장 큰 노드의 데이터 교환
+        node.setLeftNode(delete(node.getLeftNode(), tempNode.getData())); // 삭제 재귀호출
+
+    }
+
+    // 높이 갱신
+    node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1);
+
+    // 삭제 완료후 트리 불균형 체크, 회전 수행
+    return settleDeletion(node);
+}
+```
+
+```java
+// 회전 수행 : 삭제시
+private Node<T> settleDeletion(Node<T> node) {
+    int balance = getBalance(node);
+
+    // Left-Left or Left-Right 인 경우
+    if (balance > 1) {
+        // Left-Right
+        if (getBalance(node.getLeftNode()) < 0) {
+            node.setLeftNode(leftRotation(node.getLeftNode())); // 왼쪽 회전
+        }
+        return rightRotation(node); // 오른쪽 회전
+    }
+
+    // Right-Right or Right-Left 인 경우
+    if (balance < -1) {
+        // Right-Left
+        if (getBalance(node.getRightNode()) > 0) {
+            node.setRightNode(rightRotation(node.getRightNode())); // 오른쪽 회전
+        }
+        return leftRotation(node); // 왼쪽 회전
+    }
+    return node;
+}
+```
 
