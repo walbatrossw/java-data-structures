@@ -70,8 +70,6 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
         return node;
     }
 
-    //
-
     // 순회
     @Override
     public void traverse() {
@@ -135,19 +133,71 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
             return node;
         }
 
+        // 삭제할 노드 탐색
+        // 삭제할 노드의 데이터가 부모노드의 데이터보다 작은 경우
         if (data.compareTo(node.getData()) < 0) {
-
+            node.setLeftNode(delete(node.getLeftNode(), data)); // 왼쪽 자식노드 방향으로 삭제 재귀호출
+        // 삭제할 노드의 데이터가 부모노드의 데이터보다 큰 경우
         } else if (data.compareTo(node.getData()) > 0) {
-
+            node.setRightNode(delete(node.getRightNode(), data)); // 오른쪽 자식노드 방향으로 삭제 재귀호출
+        // 삭제할 노드를 찾은 경우
         } else {
+
+            // 1. 삭제할 노드가 leaf 노드인 경우
+            if (node.getLeftNode() == null && node.getRightNode() == null) {
+                System.out.println("Removing a leaf node...");
+                return null;
+            }
+
+            // 2. 삭제할 노드가 하나의 자식노드를 가진 경우
+            if (node.getLeftNode() == null) {
+                System.out.println("Removing the right child node");
+                Node<T> tempNode = node.getRightNode();
+                node = null;
+                return tempNode;
+            } else if (node.getRightNode() == null) {
+                System.out.println("Removing the left child node");
+                Node<T> tempNode = node.getLeftNode();
+                node = null;
+                return tempNode;
+            }
+
+            // 3. 삭제할 노드가 두개의 자식노드를 가진 경우
+            System.out.println("Removing item with the children");
+            Node<T> tempNode = getPredecessor(node.getLeftNode());  // 왼쪽 자식노드 중에서 가장 큰 노드
+            node.setData(tempNode.getData());   // 삭제할 노드의 데이터와 가장 큰 노드의 데이터 교환
+            node.setLeftNode(delete(node.getLeftNode(), tempNode.getData())); // 삭제 재귀호출
 
         }
 
-        return node;
+        // 높이 갱신
+        node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1);
+
+        // 삭제 완료후 트리 불균형 체크, 회전 수행
+        return settleDeletion(node);
     }
 
     // 회전 수행 : 삭제시
     private Node<T> settleDeletion(Node<T> node) {
+        int balance = getBalance(node);
+
+        // Left-Left or Left-Right 인 경우
+        if (balance > 1) {
+            // Left-Right
+            if (getBalance(node.getLeftNode()) < 0) {
+                node.setLeftNode(leftRotation(node.getLeftNode())); // 왼쪽 회전
+            }
+            return rightRotation(node); // 오른쪽 회전
+        }
+
+        // Right-Right or Right-Left 인 경우
+        if (balance < -1) {
+            // Right-Left
+            if (getBalance(node.getRightNode()) > 0) {
+                node.setRightNode(rightRotation(node.getRightNode())); // 오른쪽 회전
+            }
+            return leftRotation(node); // 왼쪽 회전
+        }
         return node;
     }
 

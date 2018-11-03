@@ -338,3 +338,227 @@ avlTree.remove(79);
 ```
 
 ## 3. AVL Tree 구현
+
+### 3.1 클래스 작성
+
+```java
+// 노드 클래스
+public class Node<T> {
+
+    private T data;                 // 데이터
+    private Node<T> leftNode;       // 왼쪽 하위노드
+    private Node<T> rightNode;      // 오른쪽 하위노드
+    private int height;             // 높이
+
+    public Node(T data) {
+        this.data = data;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public Node<T> getLeftNode() {
+        return leftNode;
+    }
+
+    public void setLeftNode(Node<T> leftNode) {
+        this.leftNode = leftNode;
+    }
+
+    public Node<T> getRightNode() {
+        return rightNode;
+    }
+
+    public void setRightNode(Node<T> rightNode) {
+        this.rightNode = rightNode;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    @Override
+    public String toString() {
+        return this.data.toString();
+    }
+
+}
+```
+
+```java
+// 트리 인터페이스
+public interface Tree<T> {
+
+    public void insert(T data); // 삽입
+    public void traverse();     // 순회
+    public void delete(T data); // 삭제
+
+}
+```
+
+```java
+// AVL 트리 클래스
+public class AVLTree2<T extends Comparable<T>> implements Tree<T> {
+    
+    private Node<T> root; // 루트 노드
+    
+    // 삽입
+    @Override
+    public void insert(T data) {
+        
+    }
+    
+    // 순회
+    @Override
+    public void traverse() {
+
+    }
+    
+    // 삭제
+    @Override
+    public void delete(T data) {
+
+    }
+}
+```
+
+### 3.2 회전
+
+```java
+// 특정 노드의 높이 반환
+private int height(Node<T> node) {
+    if (node == null) {
+        return -1;
+    }
+    return node.getHeight();
+}
+```
+
+```java
+// 오른쪽 회전
+private Node<T> rightRotation(Node<T> parentNode) {
+    System.out.println("Rotating to the right on node : " + parentNode);
+
+    Node<T> newParentNode = parentNode.getLeftNode();   // 왼쪽 자식노드가 새로운 부모노드가 됨
+    Node<T> nullNode = newParentNode.getRightNode();    // 왼쪽 자식노드의 오른쪽 자식노드(null 노드)
+
+    newParentNode.setRightNode(parentNode);             // 새로운 부모노드의 오른쪽 자식노드에 기존의 부모노드를 세팅
+    parentNode.setLeftNode(nullNode);                   // 기존의 부모노드의 왼쪽 자식노드를 null 노드로 세팅
+
+    // 회전한 노드들의 높이 갱신
+    parentNode.setHeight(Math.max(height(parentNode.getLeftNode()), height(parentNode.getRightNode())) + 1);
+    newParentNode.setHeight(Math.max(height(newParentNode.getLeftNode()), height(newParentNode.getRightNode())) + 1);
+
+    // 새로운 부모노드 반환
+    return newParentNode;
+}
+```
+
+```java
+// 왼쪽 회전
+private Node<T> leftRotation(Node<T> parentNode) {
+
+    System.out.println("Rotating to the left on node : " + parentNode);
+
+    Node<T> newParentNode = parentNode.getRightNode();  // 오른쪽 자식노드가 새로운 부모노드가 됨
+    Node<T> nullNode = newParentNode.getLeftNode();     // 오른쪽 자식노드의 왼쪽 자식노드(null 노드)
+
+    newParentNode.setLeftNode(parentNode);              // 새로운 부모노드의 왼쪽 자식노드에 기존의 부모노드를 세팅
+    parentNode.setRightNode(nullNode);                  // 기존의 부모노드의 오른쪽 자식노드를 null 노드로 세팅
+
+    // 회전한 노드들의 높이 갱신
+    parentNode.setHeight(Math.max(height(parentNode.getLeftNode()), height(parentNode.getRightNode())) + 1);
+    newParentNode.setHeight(Math.max(height(newParentNode.getLeftNode()), height(newParentNode.getRightNode())) + 1);
+
+    // 새로운 부모노드 반환
+    return newParentNode;
+}
+```
+
+### 3.3 삽입
+
+```java
+// 삽입
+@Override
+public void insert(T data) {
+    root = insert(root, data);
+}
+```
+
+```java
+// 삽입 구현
+private Node<T> insert(Node<T> node, T data) {
+
+    // root가 비어있거나 leaf 노드인 경우 새로운 노드 생성
+    if (node == null) {
+        return new Node<>(data);
+    }
+
+    // 삽입할 데이터가 상위노드(부모노드)의 데이터보다 작으면 왼쪽 하위노드에 새로운 노드 생성
+    // 삽입할 데이터가 상위노드(부모노드)의 데이터보다 크면 오른쪽 하위노드에 새로운 노드 생성
+    if (data.compareTo(node.getData()) < 0) {
+        node.setLeftNode(insert(node.getLeftNode(), data)); // 왼쪽 leaf 노드를 찾을때까지 재귀호출
+    } else {
+        node.setRightNode(insert(node.getRightNode(), data)); // 오른쪽 leaf 노드를 찾을 때까지 재귀 호출
+    }
+
+    // 삽입이 완료되고 노드의 높이를 갱신
+    node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1);
+
+    // 삽입으로 인해 트리가 불균형이면 회전연산(LL, RR, LR, RL) 수행
+    node = settleViolation(data, node);
+
+    return node;
+}
+```
+
+```java
+// 회전 수행 : 삽입시
+private Node<T> settleViolation(T data, Node<T> node) {
+
+    // 트리의 불균형 여부 파악
+    int balance = getBalance(node);
+
+    // Left-Left : 높이 차이가 1보다 크고, 삽입된 데이터가 상위노드의 데이터보다 작은 경우
+    if (balance > 1 && data.compareTo(node.getData()) < 0) {
+        System.out.println("Tree is left-left heavy.");
+        return rightRotation(node); // 오른쪽 회전 수행
+    }
+
+    // Right-Right : 높이 차이가 -1보다 작고, 삽입된 데이터가 상위노드의 데이터보다 큰 경우
+    if (balance < -1 && data.compareTo(node.getData()) > 0) {
+        System.out.println("Tree is right-right heavy.");
+        return leftRotation(node); // 왼쪽 회전 수행
+    }
+
+    // Left-Right : 높이 차이가 1보다 크고, 삽입된 데이터가 상위노드의 데이터보다 큰 경우
+    if (balance > 1 && data.compareTo(node.getData()) > 0) {
+        System.out.println("Tree is left-right heavy.");
+        node.setLeftNode(leftRotation(node.getLeftNode())); // 왼쪽 회전 수행
+        return rightRotation(node); // 오른쪽 회전 수행
+    }
+
+    // Right-Left : 높이 차이가 -1보다 작고, 삽입된 데이터가 상위노드의 데이터보다 작은 경우
+    if (balance < -1 && data.compareTo(node.getData()) < 0) {
+        System.out.println("Tree is right-left heavy.");
+        node.setRightNode(rightRotation(node.getRightNode())); // 오른쪽 회전 수행
+        return leftRotation(node); // 왼쪽 회전 수행
+    }
+
+    return node;
+}
+```
+
+### 3.4 순회
+
+### 3.5 삭제
+
