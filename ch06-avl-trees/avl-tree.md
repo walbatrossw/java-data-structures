@@ -738,3 +738,38 @@ private Node<T> settleDeletion(Node<T> node) {
 }
 ```
 
+### 3.6 테스트
+
+```java
+// 테스트 클래스
+public class App {
+    public static void main(String[] args) {
+        Tree<String> avlTree = new AVLTree<>();
+        avlTree.insert("A");
+        avlTree.insert("B");
+        avlTree.insert("C");
+        avlTree.insert("D");
+        avlTree.insert("E");
+        avlTree.traverse();
+
+        avlTree.delete("D");
+        avlTree.traverse();
+    }
+}
+```
+
+```
+// 실행결과
+Tree is right-right heavy.
+Rotating to the left on node : A
+Tree is right-right heavy.
+Rotating to the left on node : C
+inorder traversal : A ==> B ==> C ==> D ==> E ==> 
+preorder traversal : B ==> A ==> B ==> C ==> D ==> E ==> 
+postorder traversal : A ==> C ==> D ==> E ==> B
+Removing item with the children
+Removing a leaf node...
+inorder traversal : A ==> B ==> C ==> E ==> 
+preorder traversal : B ==> A ==> B ==> C ==> E ==> 
+postorder traversal : A ==> C ==> E ==> B
+```
