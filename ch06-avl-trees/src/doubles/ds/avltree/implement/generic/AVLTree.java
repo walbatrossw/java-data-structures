@@ -84,6 +84,7 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
         System.out.println();
         System.out.print("postorder traversal : ");
         postOrderTraversal(root);
+        System.out.println();
     }
 
     // 중위 순회
@@ -117,7 +118,7 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
         if (node.getRightNode() != null) {
             inOrderTraversal(node.getRightNode());
         }
-        System.out.println(node);
+        System.out.print(node + " ==> ");
     }
 
     // 삭제
