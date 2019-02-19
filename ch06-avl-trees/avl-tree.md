@@ -248,7 +248,7 @@ AVL 트리의 삽입연산은 2단계로 수행된다. 1단계에서는 이진�
 
 ![avl-tree-insert](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-insert.gif?raw=true)
 
-```
+```java
 avlTree.insert(12);
 ```
 
@@ -266,7 +266,7 @@ avlTree.insert(12);
 
 ![avl-tree-insert2](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-insert2.gif?raw=true)
 
-```
+```java
 avlTree.insert(10);
 avlTree.insert(20);
 avlTree.insert(30);
@@ -333,7 +333,7 @@ avlTree.remove(32);
 
 ![avl-tree-remove-after-rotation](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/img/avl-tree-remove-after-rotation.gif?raw=true)
 
-```
+```java
 avlTree.remove(79);
 ```
 
