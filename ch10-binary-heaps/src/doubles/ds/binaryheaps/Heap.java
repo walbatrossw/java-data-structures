@@ -2,10 +2,11 @@ package doubles.ds.binaryheaps;
 
 public class Heap {
 
-    private Integer[] heap;
+    private Integer[] heap; // 데이터를 저장활 배열
 
-    private int currentPosition = -1;
+    private int currentPosition = -1;   // 데이터가 저장될 위치, -1f로 초기화
 
+    // 생성자
     public Heap(int size) {
         this.heap = new Integer[size];
     }

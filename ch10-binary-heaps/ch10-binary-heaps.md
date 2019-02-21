@@ -32,7 +32,7 @@ Heap은 완전 이진 트리로서 부모의 우선순위가 자식의 우선순
 
 완전 이진 트리는 1차원 배열로 구현할 수 있는데 아래의 그림은 최대 힙을 나타낸 것으로 배열의 인덱스를 루트 노드부터 하위노드까지 차례로 채워나간 것을 확인할 수 있다.
 
-![max-heap-array-presentation]()
+![max-heap-array-presentation](https://github.com/walbatrossw/java-data-structures/blob/master/ch10-binary-heaps/img/max-heap-array-presentation.png?raw=true)
 
 그리고 위의 그림에서 볼 수 있듯이 상위노드의 인덱스를 통해 하위노드들의 인덱스를 계산하는 방법은 아래와 같다.
 
@@ -43,18 +43,24 @@ Heap은 완전 이진 트리로서 부모의 우선순위가 자식의 우선순
 
 ### 2.3 Heap의 연산
 
-#### 2.2.1 삽입
+#### 2.3.1 삽입
 
 heap에 데이터를 삽입하고 heap속성을 충족하는지 확인한 뒤 위반할 경우 heap 속성을 충족하도록 재구성을 하게 된다.
 
-![max-heap-insert]()
+![max-heap-insert](https://github.com/walbatrossw/java-data-structures/blob/master/ch10-binary-heaps/img/max-heap-insert.gif?raw=true)
 
-#### 2.2.2 삭제
+#### 2.3.2 삭제
 
 삭제하려는 항목을 제거한 뒤 그 자리에 마지막 항목을 놓고 다시 heap 속성이 충족되는지 확인하고 재구성을 한다.
 
-![max-heap-remove]()
+![max-heap-remove](https://github.com/walbatrossw/java-data-structures/blob/master/ch10-binary-heaps/img/max-heap-remove.gif?raw=true)
 
-#### 2.2.3 Heapsort
+### 2.4 Heap 정렬
+
+힙정렬은 힙 자료구조를 이용하는 알고리즘이다. 먼저 배열에 저장된 데이터의 키를 우선순위로 최대힙을 만들고, 이후 루트 노드와 가장 마지막 노드에 있는 데이터를 교환한 후 힙의 크기를 1 감소시킨다. 루트노드로 이동한 숫자로 인해 위배된 heap속성을 충족하도록 재구성한다. 이러한 과정을 반복하여 나머지 항목들을 정렬해나간다.
+
+![heapsort]()
 
 ## 3. Heap 구현 코드
+
+
