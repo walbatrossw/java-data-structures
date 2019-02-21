@@ -17,23 +17,44 @@
 
 ### 2.1 Heap의 기본 개념
 
-- 완전 이진 트리로서 부모의 우선순위가 자식의 우선순위보다 높은 자료구조이다.
-- 이진힙은 Max Heap, Min Heap 2가지 종류가 있다.
-    - Max Heap : 상위 노드의 키 >= 하위 노드의 키, 최상위 키가 루트 노드
-    - Min Heap : 상위 노드의 키 <= 하위 노드의 키, 최하위 키가 루트 노드
-- Heap은 이진트리와 달리 상위 노드보다 작은 값을 왼쪽 하위 노드에 큰 값을 오른쪽 하위 노드에 놓지 않는다. 즉, 삽입되는 데이터 순서대로 왼쪽, 오른쪽 하위노드에 위치시킨다.
+Heap은 완전 이진 트리로서 부모의 우선순위가 자식의 우선순위보다 높은 자료구조이다. 이진트리와 달리 상위 노드보다 작은 값을 왼쪽 하위 노드에 큰 값을 오른쪽 하위 노드에 놓지 않는다. 즉, 삽입되는 데이터 순서대로 왼쪽, 오른쪽 하위노드에 위치시킨다.
 
-![max-heap-min-heap]()
+![binary-heap-complete-binary-tree](https://github.com/walbatrossw/java-data-structures/blob/master/ch10-binary-heaps/img/binary-heap-complete-binary-tree.gif?raw=true)
 
-![binary-heap-complete-binary-tree]()
+이진힙은 Max Heap, Min Heap 2가지 종류가 있다.
+
+![max-heap-min-heap](https://github.com/walbatrossw/java-data-structures/blob/master/ch10-binary-heaps/img/max-heap-min-heap.png?raw=true)
+
+- Max Heap : 상위 노드의 키 >= 하위 노드의 키, 최상위 키가 루트 노드
+- Min Heap : 상위 노드의 키 <= 하위 노드의 키, 최하위 키가 루트 노드
 
 ### 2.2 Array로 Heap표현
+
+완전 이진 트리는 1차원 배열로 구현할 수 있는데 아래의 그림은 최대 힙을 나타낸 것으로 배열의 인덱스를 루트 노드부터 하위노드까지 차례로 채워나간 것을 확인할 수 있다.
+
+![max-heap-array-presentation]()
+
+그리고 위의 그림에서 볼 수 있듯이 상위노드의 인덱스를 통해 하위노드들의 인덱스를 계산하는 방법은 아래와 같다.
+
+```
+왼쪽 하위노드의 인덱스 = 부모노드의 인덱스 * 2 + 1
+오른쪽 하위노드의 인덱스 = 부모노드의 인덱스 * 2 + 2
+```
 
 ### 2.3 Heap의 연산
 
 #### 2.2.1 삽입
 
+heap에 데이터를 삽입하고 heap속성을 충족하는지 확인한 뒤 위반할 경우 heap 속성을 충족하도록 재구성을 하게 된다.
+
+![max-heap-insert]()
+
 #### 2.2.2 삭제
 
+삭제하려는 항목을 제거한 뒤 그 자리에 마지막 항목을 놓고 다시 heap 속성이 충족되는지 확인하고 재구성을 한다.
+
+![max-heap-remove]()
+
+#### 2.2.3 Heapsort
 
 ## 3. Heap 구현 코드
