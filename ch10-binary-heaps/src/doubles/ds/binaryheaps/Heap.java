@@ -2,105 +2,106 @@ package doubles.ds.binaryheaps;
 
 public class Heap {
 
-    private Integer[] heap; // 데이터를 저장활 배열
-
-    private int currentPosition = -1;   // 데이터가 저장된 위치, -1로 초기화
+    private int[] heap;     // heap
+    private int heapSize;   // heap 사이즈
 
     // 생성자
-    public Heap(int size) {
-        this.heap = new Integer[size];
+    public Heap(int capacity) {
+        this.heap = new int[capacity];
     }
 
     // 삽입
+    // running time : 삽입은 O(1)이 걸리지만 heap 속성을 위반한 경우 fixUp()를 수행해야 하기 때문에 O(logN)
     public void insert(int item) {
-        // heap이 차있는지 확인
-        if (isFull()) {
-            throw new RuntimeException("Heap is Full...");
+
+        // heap이 차있는지 체크
+        if (isHeapFull()) {
+            throw new RuntimeException("Heap is full...");
         }
-        // 항목 삽입
-        this.heap[++currentPosition] = item;
-        // heap 속성 확인 및 속성에 충족하도록 수정처리
-        fixUp(currentPosition);
+
+        this.heap[heapSize] = item; // 항목 삽입
+        heapSize = heapSize + 1;    // 사이즈 증가
+        fixUp(heapSize - 1); // heap 속성을 위반한 경우 heap 속성 재구성
+
     }
 
-    // 최대값 반환
+    // heap 속성을 위반한 경우 교환 수행
+    // running time : O(logN)
+    private void fixUp(int currentIndex) {
+
+        int parentIndex = (currentIndex - 1) / 2; // 상위 노드의 인덱스 계산
+
+        // 루트노드 X, 상위노드의 항목보다 햔제노드의 항목이 클 경우
+        if (currentIndex > 0 && heap[currentIndex] > heap[parentIndex]) {
+            swap(currentIndex, parentIndex); // 현재 노드와 상위 노드 교환 수행
+            fixUp(parentIndex); // 루트노드까지 반복 수행하기 위해 재귀 호출
+        }
+
+    }
+
+    // heap 최대값 반환
+    // running time : O(1)
     public int getMax() {
-        int result = this.heap[0];
-        this.heap[0] = this.heap[currentPosition--];
-        this.heap[currentPosition + 1] = null;
-        fixDown(0, -1);
-        return result;
+        return this.heap[0];
     }
 
-    // Heap 정렬
-    public void heapSort() {
-        for (int i = 0; i <= currentPosition; i++) {
-            int temp = this.heap[0];
-            System.out.print(temp + " ");
-            this.heap[0] = this.heap[currentPosition - i];
-            this.heap[currentPosition - i] = temp;
-            fixDown(0, currentPosition - i - 1);
-        }
-        System.out.println();
+    // heap 최대값 반환 + 항목 제거
+    // running time : 0(logN)
+    public int poll() {
+        int max = getMax();     // 최대값
+        swap(0, heapSize - 1);  // 최상위 노드와 최하위노드 교환
+        this.heapSize--;        // heap 사이즈 감소
+        fixDown(0);       // heap 속성을 위반할 경우 heap 속성 재구성
+        return max;
     }
 
-    // Heap 속성에 맞게 상위 노드와 하위 노드의 위치 교환
-    private void fixUp(int index) {
+    // heap 속성을 위반한 경우 교환 수행
+    private void fixDown(int index) {
 
-        // 상위노드 인덱스 계산
-        int parentIndex = (index - 1) / 2;
-
-        // 상위 노드가 루트 노드이고, 상위 노드가 더 클 때까지 반복 수행
-        while (parentIndex >= 0 && this.heap[parentIndex] < this.heap[index]) {
-
-            // 현재노드와 부모노드 교환 수행
-            int temp = this.heap[index];
-            this.heap[index] = this.heap[parentIndex];
-            this.heap[parentIndex] = temp;
-            index = parentIndex;
-            parentIndex = (index - 1) / 2;
+        int indexLeft = 2 * index + 1;  // 왼쪽 하위노드 인덱스 계산
+        int indexRight = 2 * index + 2; // 오른쪽 하위노드 인덱스 계산
+        int indexLargest = index;       // 상위 노드의 인덱스
+        
+        // 왼쪽 하위노드가 상위노드보다 큰 경우
+        if (indexLeft < heapSize && heap[indexLeft] > heap[index]) {
+            indexLargest = indexLeft;
+        }
+        
+        // 오른쪽 하위노드가 왼쪽 하위노드보다 큰 경우
+        if (indexRight < heapSize && heap[indexRight] > heap[indexLargest]) {
+            indexLargest = indexRight;
+        }
+        
+        // 왼쪽 or 오른쪽 하위노드가 상위노드보다 큰 경우
+        if (index != indexLargest) {
+            swap(index, indexLargest); // 교환 수행
+            fixDown(indexLargest);     // 최하위 노드까지 반복수행하기 위해 재귀 호출
         }
 
     }
 
+    // 힙정렬
+    public void heapsort() {
+        int size = this.heapSize;
 
-    private void fixDown(int index, int upto) {
-        if (upto < 0) {
-            upto = currentPosition;
+        // 힙 사이즈 만큼 반복수행
+        for (int i = 0; i < size; i++) {
+            int max = poll();            // 현재 heap의 최대값 추출
+            System.out.print(max + " "); // 최대값 출력
         }
 
-        while (index <= upto) {
-            int leftChild = 2 * index + 1;
-            int rightChild = 2 * index + 2;
-            if (leftChild <= upto) {
-
-                int childToSwap;
-
-                if (rightChild > upto) {
-                    childToSwap = leftChild;
-                } else {
-                    childToSwap = (this.heap[leftChild] > this.heap[rightChild]) ? leftChild : rightChild;
-                }
-
-                if (this.heap[index] < this.heap[childToSwap]) {
-                    int temp = this.heap[index];
-                    this.heap[index] = this.heap[childToSwap];
-                    this.heap[childToSwap] = temp;
-                } else {
-                    break;
-                }
-
-                index = childToSwap;
-
-            } else {
-                break;
-            }
-        }
     }
 
-    // Heap이 차있는지 확인
-    private boolean isFull() {
-        return this.currentPosition == this.heap.length;
+    // 상위노드와 하위노드의 교환 수행
+    private void swap(int index1, int index2) {
+        int temp = heap[index1];
+        heap[index1] = heap[index2];
+        heap[index2] = temp;
+    }
+
+    // heap이 차있는지 체크
+    private boolean isHeapFull() {
+        return this.heap.length == this.heapSize;
     }
 
 }

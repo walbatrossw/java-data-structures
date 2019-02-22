@@ -13,13 +13,8 @@ public class App {
         heap.insert(33);
         heap.insert(70);
         heap.insert(35);
-        heap.heapSort();
 
         System.out.println(heap.getMax());
-//        System.out.println(heap.getMax());
-//        System.out.println(heap.getMax());
-//        System.out.println(heap.getMax());
-//        System.out.println(heap.getMax());
-//        System.out.println(heap.getMax());
+        heap.heapsort();
     }
 }
