@@ -83,16 +83,16 @@ public class Heap {
     // 힙정렬
     public void heapsort() {
         int size = this.heapSize;
-
+        System.out.print("[ ");
         // 힙 사이즈 만큼 반복수행
         for (int i = 0; i < size; i++) {
             int max = poll();            // 현재 heap의 최대값 추출
             System.out.print(max + " "); // 최대값 출력
         }
-
+        System.out.print("]");
     }
 
-    // 상위노드와 하위노드의 교환 수행
+    // 노드의 교환 수행
     private void swap(int index1, int index2) {
         int temp = heap[index1];
         heap[index1] = heap[index2];
@@ -104,4 +104,12 @@ public class Heap {
         return this.heap.length == this.heapSize;
     }
 
+    public void printHeap() {
+        System.out.print("[ ");
+        for (int i = 0; i < heapSize; i++) {
+            System.out.print( heap[i] + " ");
+        }
+        System.out.print("]");
+        System.out.println();
+    }
 }

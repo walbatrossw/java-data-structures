@@ -63,8 +63,190 @@ heap에 데이터를 삽입하고 heap속성을 충족하는지 확인한 뒤 �
 
 ## 3. Heap 구현 코드
 
-### 3.1 삽입
+### 3.1 Heap 클래스 작성
 
-### 3.2 삭제
+```java
+public class Heap {
+
+    private int[] heap;     // heap
+    private int heapSize;   // heap 사이즈
+
+    // 생성자
+    public Heap(int capacity) {
+        this.heap = new int[capacity];
+    }
+    
+    // heap 출력
+    public void printHeap() {
+        System.out.print("[ ");
+        for (int i = 0; i < heapSize; i++) {
+            System.out.print( heap[i] + " ");
+        }
+        System.out.print("]");
+        System.out.println();
+    }
+}
+```
+
+### 3.2 삽입 관련 메서드 작성
+
+```java
+// 삽입
+// running time : 삽입은 O(1)이 걸리지만 heap 속성을 위반한 경우 fixUp()를 수행해야 하기 때문에 O(logN)
+public void insert(int item) {
+
+    // heap이 차있는지 체크
+    if (isHeapFull()) {
+        throw new RuntimeException("Heap is full...");
+    }
+
+    this.heap[heapSize] = item; // 항목 삽입
+    heapSize = heapSize + 1;    // 사이즈 증가
+    fixUp(heapSize - 1); // heap 속성을 위반한 경우 heap 속성 재구성
+
+}
+
+// heap이 차있는지 체크
+private boolean isHeapFull() {
+    return this.heap.length == this.heapSize;
+}
+
+// heap 속성을 위반한 경우 heap 속성을 유지하기 위해 교환 수행
+// running time : O(logN)
+private void fixUp(int currentIndex) {
+
+    int parentIndex = (currentIndex - 1) / 2; // 상위 노드의 인덱스 계산
+
+    // 루트노드가 아니고, 상위노드보다 햔제노드가 클 경우
+    if (currentIndex > 0 && heap[currentIndex] > heap[parentIndex]) {
+        swap(currentIndex, parentIndex); // 현재 노드와 상위 노드 교환 수행
+        fixUp(parentIndex); // 루트노드까지 반복 수행하기 위해 재귀 호출
+    }
+
+}
+
+// 노드의 교환 수행
+private void swap(int index1, int index2) {
+    int temp = heap[index1];
+    heap[index1] = heap[index2];
+    heap[index2] = temp;
+}
+```
+
+Heap의 삽입은 아래와 같은 과정을 거치게 된다.
+
+1. 배열 heap이 차있다면 `RuntimeException`을 던지고, 그렇지 않다면 삽입을 수행한다.
+2. 항목을 삽입하고, 배열의 사이즈 변수인 `heapSize`을 1증가 시킨다.
+3. `fixUp()`메서드를 통해 새로 삽입된 항목으로 인해 heap 속성을 위반하는지 확인하고, 
+위반한 경우 heap 속성을 재구성 작업을 수행한다.
+
+### 3.2 삭제 관련 메서드
+
+```java
+// heap 최대값 반환
+// running time : O(1)
+public int getMax() {
+    return this.heap[0];
+}
+
+// heap 최대값 반환 + 항목 제거
+// running time : 0(logN)
+public int poll() {
+    int max = getMax();     // 최대값
+    swap(0, heapSize - 1);  // 최상위 노드와 최하위노드 교환
+    this.heapSize--;        // heap 사이즈 감소
+    fixDown(0);       // heap 속성을 위반할 경우 heap 속성 재구성
+    return max;
+}
+
+// heap 속성을 위반한 경우 교환 수행
+private void fixDown(int index) {
+
+    int indexLeft = 2 * index + 1;  // 왼쪽 하위노드 인덱스 계산
+    int indexRight = 2 * index + 2; // 오른쪽 하위노드 인덱스 계산
+    int indexLargest = index;       // 상위 노드의 인덱스
+    
+    // 왼쪽 하위노드가 상위노드보다 큰 경우
+    if (indexLeft < heapSize && heap[indexLeft] > heap[index]) {
+        indexLargest = indexLeft;
+    }
+    
+    // 오른쪽 하위노드가 왼쪽 하위노드보다 큰 경우
+    if (indexRight < heapSize && heap[indexRight] > heap[indexLargest]) {
+        indexLargest = indexRight;
+    }
+    
+    // 왼쪽 or 오른쪽 하위노드가 상위노드보다 큰 경우
+    if (index != indexLargest) {
+        swap(index, indexLargest); // 교환 수행
+        fixDown(indexLargest);     // 최하위 노드까지 반복수행하기 위해 재귀 호출
+    }
+
+}
+```
+
+Heap의 삭제 과정은 아래와 같다.
+
+1. `getMax()`메서드를 통해 얻은 최대값을 변수 `max`에 저장한다.
+2. 최상위(루트) 노드와 최하위 노드를 교환한다.
+3. heap 사이즈를 감소시킨다.
+4. heap 속성을 위반할 경우 heap 속성을 재구성하기 위해 루트노트부터 최하위 노드까지 재구성을 수행한다.
 
 ### 3.3 정렬
+
+```java
+// 힙정렬
+public void heapsort() {
+    int size = this.heapSize;
+    System.out.print("[ ");
+    // 힙 사이즈 만큼 반복수행
+    for (int i = 0; i < size; i++) {
+        int max = poll();            // 현재 heap의 최대값 추출
+        System.out.print(max + " "); // 최대값 출력
+    }
+    System.out.print("]");
+}
+```
+
+### 3.4 테스트 결과
+
+```java
+public class App {
+    public static void main(String[] args) {
+
+        Heap heap = new Heap(8); // 힙 생성
+        
+        // 삽입
+        heap.insert(20);
+        heap.insert(4);
+        heap.insert(45);
+        heap.insert(11);
+        heap.insert(7);
+        heap.insert(33);
+        heap.insert(70);
+        heap.insert(35);
+
+        // 힙 출력
+        heap.printHeap();
+
+        // 힙 최대값 반환
+        System.out.println(heap.getMax());
+
+        // 힙 삭제
+        System.out.println(heap.poll());
+
+        // 힙 출력
+        heap.printHeap();
+
+        // 힙 정렬
+        heap.heapsort();
+    }
+}
+```
+```console
+[ 70 35 45 11 7 20 33 4 ]
+70
+70
+[ 45 35 33 11 7 20 4 ]
+[ 45 35 33 20 11 7 4 ]
+```
