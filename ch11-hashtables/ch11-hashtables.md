@@ -35,20 +35,17 @@ index = h(key) // h()는 해시함수를 의미하고, 배열의 인덱스에 �
 
 ## 2. Collision(충돌)
 
-![hashtable-collision]()
+![hashtable-collision](https://github.com/walbatrossw/java-data-structures/blob/master/ch11-hashtables/img/hashtable-collision.png?raw=true)
 
-**서로 다른 키값에 대해서 해싱함수에 의해 주어진 버킷이 같은 경우를 충돌이라고 한다.**
+**위의 그림과 같이 서로 다른 키값에 대해서 해싱함수에 의해 주어진 버킷이 같은 경우를 충돌(Collision)이라고 한다.**
 
 ### 2.1 Closed Addressing(폐쇄주소방식) - Chaining
 
+![hashtable-collision-chaining](https://github.com/walbatrossw/java-data-structures/blob/master/ch11-hashtables/img/hashtable-collision-chaining.gif?raw=true)
+
 폐쇠주소방식은 키에 대한 해시값에 대응되는 곳에만 키를 저장한다. 따라서 충돌이 발생한 키들은 한 위치에 모여 저장되는데 이를 구현하는 대표적인 방법이 체이닝(Chaining)이다.
 
-![hashtable-collision-chaining]()
-
-- 체이닝은 키를 해시값에 대응되는 연결리스트에 저장하는 해시방식
-- 연결리스트로 구현되어 참조값을 차지하는 공간에 추가로 필요
-- 개방주소방식과 같이 empty원소를 찾는 오버헤드와 군집화이 없음
-- 구현이 간결하여 실제로 가장 많이 활용되는 방식
+체이닝은 키를 해시값에 대응되는 연결리스트에 저장하는 해시방식으로 연결리스트로 구현되어 참조값을 차지하는 공간에 추가로 필요하다. 개방주소방식과 같이 empty원소를 찾는 오버헤드와 군집화가 없으며 구현이 간결하여 실제로 가장 많이 활용되는 방식이다.
 
 ### 2.2 Open Addressing(개방주소방식) - Linear Probing
 

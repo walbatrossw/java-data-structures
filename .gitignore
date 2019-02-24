@@ -85,7 +85,7 @@ gen
 
 ch08-splay-trees/src/
 ch09-b-trees/src/
-ch11-hashtables/src/
+
 
 # Mac OS File
 .DS_Store
