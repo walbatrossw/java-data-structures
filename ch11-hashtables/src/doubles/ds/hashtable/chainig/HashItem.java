@@ -6,6 +6,7 @@ public class HashItem {
     private int value;  // 값
     private HashItem nextHashItem; // 다음 항목
 
+    // 생성자
     public HashItem(int key, int value) {
         this.key = key;
         this.value = value;

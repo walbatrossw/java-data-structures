@@ -14,15 +14,14 @@ public class App {
         hashTable.put(8, 80);
         hashTable.put(9, 90);
         hashTable.put(10, 100);
-        hashTable.put(11, 110);
-        hashTable.put(12, 120);
-        hashTable.put(22, 220);
+        hashTable.put(11, 110); // 출동 발생
+        hashTable.put(12, 120); // 충돌 발생
+        hashTable.put(22, 220); // 충돌 발생
 
         System.out.println(hashTable.get(11));
         System.out.println(hashTable.get(12));
         System.out.println(hashTable.get(2));
-        System.out.println(hashTable.get(222));
+        System.out.println(hashTable.get(222)); // 찾는 항목이 존재하지 않기 때문에 -1 리턴
     }
-
 
 }
