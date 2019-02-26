@@ -37,8 +37,9 @@ public class HashTable<Key, Value> {
 
     // 해시 함수
     public int hash(Key key) {
-        // 문자열을 해싱하기 위해 hashCode() 메서드 사용
-        return key.hashCode() % this.capacity;
+        //return key.hashCode() % this.capacity;
+        // 음수값을 반환하지 않도록 abs() 메서드 사용
+        return Math.abs(key.hashCode()) % this.capacity;
     }
 
     // 삽입

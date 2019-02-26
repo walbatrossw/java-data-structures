@@ -416,9 +416,15 @@ public class HashTable<Key, Value> {
 
     // 해시 함수
     public int hash(Key key) {
-        // 문자열을 해싱하기 위해 hashCode() 메서드 사용
-        return key.hashCode() % this.capacity;
+        //return key.hashCode() % this.capacity;
+        // 음수값을 반환하지 않도록 abs() 메서드 사용
+        return Math.abs(key.hashCode()) % this.capacity;
     }
+
+    // put() 메서드
+    // get() 메서드
+    // remove() 메서드
+    // resize() 메서드
 }
 ```
 
@@ -601,76 +607,48 @@ public class App {
     public static void main(String[] args) {
         HashTable<String, Integer> hashTable = new HashTable<>();
 
-        hashTable.put("a", 1);
+        hashTable.put("Doubles", 85);
         System.out.println(hashTable.size());
-        hashTable.put("b", 2);
+        hashTable.put("Kim", 90);
         System.out.println(hashTable.size());
-        hashTable.put("c", 3);
+        hashTable.put("Lee", 80);
         System.out.println(hashTable.size());
-        hashTable.put("d", 4);
+        hashTable.put("Park", 100);
         System.out.println(hashTable.size());
-        hashTable.put("e", 5);
+        hashTable.put("Choi", 88);
         System.out.println(hashTable.size());
-        hashTable.put("f", 6);
+        hashTable.put("Son", 70);
         System.out.println(hashTable.size());
-        hashTable.put("g", 7);
+        hashTable.put("Yoon", 82);
         System.out.println(hashTable.size());
-        hashTable.put("h", 8);
-        System.out.println(hashTable.size());
-        hashTable.put("j", 9);
-        System.out.println(hashTable.size());
-        hashTable.put("k", 10);
-        System.out.println(hashTable.size());
-        hashTable.put("l", 11);
-        System.out.println(hashTable.size());
-        hashTable.put("m", 12);
-        System.out.println(hashTable.size());
-        hashTable.put("n", 13);
-        System.out.println(hashTable.size());
-        hashTable.put("bb", 14);
-        System.out.println(hashTable.size());
-        hashTable.put("v", 15);
-        System.out.println(hashTable.size());
-        hashTable.put("bbc", 16);
-        System.out.println(hashTable.size());
-        hashTable.put("x", 17);
-        System.out.println(hashTable.size());
-        hashTable.put("y", 18);
+        hashTable.put("Mike", 88);
         System.out.println(hashTable.size());
 
-        hashTable.remove("c");
+        hashTable.put("James", 98);
         System.out.println(hashTable.size());
 
-        hashTable.remove("h");
+        hashTable.put("Silvia", 100);
         System.out.println(hashTable.size());
-        hashTable.remove("j");
+
+        hashTable.put("Olivia", 70);
         System.out.println(hashTable.size());
-        hashTable.remove("k");
+
+        hashTable.put("Sophia", 85);
         System.out.println(hashTable.size());
-        hashTable.remove("l");
+
+        hashTable.put("Harry", 70);
         System.out.println(hashTable.size());
-        hashTable.remove("m");
-        System.out.println(hashTable.size());
-        hashTable.remove("n");
-        System.out.println(hashTable.size());
-        hashTable.remove("bb");
-        System.out.println(hashTable.size());
-        hashTable.remove("v");
-        System.out.println(hashTable.size());
-        hashTable.remove("bbc");
-        System.out.println(hashTable.size());
-        hashTable.remove("x");
-        System.out.println(hashTable.size());
-        hashTable.remove("a");
-        System.out.println(hashTable.size());
-        hashTable.remove("b");
-        System.out.println(hashTable.size());
-        hashTable.remove("d");
-        System.out.println(hashTable.size());
-        hashTable.remove("e");
-        System.out.println(hashTable.size());
-        hashTable.remove("f");
-        System.out.println(hashTable.size());
+
+        System.out.println(hashTable.get("park"));  // null 반환
+        System.out.println(hashTable.get("Park"));
+
+        hashTable.remove("Harry");
+        hashTable.remove("Yoon");
+        hashTable.remove("Mike");
+        hashTable.remove("Kim");
+        hashTable.remove("Park");
+        hashTable.remove("Son");
+        hashTable.remove("Lee");
     }
 }
 ```
@@ -690,29 +668,7 @@ Resize table with new capacity : 20
 11
 12
 13
-14
-15
-Resize table with new capacity : 40
-16
-17
-18
-17
-16
-15
-14
-Resize table with new capacity : 20
-13
-12
-11
-10
-9
-8
-7
+null
+100
 Resize table with new capacity : 10
-6
-5
-4
-Resize table with new capacity : 5
-3
-2
 ```
