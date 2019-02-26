@@ -1,4 +1,4 @@
-package doubles.ds.hashtable.chainig;
+package doubles.ds.hashtable.implement.chainig;
 
 public class App {
 

@@ -1,4 +1,4 @@
-package doubles.ds.hashtable.genericlinearprobing;
+package doubles.ds.hashtable.implement.genericlinearprobing;
 
 // 해시테이블 클래스
 @SuppressWarnings("unckecked")

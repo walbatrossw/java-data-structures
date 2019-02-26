@@ -1,4 +1,4 @@
-package doubles.ds.hashtable.genericlinearprobing;
+package doubles.ds.hashtable.implement.genericlinearprobing;
 
 public class App {
     public static void main(String[] args) {
