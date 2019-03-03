@@ -9,7 +9,7 @@ public class Node {
 
     public Node(String character) {
         this.character = character;
-        this.children = new Node[Constants.ALPABET_SIZE];
+        this.children = new Node[Constants.ALPHABET_SIZE];
     }
 
     public void setChild(int index, Node node) {
