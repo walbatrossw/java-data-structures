@@ -13,16 +13,15 @@
 
 ## 2. Trie 기본 개념
 
-![trie-pic1]()
+![trie-pic1](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-pic1.png?raw=true)
 
 - Tire / Radix Tree / Prefix Tree 라고 부른다.
 - 배열을 통해 자료구조를 구현할 수 있다.
 - key는 일반적으로 문자열(String)이다.
-- Binary Search Tree와 달리 트리에 있는 노드는 지정된 노드와 연결된 키를 저장한다.
 - 노드의 모든 하위 항목에는 해당 노드와 연결된 문자열의 공통 접두사가 있으며 루트 노드는 빈문자열을 저장한다.
 - 값이 모든 노드에 저장되지 않고, 보통 마지막 노드(leaf node)에만 존재한다.
 
-![trie-pic2]()
+![trie-pic2](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-pic2.png?raw=true)
 
 - 노드는 일반적으로 알파벳 수 만큼 하위노드를 가지고 있다. - 모든 노드에서 사용이 가능하도록 알파벳 사이즈 만큼의 상수를 미리 선언하는 것이 좋다.
 
@@ -43,7 +42,7 @@ Trie의 삽입 연산은 아래와 같이 이루어진다.
 
 #### 3.1.1 "apple" 삽입
 
-![trie-insert-apple]()
+![trie-insert-apple](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-insert-apple.gif?raw=true)
 
 #### 3.1.2 "air" 삽입
 
