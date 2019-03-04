@@ -13,11 +13,11 @@ LRU는 OS의 페이지 교체 알고리즘의 하나로 최근에 가장 오랫�
 
 ## 3. LRU Cache 구현
 
-![lru-cache1]()
+![lru-cache1](https://github.com/walbatrossw/java-data-structures/blob/master/ch12-least-recently-used-cache/img/lru-cache1.gif?raw=true)
 
 LRU Cache 구현은 Doubly Linked List를 통해 구현한다. head에 가까운 데이터일수록 최근에 사용한 데이터이고, tail에 가까울수록 가장 오랫동안 사용하지 않은 데이터로 간주하여 새로운 데이터를 삽입할 때 가장 먼저 삭제되도록 한다.
 
-![lru-cache2]()
+![lru-cache2](https://github.com/walbatrossw/java-data-structures/blob/master/ch12-least-recently-used-cache/img/lru-cache2.gif?raw=true)
 
 삽입된 데이터를 사용하게 되면 head로 옮겨 우선순위를 높이게 되고, 삭제될 우선순위에서 멀어지게 된다.
 
@@ -313,5 +313,5 @@ cache is full... remove tail
 3 - D
 3 - D <--> 6 - G <--> 5 - F <--> 4 - E <-->
 4 - E
-4 - E <--> 3 - D <--> 6 - G <--> 5 - F <--> 
+4 - E <--> 3 - D <--> 6 - G <--> 5 - F <-->
 ```

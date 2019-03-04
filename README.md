@@ -31,10 +31,9 @@
 ## 6. AVL Tree : Balanced Tree
 
 - [간단 요약](https://github.com/walbatrossw/java-data-structures/blob/master/ch06-avl-trees/avl-tree.md)
-- [AVL Tree 구현]()
+- [AVL Tree 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch06-avl-trees/src/doubles/ds/avltree/implement/integer)
 
 ## 7. Red Black Tree : Balanced Tree
-
 
 ## 8. Splay Tree
 
@@ -42,11 +41,23 @@
 
 ## 10. Binary Heap
 
+- [간단 요약](https://github.com/walbatrossw/java-data-structures/blob/master/ch10-binary-heaps/ch10-binary-heaps.md)
+- [Binary Heap 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch10-binary-heaps/src/doubles/ds/binaryheaps)
+
 ## 11. HashTable
+
+- [간단 요약](https://github.com/walbatrossw/java-data-structures/blob/master/ch11-hashtables/ch11-hashtables.md)
+- [HashTable 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch11-hashtables/src/doubles/ds/hashtable/implement)
 
 ## 12. Least Recently Used Cache
 
+- [간단 요약](https://github.com/walbatrossw/java-data-structures/blob/master/ch12-least-recently-used-cache/ch12-least-recently-used-chache.md)
+- [LRU Cache 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch12-least-recently-used-cache/src/doubles/ds/lru)
+
 ## 13. Trie
+
+- [간단 요약](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/ch13-tries.md)
+- [Trie 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch13-tries/src/doubles/ds/trie)
 
 ## 14. Ternary Search Tree
 
