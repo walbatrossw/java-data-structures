@@ -136,3 +136,357 @@ get("apple");
 ```java
 get("air");
 ```
+
+## 4. Trie 구현
+
+### 4.1 클래스 작성
+
+Trie를 구현하기 위해 클래스를 아래와 같이 작성한다.
+
+```java
+// 노드 클래스
+public class Node {
+
+    private String character;   //  알파벳 문자, 키 값
+    private int value;          //  데이터
+    private Node[] children;    //  하위 노드 배열 변수
+    private boolean leaf;       //  leaf 노드 여부 확인
+
+    // 생성자
+    public Node(String character) {
+        this.character = character;     // 알파벳
+        this.children = new Node[Constants.ALPHABET_SIZE];
+    }
+
+    // getter, setter, toString
+
+    public Node getChild(int index) {
+        return children[index];
+    }
+
+    public void setChild(int index, Node node, int value) {
+        node.setValue(value);
+        this.children[index] = node;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
+    public Node[] getChildren() {
+        return children;
+    }
+
+    public void setChildren(Node[] children) {
+        this.children = children;
+    }
+
+    public boolean isLeaf() {
+        return leaf;
+    }
+
+    public void setLeaf(boolean leaf) {
+        this.leaf = leaf;
+    }
+
+    @Override
+    public String toString() {
+        return this.character;
+    }
+}
+```
+
+```java
+// 상수 클래스
+public class Constants {
+
+    // 알파벳 문자 수만큼 상수 선언
+    public static final int ALPHABET_SIZE = 26;
+}
+```
+
+```java
+// Trie 클래스
+public class Trie {
+
+    private Node root;  // 루트 노드
+    private int indexOfSingleChild; // 단일 노드의 인덱스
+
+    // 생성자
+    public Trie() {
+        this.root = new Node(""); // 루트 노드 빈문자열로 초기화
+    }
+
+    // 삽입 메서드
+    // 탐색 메서드1 : 해당 키가 존재하는지 여부 반환
+    // 탐색 메서드2 : 해당 키값에 해당하는 값 반환
+    // 자동완성 메서드
+    // 가장 긴 접두사 반환 메서드
+    // 정렬 메서드
+}
+```
+
+### 4.2 삽입
+
+```java
+// 삽입 메서드
+public void insert(String key, int value) {
+
+    Node tempNode = root;   // 루트 노드로 초기화
+
+    // 입력한 key의 길이 만큼 반복
+    for (int i = 0; i < key.length(); i++) {
+
+        char c = key.charAt(i);    // 알파벳 추출
+        int asciiIndex = transformASCIIIndex(c); // 추출한 알파벳을 배열 인덱스에 맞게 저장할 수 있도록 ascii 값 변환
+
+        // 추출한 알파벳을 가진 하위노드가 존재 하지 않으면
+        if (tempNode.getChild(asciiIndex) == null) {
+            Node node = new Node(String.valueOf(c));    // 새로운 노드 생성
+            tempNode.setChild(asciiIndex, node, value); // 하위노드로 세팅
+            tempNode = node;                            // 하위 노드로 이동
+        } else {
+            tempNode = tempNode.getChild(asciiIndex);   // 하위 노드로 이동
+        }
+    }
+
+    tempNode.setLeaf(true); // 알파벳 문자들의 삽입이 완료되고 마지막 노드를 leaf 노드로 설정
+}
+```
+
+```java
+// ASCII 값을 배열에 인덱스에 맞게 변환
+private int transformASCIIIndex(char c) {
+    return c - 'a';
+}
+```
+
+### 4.3 탐색
+
+```java
+// 탐색 : 해당 키가 존재하는지 여부 반환
+public boolean search(String key) {
+
+    Node trieNode = root; // 루트 노드로 초기화
+
+    // 입력한 key의 길이만큼 반복
+    for (int i = 0; i < key.length(); i++) {
+
+        int asciiIndex = transformASCIIIndex(key.charAt(i)); // 추출한 알파벳을 배열 인덱스에 맞게 ascii 값 변환
+
+        if (trieNode.getChild(asciiIndex) == null) {    // 추출한 알파벳을 가진 하위 노드가 존재하지 않으면 false 리턴
+            return false;
+        } else {
+            trieNode = trieNode.getChild(asciiIndex);   // 하위 노드로 이동
+        }
+    }
+
+    return true;
+}
+```
+
+```java
+// 탐색 : 해당 키값에 해당하는 값 반환
+public Integer searchAsMap(String key) {
+
+    Node trieNode = root; // 루트 노드로 초기화
+
+    // 입력한 key의 길이만큼 반복
+    for (int i = 0; i < key.length(); i++) {
+
+        int asciiIndex = transformASCIIIndex(key.charAt(i)); // 추출한 알파벳을 배열 인덱스에 맞게 ascii 값 변환
+
+        if (trieNode.getChild(asciiIndex) != null) {    // 추출한 알파벳을 가진 하위 노드가 존재하면
+            trieNode = trieNode.getChild(asciiIndex);   // 하위 노드로 이동
+        } else {    // 존재하지 않으면 null 반환
+            return null;
+        }
+    }
+
+    return trieNode.getValue();
+}
+```
+
+```java
+// ASCII 값을 배열에 인덱스에 맞게 변환
+private int transformASCIIIndex(char c) {
+    return c - 'a';
+}
+```
+
+### 4.4 자동완성, 정렬
+
+```java
+// Autocomplete : 자동완성
+public List<String> allWordsWithPrefix(String prefix) {
+
+    Node trieNode = root;   // 루트 노드로 초기화
+
+    List<String> allWords = new ArrayList<>();
+
+    // 접두사 길이 만큼 반복 수행
+    for (int i = 0; i < prefix.length(); i++) {
+        int asciiIndex = transformASCIIIndex(prefix.charAt(i)); // 추출한 알파벳을 배열 인덱스에 맞게 ascii 값 변환
+        trieNode = trieNode.getChild(asciiIndex);               // 하위 노드로 이동
+    }
+
+    collect(trieNode, prefix, allWords); // 접두사 이후의 단어들 모음
+    return allWords;
+}
+```
+
+```java
+// 자동완성 단어 수집
+private void collect(Node node, String prefix, List<String> allWords) {
+    // 노드가 null 이면 메서드 종료
+    if (node == null) {
+        return;
+    }
+    // leaf 노드이면 allWords에 저장
+    if (node.isLeaf()) {
+        allWords.add(prefix);
+    }
+    // 노드의 자식노드의 수 만큼 반복 수행
+    for (Node childNode : node.getChildren()) {
+        if (childNode == null) {
+            continue;
+        }
+        // 자식노드의 알파벳
+        String childCharacter = childNode.getCharacter();
+        collect(childNode, prefix + childCharacter, allWords); // 접두사 + 추출한 알파벳, 반복수행을 위해 재귀호출
+    }
+}
+```
+
+```java
+// 정렬
+public void sort() {
+    List<String> list = allWordsWithPrefix("");
+    for (String s : list) {
+        System.out.print(s + " ");
+    }
+    System.out.println();
+}
+```
+
+### 4.5 가장 긴 접두사 반환
+
+```java
+// 가장 긴 접두사 반환
+public String longestCommonPrefix() {
+    Node trieNode = root; // 루트 노드로 초기화
+    String longestCommonPrefix = ""; // 빈 문자열로 초기화
+
+    // 하위노드가 여러개 이거나 leaf 노드일 때까지 반복 수행
+    while (countNumOfChildren(trieNode) == 1 && !trieNode.isLeaf()) {
+        trieNode = trieNode.getChild(indexOfSingleChild);
+        longestCommonPrefix = longestCommonPrefix + String.valueOf((char) (indexOfSingleChild + 'a'));
+    }
+    return longestCommonPrefix;
+}
+```
+
+```java
+// 하위 노드의 갯수 반환
+private int countNumOfChildren(Node trieNode) {
+    int numOfChildren = 0; // 하위 노드 개수 0으로 초기화
+
+    // 하위 노드의 개수 만큼 반복 수행
+    for (int i = 0; i < trieNode.getChildren().length; i++) {
+        // 하위 노드가 존재하면
+        if (trieNode.getChild(i) != null) {
+            numOfChildren++; // 하위 노드 1 증가
+            indexOfSingleChild = i; // 단일 노드의 인덱스
+        }
+    }
+    return numOfChildren;
+}
+```
+
+### 4.6 코드 테스트
+
+```java
+public class App {
+    public static void main(String[] args) {
+
+        Trie trie = new Trie();
+
+        trie.insert("apple", 1);
+        trie.insert("approve", 2);
+        trie.insert("air", 3);
+        trie.insert("appa", 4);
+        trie.insert("appb", 5);
+
+        System.out.println("---- search : true or false ----");
+        System.out.println(trie.search("apple"));
+        System.out.println(trie.search("archive"));
+
+        System.out.println();
+
+        System.out.println("---- search : as map ----");
+        System.out.println(trie.searchAsMap("apple"));
+        System.out.println(trie.searchAsMap("archive"));
+
+        System.out.println();
+
+        System.out.println("---- autocomplete ----");
+        System.out.println("a : " + trie.allWordsWithPrefix("a"));
+        System.out.println("ai : " + trie.allWordsWithPrefix("ai"));
+
+        trie.insert("doubles", 6);
+        trie.insert("yoon", 7);
+        trie.insert("kim", 8);
+        trie.insert("park", 9);
+        trie.insert("lee", 10);
+        trie.insert("choi", 11);
+
+        System.out.println();
+
+        System.out.println("---- sort ----");
+
+        trie.sort();
+
+        System.out.println();
+        Trie trieForCommonPrefix = new Trie();
+
+        trieForCommonPrefix.insert("hope", 1);
+        trieForCommonPrefix.insert("hobby", 2);
+        trieForCommonPrefix.insert("horror", 3);
+        trieForCommonPrefix.insert("honor", 4);
+        trieForCommonPrefix.insert("hospital", 5);
+        trieForCommonPrefix.insert("horse", 6);
+        System.out.println("longest common prefix : " + trieForCommonPrefix.longestCommonPrefix());
+    }
+}
+```
+
+```console
+---- search : true or false ----
+true
+false
+
+---- search : as map ----
+1
+null
+
+---- autocomplete ----
+a : [air, appa, appb, apple, approve]
+ai : [air]
+
+---- sort ----
+air appa appb apple approve choi doubles kim lee park yoon
+
+longest common prefix : ho
+```

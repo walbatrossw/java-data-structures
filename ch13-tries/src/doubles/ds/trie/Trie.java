@@ -142,6 +142,7 @@ public class Trie {
         }
     }
 
+    // 정렬
     public void sort() {
         List<String> list = allWordsWithPrefix("");
         for (String s : list) {

@@ -1,12 +1,12 @@
 package doubles.ds.trie;
 
+// 노드 클래스
 public class Node {
 
     private String character;   //  알파벳 문자, 키 값
     private int value;          //  데이터
     private Node[] children;    //  하위 노드 배열 변수
     private boolean leaf;       //  leaf 노드 여부 확인
-    private boolean visited;    //  탐색 여부
 
     // 생성자
     public Node(String character) {
@@ -55,14 +55,6 @@ public class Node {
 
     public void setLeaf(boolean leaf) {
         this.leaf = leaf;
-    }
-
-    public boolean isVisited() {
-        return visited;
-    }
-
-    public void setVisited(boolean visited) {
-        this.visited = visited;
     }
 
     @Override
