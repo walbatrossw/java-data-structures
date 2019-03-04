@@ -46,14 +46,94 @@ Trie의 삽입 연산은 아래와 같이 이루어진다.
 
 #### 3.1.2 "air" 삽입
 
-![trie-insert-air]()
+![trie-insert-air](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-insert-air.gif?raw=true)
 
 #### 3.1.3 "approve" 삽입
 
-![trie-insert-approve]()
+![trie-insert-approve](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-insert-approve.gif?raw=true)
+
+#### 3.1.4 "appa" 삽입
+
+![trie-insert-appa](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-insert-appa.gif?raw=true)
+
+#### 3.1.5 "appb" 삽입
+
+![trie-insert-appb](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-insert-appb.gif?raw=true)
 
 ### 3.2 정렬
 
+Trie의 정렬 연산은 아래와 같이 이루어진다.
+
+![trie-sort]()
+
 ### 3.3 자동완성
+
+Trie의 자동완성 연산은 아래와 같이 이루어진다.
+
+![trie-autocomplete]()
+
+### 3.4 Map처럼 삽입
+
+Trie에서 Map처럼 데이터를 저장하는 과정은 아래와 같다.
+
+#### 3.4.1 "apple"을 키로 가진 데이터 1 삽입
+
+![trie-put-apple]()
+
+```java
+put("apple", 1);
+```
+
+#### 3.4.2 "air"을 키로 가진 데이터 2 삽입
+
+![trie-put-apple]()
+
+```java
+put("air", 2);
+```
+
+#### 3.4.3 "approve"을 키로 가진 데이터 3 삽입
+
+![trie-put-approve]()
+
+```java
+put("approve", 3);
+```
+
+#### 3.4.4 "appa"을 키로 가진 데이터 4 삽입
+
+![trie-put-appa]()
+
+```java
+put("appa", 4);
+```
+
+#### 3.4.5 "appb"을 키로 가진 데이터 5 삽입
+
+![trie-put-appb]()
+
+```java
+put("appb", 5);
+```
+
+### 3.5 Map처럼 반환
+
+Trie에서 Map처럼 데이터를 반환하는 과정은 다음과 같다.
+
+#### 3.5.1 "apple"을 키로 가진 데이터 1 반환
+
+![trie-get-apple]()
+
+```java
+get("apple", 1);
+```
+
+#### 3.5.2 "air"을 키로 가진 데이터 2 반환
+
+![trie-get-air]()
+
+```java
+get("air", 2);
+```
 
 ## 4. Hashing과 Trie 비교

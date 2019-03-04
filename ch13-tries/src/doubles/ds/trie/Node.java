@@ -12,6 +12,10 @@ public class Node {
         this.children = new Node[Constants.ALPHABET_SIZE];
     }
 
+    public Node getChild(int index) {
+        return children[index];
+    }
+
     public void setChild(int index, Node node) {
         this.children[index] = node;
     }
