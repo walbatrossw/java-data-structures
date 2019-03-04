@@ -1,5 +1,6 @@
 package doubles.ds.trie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Trie {
@@ -19,7 +20,7 @@ public class Trie {
         // 입력한 key의 길이 만큼 반복
         for (int i = 0; i < key.length(); i++) {
 
-            char c  = key.charAt(i);    // 알파벳 추출
+            char c = key.charAt(i);    // 알파벳 추출
             int asciiIndex = transformASCIIIndex(c); // 추출한 알파벳을 배열 인덱스에 맞게 저장할 수 있도록 ascii 값 변환
 
             // 추출한 알파벳을 가진 하위노드가 존재 하지 않으면
@@ -43,7 +44,7 @@ public class Trie {
         // 입력한 key의 길이만큼 반복
         for (int i = 0; i < key.length(); i++) {
 
-            int asciiIndex = transformASCIIIndex(key.charAt(i)); // 추출한 알파벳을 배열 인덱스에 맞게 저장할 수 있도록 ascii 값 변환
+            int asciiIndex = transformASCIIIndex(key.charAt(i)); // 추출한 알파벳을 배열 인덱스에 맞게 ascii 값 변환
 
             if (trieNode.getChild(asciiIndex) == null) {    // 추출한 알파벳을 가진 하위 노드가 존재하지 않으면 false 리턴
                 return false;
@@ -63,7 +64,7 @@ public class Trie {
         // 입력한 key의 길이만큼 반복
         for (int i = 0; i < key.length(); i++) {
 
-            int asciiIndex = transformASCIIIndex(key.charAt(i)); // 추출한 알파벳을 배열 인덱스에 맞게 저장할 수 있도록 ascii 값 변환
+            int asciiIndex = transformASCIIIndex(key.charAt(i)); // 추출한 알파벳을 배열 인덱스에 맞게 ascii 값 변환
 
             if (trieNode.getChild(asciiIndex) != null) {    // 추출한 알파벳을 가진 하위 노드가 존재하면
                 trieNode = trieNode.getChild(asciiIndex);   // 하위 노드로 이동
@@ -75,8 +76,21 @@ public class Trie {
         return trieNode.getValue();
     }
 
+    // Autocomplete : 자동완성
     public List<String> allWordsWithPrefix(String prefix) {
-        return null;
+
+        Node trieNode = root;   // 루트 노드로 초기화
+
+        List<String> allWords = new ArrayList<>();
+
+        // 접두사 길이 만큼 반복 수행
+        for (int i = 0; i < prefix.length(); i++) {
+            int asciiIndex = transformASCIIIndex(prefix.charAt(i)); // 추출한 알파벳을 배열 인덱스에 맞게 ascii 값 변환
+            trieNode = trieNode.getChild(asciiIndex);               // 하위 노드로 이동
+        }
+
+        collect(trieNode, prefix, allWords); // 접두사 이후의 단어들 모음
+        return allWords;
     }
 
     public String longestCommonPrefix() {
@@ -87,8 +101,25 @@ public class Trie {
         return 0;
     }
 
+    // 자동완성 단어 수집
     private void collect(Node node, String prefix, List<String> allWords) {
-
+        // 노드가 null 이면 메서드 종료
+        if (node == null) {
+            return;
+        }
+        // leaf 노드이면 allWords에 저장
+        if (node.isLeaf()) {
+            allWords.add(prefix);
+        }
+        // 노드의 자식노드의 수 만큼 반복 수행
+        for (Node childNode : node.getChildren()) {
+            if (childNode == null) {
+                continue;
+            }
+            // 자식노드의 알파벳
+            String childCharacter = childNode.getCharacter();
+            collect(childNode, prefix + childCharacter, allWords); // 접두사 + 추출한 알파벳, 반복수행을 위해 재귀호출
+        }
     }
 
     // ASCII 값을 배열에 인덱스에 맞게 변환
