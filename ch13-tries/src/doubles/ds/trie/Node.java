@@ -2,15 +2,18 @@ package doubles.ds.trie;
 
 public class Node {
 
-    private String character;
-    private Node[] children;
-    private boolean leaf;
-    private boolean visited;
+    private String character;   //  알파벳 문자
+    private Node[] children;    //  하위 노드 배열 변수
+    private boolean leaf;       //  leaf 노드 여부 확인
+    private boolean visited;    //  탐색 여부
 
+    // 생성자
     public Node(String character) {
-        this.character = character;
+        this.character = character;     // 알파벳
         this.children = new Node[Constants.ALPHABET_SIZE];
     }
+
+    // getter, setter
 
     public Node getChild(int index) {
         return children[index];
@@ -50,5 +53,10 @@ public class Node {
 
     public void setVisited(boolean visited) {
         this.visited = visited;
+    }
+
+    @Override
+    public String toString() {
+        return this.character;
     }
 }
