@@ -64,13 +64,13 @@ Trie의 삽입 연산은 아래와 같이 이루어진다.
 
 Trie의 정렬 연산은 아래와 같이 이루어진다.
 
-![trie-sort]()
+![trie-sort](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-sort.gif?raw=true)
 
 ### 3.3 자동완성
 
 Trie의 자동완성 연산은 아래와 같이 이루어진다.
 
-![trie-autocomplete]()
+![trie-autocomplete](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-autocomplete.gif?raw=true)
 
 ### 3.4 Map처럼 삽입
 
@@ -78,7 +78,7 @@ Trie에서 Map처럼 데이터를 저장하는 과정은 아래와 같다.
 
 #### 3.4.1 "apple"을 키로 가진 데이터 1 삽입
 
-![trie-put-apple]()
+![trie-put-apple](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-put-apple.gif?raw=true)
 
 ```java
 put("apple", 1);
@@ -86,7 +86,7 @@ put("apple", 1);
 
 #### 3.4.2 "air"을 키로 가진 데이터 2 삽입
 
-![trie-put-apple]()
+![trie-put-air](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-put-air.gif?raw=true)
 
 ```java
 put("air", 2);
@@ -94,7 +94,7 @@ put("air", 2);
 
 #### 3.4.3 "approve"을 키로 가진 데이터 3 삽입
 
-![trie-put-approve]()
+![trie-put-approve](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-put-approve.gif?raw=true)
 
 ```java
 put("approve", 3);
@@ -102,7 +102,7 @@ put("approve", 3);
 
 #### 3.4.4 "appa"을 키로 가진 데이터 4 삽입
 
-![trie-put-appa]()
+![trie-put-appa](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-put-appa.gif?raw=true)
 
 ```java
 put("appa", 4);
@@ -110,7 +110,7 @@ put("appa", 4);
 
 #### 3.4.5 "appb"을 키로 가진 데이터 5 삽입
 
-![trie-put-appb]()
+![trie-put-appb](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-put-appb.gif?raw=true)
 
 ```java
 put("appb", 5);
@@ -122,18 +122,18 @@ Trie에서 Map처럼 데이터를 반환하는 과정은 다음과 같다.
 
 #### 3.5.1 "apple"을 키로 가진 데이터 1 반환
 
-![trie-get-apple]()
+![trie-get-apple](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-get-apple.gif?raw=true)
 
 ```java
-get("apple", 1);
+get("apple");
 ```
 
 #### 3.5.2 "air"을 키로 가진 데이터 2 반환
 
-![trie-get-air]()
+![trie-get-air](https://github.com/walbatrossw/java-data-structures/blob/master/ch13-tries/img/trie-get-air.gif?raw=true)
 
 ```java
-get("air", 2);
+get("air");
 ```
 
 ## 4. Hashing과 Trie 비교
