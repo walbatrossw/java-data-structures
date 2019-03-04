@@ -26,8 +26,8 @@ public class App {
         System.out.println();
 
         System.out.println("---- autocomplete ----");
-        System.out.println(trie.allWordsWithPrefix("a"));
-        System.out.println(trie.allWordsWithPrefix("ai"));
+        System.out.println("a : " + trie.allWordsWithPrefix("a"));
+        System.out.println("ai : " + trie.allWordsWithPrefix("ai"));
 
         trie.insert("doubles", 6);
         trie.insert("yoon", 7);
@@ -37,12 +37,20 @@ public class App {
         trie.insert("choi", 11);
 
         System.out.println();
-        
+
         System.out.println("---- sort ----");
-        // 정렬
-        List<String> list = trie.allWordsWithPrefix("");
-        for (String s : list) {
-            System.out.println(s);
-        }
+
+        trie.sort();
+
+        System.out.println();
+        Trie trieForCommonPrefix = new Trie();
+
+        trieForCommonPrefix.insert("hope", 1);
+        trieForCommonPrefix.insert("hobby", 2);
+        trieForCommonPrefix.insert("horror", 3);
+        trieForCommonPrefix.insert("honor", 4);
+        trieForCommonPrefix.insert("hospital", 5);
+        trieForCommonPrefix.insert("horse", 6);
+        System.out.println("longest common prefix : " + trieForCommonPrefix.longestCommonPrefix());
     }
 }

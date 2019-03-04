@@ -93,12 +93,32 @@ public class Trie {
         return allWords;
     }
 
+    // 가장 긴 접두사 반환
     public String longestCommonPrefix() {
-        return null;
+        Node trieNode = root; // 루트 노드로 초기화
+        String longestCommonPrefix = ""; // 빈 문자열로 초기화
+
+        // 하위노드가 여러개 이거나 leaf 노드일 때까지 반복 수행
+        while (countNumOfChildren(trieNode) == 1 && !trieNode.isLeaf()) {
+            trieNode = trieNode.getChild(indexOfSingleChild);
+            longestCommonPrefix = longestCommonPrefix + String.valueOf((char) (indexOfSingleChild + 'a'));
+        }
+        return longestCommonPrefix;
     }
 
+    // 하위 노드의 갯수 반환
     private int countNumOfChildren(Node trieNode) {
-        return 0;
+        int numOfChildren = 0; // 하위 노드 개수 0으로 초기화
+
+        // 하위 노드의 개수 만큼 반복 수행
+        for (int i = 0; i < trieNode.getChildren().length; i++) {
+            // 하위 노드가 존재하면
+            if (trieNode.getChild(i) != null) {
+                numOfChildren++; // 하위 노드 1 증가
+                indexOfSingleChild = i; // 단일 노드의 인덱스
+            }
+        }
+        return numOfChildren;
     }
 
     // 자동완성 단어 수집
@@ -120,6 +140,14 @@ public class Trie {
             String childCharacter = childNode.getCharacter();
             collect(childNode, prefix + childCharacter, allWords); // 접두사 + 추출한 알파벳, 반복수행을 위해 재귀호출
         }
+    }
+
+    public void sort() {
+        List<String> list = allWordsWithPrefix("");
+        for (String s : list) {
+            System.out.print(s + " ");
+        }
+        System.out.println();
     }
 
     // ASCII 값을 배열에 인덱스에 맞게 변환
