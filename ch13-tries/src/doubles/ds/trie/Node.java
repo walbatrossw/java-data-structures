@@ -2,7 +2,8 @@ package doubles.ds.trie;
 
 public class Node {
 
-    private String character;   //  알파벳 문자
+    private String character;   //  알파벳 문자, 키 값
+    private int value;          //  데이터
     private Node[] children;    //  하위 노드 배열 변수
     private boolean leaf;       //  leaf 노드 여부 확인
     private boolean visited;    //  탐색 여부
@@ -19,8 +20,17 @@ public class Node {
         return children[index];
     }
 
-    public void setChild(int index, Node node) {
+    public void setChild(int index, Node node, int value) {
+        node.setValue(value);
         this.children[index] = node;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public String getCharacter() {
