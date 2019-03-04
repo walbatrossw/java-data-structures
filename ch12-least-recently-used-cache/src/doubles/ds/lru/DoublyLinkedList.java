@@ -1,5 +1,6 @@
 package doubles.ds.lru;
 
+// 이중연결리스트 클래스
 public class DoublyLinkedList {
 
     private Node headNode;  // 첫번째 노드

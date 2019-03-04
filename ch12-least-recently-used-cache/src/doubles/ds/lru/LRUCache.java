@@ -34,6 +34,7 @@ public class LRUCache {
             this.actualSize++;
             add(newNode);
         } else { // 지정된 저장공간보다 실제 사이즈가 크거나 같으면 마지막 노드를 제거하고 삽입 수행
+            System.out.println("cache is full... remove tail");
             removeTail();
             add(newNode);
         }
@@ -71,6 +72,8 @@ public class LRUCache {
         Node lastNode = this.map.get(this.linkedList.getTailNode().getId());
 
         // tail 노드의 이전노드를 tail 노드로 변경
+        // 이전 노드 -> tail 노드
+        // 이전 노드(tail)
         this.linkedList.setTailNode(linkedList.getTailNode().getPrevNode());
 
         // 기존의 tail 노드를 null로 변경
@@ -105,23 +108,31 @@ public class LRUCache {
 
         // head 노드가 아니면(middle 노드인 경우)
         if (prevNode != null) {
-            prevNode.setNextNode(nextNode); // 이전노드 -> 다음노드
+            // 이전노드 -> 노드 -> 다음노드
+            // 이전노드 ---------> 다음노드
+            prevNode.setNextNode(nextNode);
         } else { // head 노드인 경우
+            // 노드(head) -> 다음노드
+            // 다음노드(head) ->
             this.linkedList.setHeadNode(nextNode); // 다음노드를 head 노드로 세팅
         }
 
         // tail 노드가 아니면(middle 노드인 경우)
         if (nextNode != null) {
-            nextNode.setPrevNode(prevNode);         // 이전노드 <- 다음노드
+            // 이전노드 <- 노드 <- 다음노드
+            // 이전노드 <-------- 다음노드
+            nextNode.setPrevNode(prevNode);
         } else { // tail 노드인 경우
+            // 이전노드 -> 노드(tail)
+            // -> 이전노드(tail)
             this.linkedList.setTailNode(prevNode);  // tail 노드를 이전노드로 변경
         }
 
-        // 노드를 새로 삽입
+        // 노드를 새로 삽입하여 head노드로 변경
         add(node);
     }
 
-    // 노드 출력
+    // 캐시 출력
     public void show() {
         Node actualNode = this.linkedList.getHeadNode();
         while (actualNode != null) {
