@@ -20,57 +20,63 @@
 
 ### 2.1 삽입
 
-TST와 Trie의 삽입 연산과정이 어떻게 다른지 살펴보자.
+TST의 삽입 연산은 아래와 같이 이루어진다.
 
 #### 2.1.1 "cat"문자열의 키를 가진 데이터 삽입
 
-![tst-insert-cat]()
+![tst-insert-cat](https://github.com/walbatrossw/java-data-structures/blob/master/ch14-ternary-search-tree/img/tst-insert-cat.gif?raw=true)
 
 ```java
 put("cat", 23);
 ```
 
-TST에 데이터가 존재하지 않을 경우 Trie와 같은 방식으로 삽입이 된다. 하지만 루트노드에 빈문자열을 저장하는 것이 아니라 처음부터 문자를 저장하는 방식이 차이점이다.
+TST에 데이터가 존재하지 않을 경우 Trie와 같은 방식으로 차례로 문자열에서 문자 하나씩 가운데 노드에 차례로
+삽입이 된다. 하지만 루트노드에 빈 문자열을 저장하지 않고 바로 첫번째 문자를 루트노드부터 삽입하는 것이
+Trie와 차이점이다.
 
 #### 2.1.2 "apple"문자열의 키를 가진 데이터 삽입
 
-![tst-insert-apple]()
+![tst-insert-apple](https://github.com/walbatrossw/java-data-structures/blob/master/ch14-ternary-search-tree/img/tst-insert-apple.gif?raw=true)
 
 ```java
 put("apple", 46);
 ```
 
-apple의 첫번째 알파벳 a가 c보다 작기 때문에 왼쪽 하위트리로 이동하게 되고, 차례로 나머지 문자열들을 삽입하게 된다.
+apple의 문자열 첫번째 a가 c보다 작기 때문에 c의 왼쪽 하위트리로 삽입되고, 나머지 문자열들은 하나씩 차례로
+가운데 노드에 삽입된다.
 
 #### 2.1.3 "car"문자열의 키를 가진 데이터 삽입
 
-![tst-insert-cat]()
+![tst-insert-car](https://github.com/walbatrossw/java-data-structures/blob/master/ch14-ternary-search-tree/img/tst-insert-car.gif?raw=true)
 
 ```java
 put("car", 6);
 ```
 
-car는 cat과 첫번째, 두번째 알파벳 c, a가 동일하기 때문에 그대로 하위 트리를 따라 이동하고, 세번째 알파벳이 r과 t가 다르고 r이 t보다 작기 때문에 기존 t노드의 왼쪽 하위노드로 삽입된다.
+car는 기존에 삽입된 cat과 첫번째, 두번째 문자열이 동일하기 때문에 그대로 가운데 하위 트리를 따라 이동한다.
+세번째 문자열 r은 기존에 삽입된 t보다 작기 때문에 오른쪽 하위노드로 삽입된다.
 
 #### 2.1.4 "carrot"문자열의 키를 가진 데이터 삽입
 
-![tst-insert-cat]()
+![tst-insert-carrot](https://github.com/walbatrossw/java-data-structures/blob/master/ch14-ternary-search-tree/img/tst-insert-carrot.gif?raw=true)
 
 ```java
 put("carrot", 68);
 ```
 
-carrot은 cat과 첫번째, 두번째 알파벳 c, a가 동일하기 때문에 그대로 하위 트리를 따라 이동하고, 세번째 알파벳 r과 t가 다르고, r이 t보다 작기 때문에 왼쪽의 하위노드 r로 이동한다. 그 이후에는 차례로 나머지 문자열을 삽입한다.
+carrot은 기존에 삽입된 cat과 첫번째, 두번째 문자열이 동일하기 때문에 그대로 가운데 하위 트리를 따라 이동한다.
+세번째 문자열은 기존에 삽입된 car의 세번째 문자열과 동일하기 때문에 그대로 가운데 노드로 이동하고 나머지
+문자열은 rot는 차례로 하나씩 가운데 하위노드에 삽입된다.
 
 #### 2.1.5 "cow"문자열의 키를 가진 데이터 삽입
 
-![tst-insert-cat]()
+![tst-insert-cow](https://github.com/walbatrossw/java-data-structures/blob/master/ch14-ternary-search-tree/img/tst-insert-apple.gif?raw=true)
 
 ```java
 put("cow", 112);
 ```
 
-cow는 cat과 첫번째 알파벳만 동일하기 때문에 cat의 두번째 알파벳에서 a와 o를 비교한다. a보다 o가 크기 때문에 a의 오른쪽 하위노드에 o가 놓이게 되고, o의 하위노드로 나머지 문자열이 삽입된다.
-
+cow는 기존에 삽입된 cat과 첫번째 문자열만 동일하기 때문에 cat의 두번째 문자열 a와 cow의 두번째 문자열 o와
+비교를 하고 작은 o를 오른쪽 하위노드에 삽입하고, 나머지 문자열 w는 가운데 하위노드에 삽입된다.
 
 ### 2.2 탐색
