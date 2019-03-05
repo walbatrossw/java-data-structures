@@ -80,3 +80,33 @@ cow는 기존에 삽입된 cat과 첫번째 문자열만 동일하기 때문에 
 비교를 하고 a보다 큰 o를 오른쪽 하위노드에 삽입한다. 나머지 문자열 w는 가운데 하위노드에 삽입된다.
 
 ### 2.2 탐색
+
+#### 2.2.1 "car"키를 가진 데이터 탐색
+
+![tst-get-car](https://github.com/walbatrossw/java-data-structures/blob/master/ch14-ternary-search-tree/img/tst-get-car.gif?raw=true)
+
+```java
+get("car");
+```
+
+car을 탐색은 위와 같이 문자열을 하나씩 비교해가면서 동일한 경우 가운데 하위노드를 따라 이동한다. 만약
+일치하지 않는 문자열을 만나게 되면 해당 문자열과 비교하여 작은 문자열인 경우 왼쪽, 큰 문자열 인 경우 오른쪽
+하위노드로 이동한다.
+
+#### 2.2.2 일치하는 문자열이 존재하지 않을 경우
+
+![tst-get-d](https://github.com/walbatrossw/java-data-structures/blob/master/ch14-ternary-search-tree/img/tst-get-d.gif?raw=true)
+
+```java
+get("dog");
+```
+
+일치하는 문자열이 존재하지 않을 경우 연산을 종료시킨다.
+
+## 3 구현
+
+### 3.1 클래스 작성
+
+### 3.2 삽입
+
+### 3.3 탐색
