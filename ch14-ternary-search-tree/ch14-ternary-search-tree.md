@@ -70,13 +70,13 @@ carrot은 기존에 삽입된 cat과 첫번째, 두번째 문자열이 동일하
 
 #### 2.1.5 "cow"문자열의 키를 가진 데이터 삽입
 
-![tst-insert-cow](https://github.com/walbatrossw/java-data-structures/blob/master/ch14-ternary-search-tree/img/tst-insert-apple.gif?raw=true)
+![tst-insert-cow](https://github.com/walbatrossw/java-data-structures/blob/master/ch14-ternary-search-tree/img/tst-insert-cow.gif?raw=true)
 
 ```java
 put("cow", 112);
 ```
 
 cow는 기존에 삽입된 cat과 첫번째 문자열만 동일하기 때문에 cat의 두번째 문자열 a와 cow의 두번째 문자열 o와
-비교를 하고 작은 o를 오른쪽 하위노드에 삽입하고, 나머지 문자열 w는 가운데 하위노드에 삽입된다.
+비교를 하고 a보다 큰 o를 오른쪽 하위노드에 삽입한다. 나머지 문자열 w는 가운데 하위노드에 삽입된다.
 
 ### 2.2 탐색
