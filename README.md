@@ -61,6 +61,9 @@
 
 ## 14. Ternary Search Tree
 
+- [간단 요약](https://github.com/walbatrossw/java-data-structures/blob/master/ch14-ternary-search-tree/ch14-ternary-search-tree.md)
+- [TST 구현](https://github.com/walbatrossw/java-data-structures/tree/master/ch14-ternary-search-tree/src/doubles/ds/tst)
+
 ## 15. Substring Search
 
 ## 16. Strings
