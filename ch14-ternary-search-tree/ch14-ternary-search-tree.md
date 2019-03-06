@@ -107,6 +107,153 @@ get("dog");
 
 ### 3.1 클래스 작성
 
+```java
+// 노드 클래스
+public class Node {
+
+    private char character;     // 문자
+    private Node leftNode;      // LESS
+    private Node middleNode;    // EQUAL
+    private Node rightNode;     // GREATER
+    private int value;          // 값
+
+    // 생성자
+    public Node(char character) {
+        this.character = character;
+    }
+
+    // getter, setter
+
+}
+```
+
+```java
+public class TST {
+
+    private Node rootNode;
+
+    // 삽입
+    // 삽입 처리
+
+    // 탐색
+    // 탐색 처리
+}
+```
+
 ### 3.2 삽입
 
+```java
+// 삽입
+public void put(String key, int value) {
+
+    rootNode = put(rootNode, key, value, 0);
+
+}
+
+// 삽입 처리
+private Node put(Node node, String key, int value, int index) {
+
+    char c = key.charAt(index); // 문자 추출
+
+    // 현재 노드가 null 이면
+    if (node == null) {
+        node = new Node(c); // 새로운 노드 생성
+    }
+
+    // LESS : 추출한 문자 < 현재 노드의 문자
+    if (c < node.getCharacter()) {
+        // 왼쪽 하위노드로 세팅, 삽입 재귀호출
+        node.setLeftNode(put(node.getLeftNode(), key, value, index));
+
+    // GREATER : 추출한 문자열 > 현재 노드의 문자열
+    } else if (c > node.getCharacter()) {
+        // 오른쪽 하위노드로 세팅, 삽입 재귀 호출
+        node.setRightNode(put(node.getRightNode(), key, value, index));
+
+    // EQUAL : 현재 인덱스 < 전체 키의 길이
+    } else if (index < key.length() - 1) {
+        // 가운데 하위노드로 세팅, 삽입 재귀 호출(인덱스 1 증가)
+        node.setMiddleNode(put(node.getMiddleNode(), key, value, index + 1));
+
+    // 값 저장
+    } else {
+        node.setValue(value);
+    }
+
+    return node;
+}
+```
+
 ### 3.3 탐색
+
+```java
+// 탐색
+public Integer get(String key) {
+
+    Node node = get(rootNode, key, 0);
+
+    if (node == null) {
+        return null;
+    }
+
+    return node.getValue();
+}
+
+// 탐색 처리
+private Node get(Node node, String key, int index) {
+
+    if (node == null) {
+        return null;
+    }
+
+    char c = key.charAt(index); // 문자 추출
+
+    // LESS : 추출한 문자 < 현재 노드의 문자
+    if (c < node.getCharacter()) {
+        // 왼쪽 하위노드 탐색 재귀 호출
+        return get(node.getLeftNode(), key, index);
+
+    // GREATER : 추출한 문자 > 현재 노드의 문자
+    } else if (c > node.getCharacter()) {
+        // 오른쪽 하위노드 탐색 재귀 호출
+        return get(node.getRightNode(), key, index);
+
+    // EQUAL : 현재 인덱스 < 전체 문자열의 길이
+    } else if (index < key.length() - 1) {
+        // 가운데 하위노드 탐색 재귀호출(인덱스 1증가)
+        return get(node.getMiddleNode(), key, index + 1);
+
+    // 값이 저장된 노드 반환
+    } else {
+        return node;
+    }
+
+}
+```
+
+### 3.4 테스트
+
+```java
+public class App {
+    public static void main(String[] args) {
+        TST tst = new TST();
+        tst.put("cat", 1);
+        tst.put("apple", 2);
+        tst.put("car", 3);
+        tst.put("carrot", 4);
+        tst.put("cow", 5);
+
+        System.out.println(tst.get("car"));
+        System.out.println(tst.get("carrot"));
+        System.out.println(tst.get("cow"));
+        System.out.println(tst.get("hello"));
+    }
+}
+```
+
+```console
+3
+4
+5
+null
+```
