@@ -140,7 +140,7 @@ public class TST {
 }
 ```
 
-### 3.2 삽입
+### 3.2 삽입 메서드
 
 ```java
 // 삽입
@@ -184,7 +184,7 @@ private Node put(Node node, String key, int value, int index) {
 }
 ```
 
-### 3.3 탐색
+### 3.3 탐색 메서드
 
 ```java
 // 탐색
